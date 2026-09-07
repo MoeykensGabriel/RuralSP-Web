@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   GB SEGURIDAD — Configuración de Tailwind v4
+   --------------------------------------------------------------------------
+   Tailwind v4 se configura desde el CSS: no hay `tailwind.config.js`.
+   Este archivo es corto a propósito — el estilo vive en las clases de cada
+   componente. Acá solo se definen los TOKENS y las pocas reglas base.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Variante `dark:`
+   Por defecto Tailwind usa la clase .dark; acá la apuntamos al atributo
+   data-theme que escribe `context/ThemeProvider.jsx`.
+   Igual casi no se usa: los colores de abajo se dan vuelta solos.
+   -------------------------------------------------------------------------- */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* --------------------------------------------------------------------------
+   TOKENS
+   Cada color de acá genera sus utilidades: --color-bg → bg-bg, text-bg,
+   border-bg, etc. Para re-brandear el sitio se cambian estos valores y
+   listo: no hay que tocar ningún componente.
+   -------------------------------------------------------------------------- */
+@theme {
+  /* Paleta — hoy blanco y negro. Acá se cambia a los colores del cliente. */
+  --color-bg: #ffffff;
+  --color-bg-soft: #f6f6f6;
+  --color-fg: #0e0e0e;
+  --color-fg-soft: #4a4a4a;
+  --color-fg-mute: #7b7b7b;
+  --color-line: #e3e3e3;
+  --color-line-strong: #0e0e0e;
+  --color-inverse-bg: #0e0e0e;
+  --color-inverse-fg: #ffffff;
+
+  /* Tipografías */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Breakpoint propio: a los 900px el menú pasa de hamburguesa a horizontal.
+     Genera el prefijo `menu:` (ej. `hidden menu:flex`). */
+  --breakpoint-menu: 56.25rem;
+
+  /* Ancho máximo del contenido */
+  --container-page: 1180px;
+
+  /* Animación del carrusel de logos → clase `animate-marquee` */
+  --animate-marquee: marquee 34s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Apertura del menú mobile → clase `animate-slide-down` */
+  --animate-slide-down: slide-down 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Utilidad propia: el texto chico en mono que va arriba de los títulos.
+   Se repetía en tres lugares, así que vive acá como una sola clase.
+   -------------------------------------------------------------------------- */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-fg-mute);
+}
+
+/* --------------------------------------------------------------------------
+   TEMA OSCURO
+   Solo se redefinen los colores. Como todas las utilidades de Tailwind
+   apuntan a estas variables, el sitio entero cambia con este bloque.
+   -------------------------------------------------------------------------- */
+[data-theme='dark'] {
+  --color-bg: #0d0d0d;
+  --color-bg-soft: #151515;
+  --color-fg: #f4f4f4;
+  --color-fg-soft: #b2b2b2;
+  --color-fg-mute: #7d7d7d;
+  --color-line: #272727;
+  --color-line-strong: #f4f4f4;
+  --color-inverse-bg: #f4f4f4;
+  --color-inverse-fg: #0d0d0d;
+
+  color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   BASE
+   Lo que Tailwind no cubre con su preflight.
+   -------------------------------------------------------------------------- */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.22s, color 0.22s;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Foco visible y consistente en todo el sitio */
+  :focus-visible {
+    outline: 2px solid var(--color-line-strong);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* Respeta a quien pidió menos movimiento en su sistema operativo */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
