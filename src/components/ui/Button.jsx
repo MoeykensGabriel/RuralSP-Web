@@ -18,11 +18,6 @@ const VARIANTS = {
   primary: 'border-inverse-bg bg-inverse-bg text-inverse-fg hover:bg-transparent hover:text-fg',
   secondary: 'border-line-strong bg-transparent text-fg hover:bg-inverse-bg hover:text-inverse-fg',
   ghost: 'border-line bg-transparent text-fg-soft hover:border-line-strong hover:text-fg',
-  /**
-   * Para superficies siempre oscuras, como el hero. No usa los tokens del
-   * tema porque el fondo es oscuro en tema claro y en tema oscuro por igual.
-   */
-  light: 'border-white bg-white text-neutral-950 hover:bg-transparent hover:text-white',
 };
 
 const SIZES = {

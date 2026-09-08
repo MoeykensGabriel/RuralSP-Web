@@ -9,30 +9,27 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   Variante `dark:`
-   Por defecto Tailwind usa la clase .dark; acá la apuntamos al atributo
-   data-theme que escribe `context/ThemeProvider.jsx`.
-   Igual casi no se usa: los colores de abajo se dan vuelta solos.
-   -------------------------------------------------------------------------- */
-@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
-
-/* --------------------------------------------------------------------------
    TOKENS
    Cada color de acá genera sus utilidades: --color-bg → bg-bg, text-bg,
    border-bg, etc. Para re-brandear el sitio se cambian estos valores y
    listo: no hay que tocar ningún componente.
+
+   El sitio es OSCURO ÚNICAMENTE. No hay tema claro ni selector: el logo
+   del cliente es plateado sobre negro y el sitio se armó alrededor de eso.
    -------------------------------------------------------------------------- */
 @theme {
-  /* Paleta — hoy blanco y negro. Acá se cambia a los colores del cliente. */
-  --color-bg: #ffffff;
-  --color-bg-soft: #f6f6f6;
-  --color-fg: #0e0e0e;
-  --color-fg-soft: #4a4a4a;
-  --color-fg-mute: #7b7b7b;
-  --color-line: #e3e3e3;
-  --color-line-strong: #0e0e0e;
-  --color-inverse-bg: #0e0e0e;
-  --color-inverse-fg: #ffffff;
+  /* Paleta — escala de grises sobre fondo oscuro. */
+  --color-bg: #0d0d0d;
+  --color-bg-soft: #151515;
+  --color-fg: #f4f4f4;
+  --color-fg-soft: #b2b2b2;
+  --color-fg-mute: #7d7d7d;
+  --color-line: #272727;
+  --color-line-strong: #f4f4f4;
+
+  /* Invertidos: para botones claros y superficies que contrastan. */
+  --color-inverse-bg: #f4f4f4;
+  --color-inverse-fg: #0d0d0d;
 
   /* Tipografías */
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -86,31 +83,14 @@
 }
 
 /* --------------------------------------------------------------------------
-   TEMA OSCURO
-   Solo se redefinen los colores. Como todas las utilidades de Tailwind
-   apuntan a estas variables, el sitio entero cambia con este bloque.
-   -------------------------------------------------------------------------- */
-[data-theme='dark'] {
-  --color-bg: #0d0d0d;
-  --color-bg-soft: #151515;
-  --color-fg: #f4f4f4;
-  --color-fg-soft: #b2b2b2;
-  --color-fg-mute: #7d7d7d;
-  --color-line: #272727;
-  --color-line-strong: #f4f4f4;
-  --color-inverse-bg: #f4f4f4;
-  --color-inverse-fg: #0d0d0d;
-
-  color-scheme: dark;
-}
-
-/* --------------------------------------------------------------------------
    BASE
    Lo que Tailwind no cubre con su preflight.
    -------------------------------------------------------------------------- */
 @layer base {
   :root {
-    color-scheme: light;
+    /* Le avisa al navegador que la página es oscura, así pinta en oscuro
+       los controles nativos: scrollbars, selects, campos de formulario. */
+    color-scheme: dark;
   }
 
   html {
@@ -125,7 +105,6 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.22s, color 0.22s;
   }
 
   h1,

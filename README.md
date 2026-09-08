@@ -70,8 +70,8 @@ medidas de `index.css`.
 ### Cambiar la paleta
 
 Todo el sitio sale de las variables de `@theme` en `src/index.css`. Cambiar
-esos valores re-tiñe la página entera sin tocar ningún componente. El tema
-oscuro solo las redefine bajo `[data-theme='dark']`.
+esos valores re-tiñe la página entera sin tocar ningún componente. El sitio
+es oscuro únicamente: no hay tema claro ni selector.
 
 ### Cargar los logos de clientes
 

@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, Moon, Phone, Sun, X } from 'lucide-react';
+import { Menu, Phone, X } from 'lucide-react';
 
 import { site } from '../../config/site';
 import { PATHS } from '../../routes/paths';
-import useTheme from '../../hooks/useTheme';
 import useLockBodyScroll from '../../hooks/useLockBodyScroll';
 import Button from '../ui/Button';
 import Container from '../ui/Container';
@@ -30,7 +29,6 @@ const ICON_BTN =
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useLockBodyScroll(menuOpen);
 
@@ -93,15 +91,6 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            className={ICON_BTN}
-            onClick={toggleTheme}
-            aria-label={theme === 'dark' ? 'Activar tema claro' : 'Activar tema oscuro'}
-          >
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-
           {/* El mostrar/ocultar va en este <span>, no en el Button.
               Button ya trae `inline-flex` en su clase base, y una utilidad
               `hidden` pasada por className NO le gana: entre dos clases de
