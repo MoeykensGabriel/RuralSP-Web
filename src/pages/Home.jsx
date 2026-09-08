@@ -36,15 +36,9 @@ export default function Home() {
   return (
     <>
       {/* ── 2. Hero ─────────────────────────────────────────────────────
-          Bloque siempre oscuro, en tema claro y en tema oscuro por igual:
-          el sello es plateado sobre negro, así que sobre un fondo oscuro
-          se funde y no se le nota el recuadro de fondo.
-
-          Por eso acá los colores son fijos (neutral-*) y no los tokens del
-          tema. Es la única sección del sitio que funciona así.
-
-          Mobile: texto arriba, sello abajo.
-          Desktop: dos columnas, texto a la izquierda y sello a la derecha. */}
+          Usa un negro un punto más profundo que el del resto del sitio
+          (neutral-950 contra --color-bg) para separarse apenas del cuerpo
+          de la página, sin cortarlo con una línea. */}
       <section className="relative isolate overflow-hidden bg-neutral-950 text-white">
         {/* ── Fondo, en tres capas. Todo decorativo: nada de esto se lee. ──
             El orden importa, se apilan de atrás hacia adelante. */}
@@ -76,7 +70,7 @@ export default function Home() {
             {site.slogan}
           </h1>
           <p className="mt-6 max-w-[46ch] text-lg text-neutral-300">{site.description}</p>
-          <Button to={PATHS.contacto} variant="light" className="mt-10">
+          <Button to={PATHS.contacto} className="mt-10">
             Más información
           </Button>
         </Container>
@@ -107,9 +101,9 @@ export default function Home() {
 
       {/* ── 4. Prueba social ────────────────────────────────────────────
           El carrusel se desplaza solo; no cambia entre mobile y desktop. */}
-      <section className="border-t border-line py-10 menu:py-14">
+      <section className="border-t border-line py-16 menu:py-24">
         <Container>
-          <p className="eyebrow mb-6">Empresas que confían en nosotros</p>
+          <p className="eyebrow mb-10">Empresas que confían en nosotros</p>
         </Container>
         <LogoCarousel items={partners} />
       </section>

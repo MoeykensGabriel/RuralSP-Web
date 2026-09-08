@@ -18,7 +18,7 @@ export default function LogoCarousel({ items }) {
     // y el primero de la siguiente.
     <ul className="flex items-center gap-6 pr-6" aria-hidden={clone || undefined}>
       {items.map((item) => (
-        <li key={item.id} className="grid h-19 w-40 shrink-0 place-items-center">
+        <li key={item.id} className="grid h-28 w-48 shrink-0 place-items-center">
           {item.logo ? (
             <img
               src={item.logo}
