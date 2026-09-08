@@ -10,8 +10,8 @@ import Container from '../ui/Container';
 
 /**
  * Header del sitio. Mobile first:
- *   - hasta 900px  -> logo + toggle de tema + botón hamburguesa
- *   - desde 900px  -> logo + navegación horizontal + tema + CTA de teléfono
+ *   - hasta 900px  -> logo a la izquierda + botón hamburguesa a la derecha
+ *   - desde 900px  -> logo a la izquierda + navegación a la derecha
  *
  * El breakpoint `menu:` (900px) está definido en `index.css`.
  * Los ítems del menú salen de `config/site.js`.
@@ -73,6 +73,9 @@ export default function Header() {
           </span>
         </Link>
 
+        {/* El `justify-between` del contenedor deja la marca a la izquierda
+            y esto a la derecha. En mobile la nav se oculta y el lugar de la
+            derecha lo ocupa el botón hamburguesa. */}
         <nav className="hidden items-center gap-8 menu:flex" aria-label="Navegación principal">
           {site.nav.map((item) => (
             <NavLink
@@ -90,30 +93,16 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          {/* El mostrar/ocultar va en este <span>, no en el Button.
-              Button ya trae `inline-flex` en su clase base, y una utilidad
-              `hidden` pasada por className NO le gana: entre dos clases de
-              la misma especificidad manda el orden del CSS generado, no el
-              del atributo. Envolver es la forma robusta de hacerlo. */}
-          <span className="hidden menu:inline-flex">
-            <Button href={site.contact.phoneHref} size="sm">
-              <Phone size={16} aria-hidden="true" />
-              {site.contact.phone}
-            </Button>
-          </span>
-
-          <button
-            type="button"
-            className={`${ICON_BTN} menu:hidden`}
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
-            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
+        <button
+          type="button"
+          className={`${ICON_BTN} menu:hidden`}
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
+          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+        >
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </Container>
 
       {/* Panel mobile. Cada link cierra el panel al navegar. */}

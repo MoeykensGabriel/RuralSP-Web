@@ -42,9 +42,14 @@ export const site = {
     hours: 'Lunes a viernes de 9 a 18 h',
   },
 
-  /** Ítems del header y del footer. Agregar o quitar acá actualiza los dos. */
+  /**
+   * Ítems del header y del footer. Agregar o quitar acá actualiza los dos.
+   *
+   * No hay "Inicio" a propósito: el logo ya lleva a la home, en el header y
+   * en el footer. Es una convención que la gente tiene incorporada, y
+   * repetirla ocupa lugar sin agregar nada.
+   */
   nav: [
-    { label: 'Inicio', to: PATHS.home },
     { label: 'Servicios', to: PATHS.servicios },
     { label: 'Nosotros', to: PATHS.nosotros },
     { label: 'Contacto', to: PATHS.contacto },
