@@ -58,12 +58,14 @@ export default function Header() {
         >
           {/* alt vacío a propósito: el nombre ya está en el texto de al lado
               y el enlace tiene su aria-label. Repetirlo sería ruido. */}
+          {/* El tamaño lo manda la clase `size-*`, no los atributos width/height:
+              esos solo reservan el espacio para que no salte la página al cargar. */}
           <img
             src={site.logo}
             alt=""
-            width="40"
-            height="40"
-            className="size-10 shrink-0 rounded-full object-cover"
+            width="60"
+            height="60"
+            className="size-12 shrink-0 rounded-full object-cover menu:size-15"
           />
           <span className="flex flex-col">
             <span className="font-mono text-base font-bold tracking-wide">{site.name}</span>
