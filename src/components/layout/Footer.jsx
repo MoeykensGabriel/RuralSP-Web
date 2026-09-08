@@ -4,9 +4,15 @@ import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { site } from '../../config/site';
 import { PATHS } from '../../routes/paths';
 import Container from '../ui/Container';
+import ContactForm from './ContactForm';
 
 /**
- * Footer del sitio. Una columna en mobile, dos desde 640px y tres en desktop.
+ * Footer del sitio, en dos partes:
+ *   1. el formulario de contacto, que por vivir acá aparece al final de
+ *      TODAS las páginas sin repetirlo en ninguna
+ *   2. los enlaces y datos, en una columna en mobile, dos desde 640px y
+ *      tres en desktop
+ *
  * Igual que el header, los links salen de `config/site.js`.
  */
 const COL_TITLE = 'mb-4 text-xs font-bold tracking-[0.12em] uppercase';
@@ -15,8 +21,10 @@ const LINK = 'hover:text-fg hover:underline hover:underline-offset-4';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line bg-bg-soft pt-12 pb-6">
-      <Container>
+    <footer className="border-t border-line bg-bg-soft">
+      <ContactForm />
+
+      <Container className="pt-16 pb-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 menu:grid-cols-[1.6fr_1fr_1.2fr] menu:gap-12">
           <div className="flex flex-col gap-3">
             <Link to={PATHS.home} className="inline-flex items-center gap-3">

@@ -44,6 +44,18 @@ export const getSectors = () => [
   { id: 'sc-6', title: 'Sector 06', text: RELLENO },
 ];
 
+/**
+ * Opciones del campo "Servicio de interés" del formulario de contacto.
+ * Reemplazar por los servicios reales cuando el cliente los confirme.
+ */
+export const getContactReasons = () => [
+  'Servicio 01',
+  'Servicio 02',
+  'Servicio 03',
+  'Servicio 04',
+  'Otra consulta',
+];
+
 /** Diferenciales de la empresa. Grilla de tarjetas en la home. */
 export const getValues = () => [
   { id: 'vl-1', title: 'Diferencial 01', text: RELLENO },

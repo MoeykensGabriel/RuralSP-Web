@@ -145,26 +145,9 @@ export default function Home() {
       </Section>
 
       {/* ── 7. Cierre / CTA ─────────────────────────────────────────────
-          Apilado en mobile, texto y botones enfrentados en desktop. */}
-      <section className="border-t border-line bg-bg-soft py-12 menu:py-16">
-        <Container className="flex flex-col gap-6 menu:flex-row menu:items-center menu:justify-between menu:gap-12">
-          <div>
-            <h2 className="max-w-[24ch] text-2xl font-bold menu:text-3xl">
-              Título del cierre
-            </h2>
-            <p className="mt-3 max-w-[52ch] text-fg-soft">
-              Bajada del bloque de cierre, orientada a que el visitante pida información.
-            </p>
-          </div>
-
-          <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-            <Button to={PATHS.contacto}>Contactanos</Button>
-            <Button href={site.contact.phoneHref} variant="secondary">
-              {site.contact.phone}
-            </Button>
-          </div>
-        </Container>
-      </section>
+          Ya no vive acá: el formulario de contacto está en el Footer, así
+          que cierra ésta y todas las demás páginas. Ver
+          `components/layout/ContactForm.jsx`. */}
     </>
   );
 }
