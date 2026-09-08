@@ -42,7 +42,10 @@
   /* Ancho máximo del contenido */
   --container-page: 1180px;
 
-  /* Animación del carrusel de logos → clase `animate-marquee` */
+  /* Carrusel de logos → clase `animate-marquee`.
+     La duración de acá es solo un valor por defecto: `LogoCarousel.jsx` la
+     pisa con un style inline calculado según cuántos logos haya, para que
+     la velocidad no cambie al agregar o sacar empresas. */
   --animate-marquee: marquee 34s linear infinite;
 
   @keyframes marquee {

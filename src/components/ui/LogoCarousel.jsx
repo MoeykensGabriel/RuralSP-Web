@@ -6,19 +6,37 @@
  * vuelve a empezar, así el loop no tiene salto visible. Todo el movimiento
  * es CSS: no hay JavaScript ni timers corriendo.
  *
+ * Se frena al pasar el mouse por encima o al llegar con el teclado, y queda
+ * quieto si el sistema operativo pide menos movimiento.
+ *
  * @param {{id: string, name: string, logo: string|null}[]} items
+ * @param {number} [speed] Segundos que tarda CADA logo en cruzar. Subilo
+ *   para que vaya más lento, bajalo para más rápido. La velocidad real es
+ *   siempre la misma sin importar cuántos logos haya.
  */
-export default function LogoCarousel({ items }) {
+
+/** Mínimo de logos por grupo para que la pista tape cualquier pantalla. */
+const MIN_POR_GRUPO = 8;
+
+export default function LogoCarousel({ items, speed = 4.5 }) {
   if (!items?.length) return null;
 
-  // `clone` marca la copia visual, que se oculta a los lectores de pantalla
-  // para que no lean la lista dos veces.
-  const renderGroup = (clone) => (
+  // Con pocos logos, un grupo puede ser más angosto que la pantalla y al
+  // completar la vuelta se vería un hueco. Repetimos la lista hasta llegar
+  // al mínimo. Con 6 logos o más no repite nada.
+  const repeticiones = Math.ceil(MIN_POR_GRUPO / items.length);
+  const grupo = Array.from({ length: repeticiones }, () => items).flat();
+
+  // Duración proporcional a la cantidad: agregar logos alarga la vuelta en
+  // vez de acelerarla, así el movimiento se ve siempre igual de calmo.
+  const duracion = grupo.length * speed;
+
+  const renderGrupo = (clon) => (
     // El padding derecho es la separación entre el último logo de una vuelta
     // y el primero de la siguiente.
-    <ul className="flex items-center gap-6 pr-6" aria-hidden={clone || undefined}>
-      {items.map((item) => (
-        <li key={item.id} className="grid h-28 w-48 shrink-0 place-items-center">
+    <ul className="flex items-center gap-6 pr-6" aria-hidden={clon || undefined}>
+      {grupo.map((item, i) => (
+        <li key={`${item.id}-${i}`} className="grid h-28 w-48 shrink-0 place-items-center">
           {item.logo ? (
             <img
               src={item.logo}
@@ -37,11 +55,15 @@ export default function LogoCarousel({ items }) {
   );
 
   return (
-    <div className="overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_6%,#000_94%,transparent)]">
-      {/* ▸ Carrusel PAUSADO. Para que se mueva: borrar `[animation-play-state:paused]`. */}
-      <div className="flex w-max animate-marquee [animation-play-state:paused]">
-        {renderGroup(false)}
-        {renderGroup(true)}
+    <div className="group overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+      <div
+        className="flex w-max animate-marquee group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]"
+        style={{ animationDuration: `${duracion}s` }}
+      >
+        {renderGrupo(false)}
+        {/* Copia solo visual: se oculta a los lectores de pantalla para que
+            no lean la lista de empresas dos veces. */}
+        {renderGrupo(true)}
       </div>
     </div>
   );
