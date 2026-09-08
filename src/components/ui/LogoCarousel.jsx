@@ -10,15 +10,19 @@
  * quieto si el sistema operativo pide menos movimiento.
  *
  * @param {{id: string, name: string, logo: string|null}[]} items
- * @param {number} [speed] Segundos que tarda CADA logo en cruzar. Subilo
- *   para que vaya más lento, bajalo para más rápido. La velocidad real es
- *   siempre la misma sin importar cuántos logos haya.
+ * @param {number} [speed] ◀ LA PERILLA DE LA VELOCIDAD.
+ *   Son los segundos que tarda cada logo en cruzar. Subilo para ir más
+ *   lento, bajalo para ir más rápido. La velocidad se mantiene igual sin
+ *   importar cuántos logos haya.
+ *     4.5 → 48 px/s   (ágil)
+ *     6   → 36 px/s   (actual)
+ *     8   → 27 px/s   (bien pausado)
  */
 
 /** Mínimo de logos por grupo para que la pista tape cualquier pantalla. */
 const MIN_POR_GRUPO = 8;
 
-export default function LogoCarousel({ items, speed = 4.5 }) {
+export default function LogoCarousel({ items, speed = 6 }) {
   if (!items?.length) return null;
 
   // Con pocos logos, un grupo puede ser más angosto que la pantalla y al

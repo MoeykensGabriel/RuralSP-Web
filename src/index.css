@@ -130,15 +130,30 @@
   }
 }
 
-/* Respeta a quien pidió menos movimiento en su sistema operativo */
+/* --------------------------------------------------------------------------
+   Respeta a quien pidió menos movimiento en su sistema operativo.
+
+   EXCEPCIÓN DELIBERADA: `.animate-marquee` (el carrusel de logos) queda
+   afuera y se sigue moviendo siempre. Es una decisión tomada a conciencia,
+   no un olvido — no la "arregles" sacando el :not().
+
+   El motivo: en Windows, el toggle de animaciones mezcla dos cosas muy
+   distintas —"el movimiento me marea" y "quiero que la PC vaya liviana"—
+   y el navegador no las distingue. Frenar el carrusel dejaba quieto el
+   bloque también para quien apagó las animaciones solo por rendimiento.
+
+   Lo que se pierde: alguien a quien el movimiento le hace mal no tiene
+   forma de frenarlo salvo pasando el mouse por encima o llegando con el
+   teclado, que sí lo pausan.
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  *:not(.animate-marquee),
+  *:not(.animate-marquee)::before,
+  *:not(.animate-marquee)::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
