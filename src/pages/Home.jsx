@@ -101,9 +101,14 @@ export default function Home() {
 
       {/* ── 4. Prueba social ────────────────────────────────────────────
           El carrusel se desplaza solo; no cambia entre mobile y desktop. */}
-      <section className="border-t border-line py-16 menu:py-24">
+      {/* Padding de arriba menor que el de abajo: sube el título dentro del
+          bloque sin achicar la sección. Centrado porque el carrusel es de
+          ancho completo y se desvanece parejo en los dos bordes. */}
+      <section className="border-t border-line pt-12 pb-16 menu:pt-16 menu:pb-24">
         <Container>
-          <p className="eyebrow mb-10">Empresas que confían en nosotros</p>
+          <p className="mb-12 text-center font-mono text-base font-medium tracking-[0.12em] text-fg uppercase menu:text-lg">
+            Empresas que confían en nosotros
+          </p>
         </Container>
         <LogoCarousel items={partners} />
       </section>
