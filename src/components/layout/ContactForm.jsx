@@ -28,18 +28,32 @@ const VACIO = {
   comerciales: false,
 };
 
+/* ---------------------------------------------------------------------
+   El panel del formulario es la ÚNICA superficie clara del sitio. Por eso
+   de acá para abajo los colores son fijos (neutral-*) y no los tokens del
+   tema, que están pensados para fondo oscuro y acá se verían invisibles.
+   --------------------------------------------------------------------- */
+
 /**
- * El panel del formulario es la ÚNICA superficie clara del sitio. Por eso
- * de acá para abajo los colores son fijos (neutral-*) y no los tokens del
- * tema, que están pensados para fondo oscuro y acá se verían invisibles.
+ * El borde va en neutral-500 y no en un gris apenas visible: el fondo del
+ * campo (blanco) y el del panel (#f4f4f4) se parecen demasiado, así que el
+ * borde es lo único que marca dónde empieza cada campo. WCAG pide 3:1 para
+ * bordes de controles; neutral-500 sobre el panel da 4.0:1.
  */
 const CAMPO =
-  'w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 ' +
-  'transition-colors placeholder:text-neutral-400 hover:border-neutral-400 ' +
+  'w-full rounded-lg border border-neutral-500 bg-white px-4 py-3 text-sm text-neutral-900 ' +
+  'transition-colors placeholder:text-neutral-500 hover:border-neutral-700 ' +
   'focus:border-neutral-900 focus:outline-none';
 
+/**
+ * Etiquetas de los campos. Son texto funcional —le dicen a la persona qué
+ * escribir— así que priorizan legibilidad sobre estilo: neutral-700 da
+ * 8.6:1 de contraste sobre el panel, contra el 4.0:1 de neutral-500, que
+ * no llegaba al mínimo de WCAG. El tamaño sube de 11px a 13px y el
+ * espaciado entre letras baja, que a este tamaño estorbaba más que ayudar.
+ */
 const ETIQUETA =
-  'mb-2 block font-mono text-[0.68rem] tracking-[0.12em] text-neutral-500 uppercase';
+  'mb-2 block font-mono text-[0.8rem] font-medium tracking-[0.06em] text-neutral-700 uppercase';
 
 export default function ContactForm() {
   const servicios = getContactReasons();
@@ -239,7 +253,7 @@ export default function ContactForm() {
                 <ArrowUpRight size={16} aria-hidden="true" />
               </Button>
 
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-600">
                 Formulario de demostración: todavía no envía datos a ningún servidor.
               </p>
             </form>
