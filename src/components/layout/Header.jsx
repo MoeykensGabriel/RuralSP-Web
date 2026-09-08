@@ -102,10 +102,17 @@ export default function Header() {
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
-          <Button href={site.contact.phoneHref} size="sm" className="hidden menu:inline-flex">
-            <Phone size={16} aria-hidden="true" />
-            {site.contact.phone}
-          </Button>
+          {/* El mostrar/ocultar va en este <span>, no en el Button.
+              Button ya trae `inline-flex` en su clase base, y una utilidad
+              `hidden` pasada por className NO le gana: entre dos clases de
+              la misma especificidad manda el orden del CSS generado, no el
+              del atributo. Envolver es la forma robusta de hacerlo. */}
+          <span className="hidden menu:inline-flex">
+            <Button href={site.contact.phoneHref} size="sm">
+              <Phone size={16} aria-hidden="true" />
+              {site.contact.phone}
+            </Button>
+          </span>
 
           <button
             type="button"
