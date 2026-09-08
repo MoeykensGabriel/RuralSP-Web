@@ -19,6 +19,11 @@ sus servicios y facilitar el contacto.
 
 ## Arrancar
 
+En Windows, doble clic en **`run.bat`**: instala las dependencias si hace falta,
+levanta el servidor y abre el navegador solo.
+
+Desde la terminal, en cualquier sistema:
+
 ```bash
 npm install
 npm run dev

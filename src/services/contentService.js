@@ -6,7 +6,13 @@
  * siguen funcionando sin cambios: la firma es la misma.
  *
  * Regla: los componentes NUNCA definen contenido, siempre lo piden acá.
+ *
+ * TODO todo lo de este archivo es texto de relleno. Se reemplaza por el
+ * contenido real cuando el cliente lo confirme.
  */
+
+const RELLENO =
+  'Texto de ejemplo. Acá va la descripción real cuando la definamos con el cliente.';
 
 /**
  * Empresas con las que trabaja el cliente (carrusel de la home).
@@ -26,4 +32,22 @@ export const getPartners = () => [
   { id: 'pt-4', name: 'Empresa 04', logo: null },
   { id: 'pt-5', name: 'Empresa 05', logo: null },
   { id: 'pt-6', name: 'Empresa 06', logo: null },
+];
+
+/** Rubros en los que trabaja la empresa. Grilla de tarjetas en la home. */
+export const getSectors = () => [
+  { id: 'sc-1', title: 'Sector 01', text: RELLENO },
+  { id: 'sc-2', title: 'Sector 02', text: RELLENO },
+  { id: 'sc-3', title: 'Sector 03', text: RELLENO },
+  { id: 'sc-4', title: 'Sector 04', text: RELLENO },
+  { id: 'sc-5', title: 'Sector 05', text: RELLENO },
+  { id: 'sc-6', title: 'Sector 06', text: RELLENO },
+];
+
+/** Diferenciales de la empresa. Grilla de tarjetas en la home. */
+export const getValues = () => [
+  { id: 'vl-1', title: 'Diferencial 01', text: RELLENO },
+  { id: 'vl-2', title: 'Diferencial 02', text: RELLENO },
+  { id: 'vl-3', title: 'Diferencial 03', text: RELLENO },
+  { id: 'vl-4', title: 'Diferencial 04', text: RELLENO },
 ];
