@@ -36,21 +36,47 @@ export default function Home() {
   return (
     <>
       {/* ── 2. Hero ─────────────────────────────────────────────────────
-          Mobile: texto arriba, imagen abajo.
-          Desktop: dos columnas, texto a la izquierda. */}
-      <section className="py-12 menu:py-20">
-        <Container className="grid grid-cols-1 items-center gap-10 menu:grid-cols-[1.1fr_0.9fr] menu:gap-14">
+          Bloque siempre oscuro, en tema claro y en tema oscuro por igual:
+          el sello es plateado sobre negro, así que sobre un fondo oscuro
+          se funde y no se le nota el recuadro de fondo.
+
+          Por eso acá los colores son fijos (neutral-*) y no los tokens del
+          tema. Es la única sección del sitio que funciona así.
+
+          Mobile: texto arriba, sello abajo.
+          Desktop: dos columnas, texto a la izquierda y sello a la derecha. */}
+      <section className="relative isolate overflow-hidden bg-neutral-950 text-white">
+        {/* Difuminado: dos manchas radiales muy desenfocadas que rompen el
+            negro plano y dan profundidad. Decorativas, no se leen. */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -top-40 -right-32 size-[34rem] rounded-full bg-neutral-400/20 blur-[120px]" />
+          <div className="absolute -bottom-48 left-0 size-[28rem] rounded-full bg-neutral-500/15 blur-[130px]" />
+        </div>
+
+        <Container className="grid grid-cols-1 items-center gap-12 py-20 menu:grid-cols-[1.05fr_0.95fr] menu:gap-16 menu:py-28">
           <div>
-            <h1 className="max-w-[18ch] text-[clamp(2rem,6vw,3.5rem)] font-bold tracking-tight">
+            <p className="font-mono text-xs font-medium tracking-[0.16em] text-neutral-400 uppercase">
+              {site.tagline}
+            </p>
+            <h1 className="mt-4 max-w-[16ch] text-[clamp(2.25rem,6.5vw,4rem)] font-bold tracking-tight">
               {site.slogan}
             </h1>
-            <p className="mt-5 max-w-[52ch] text-lg text-fg-soft">{site.description}</p>
-            <Button to={PATHS.contacto} className="mt-8">
+            <p className="mt-5 max-w-[50ch] text-lg text-neutral-300">{site.description}</p>
+            <Button to={PATHS.contacto} variant="light" className="mt-9">
               Más información
             </Button>
           </div>
 
-          <Placeholder label="IMAGEN PRINCIPAL" ratio="aspect-[4/3]" />
+          {/* El sello, recortado en círculo y con un halo suave detrás. */}
+          <div className="flex justify-center menu:justify-end">
+            <img
+              src={site.logo}
+              alt={site.fullName}
+              width="420"
+              height="420"
+              className="w-56 rounded-full ring-1 ring-white/10 sm:w-72 menu:w-full menu:max-w-[26rem]"
+            />
+          </div>
         </Container>
       </section>
 
