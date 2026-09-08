@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, Moon, Phone, Shield, Sun, X } from 'lucide-react';
+import { Menu, Moon, Phone, Sun, X } from 'lucide-react';
 
 import { site } from '../../config/site';
 import { PATHS } from '../../routes/paths';
@@ -54,11 +54,17 @@ export default function Header() {
         <Link
           to={PATHS.home}
           className="inline-flex shrink-0 items-center gap-3"
-          aria-label={`${site.name} — inicio`}
+          aria-label={`${site.fullName} — inicio`}
         >
-          <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-inverse-bg text-inverse-fg">
-            <Shield size={20} strokeWidth={2} aria-hidden="true" />
-          </span>
+          {/* alt vacío a propósito: el nombre ya está en el texto de al lado
+              y el enlace tiene su aria-label. Repetirlo sería ruido. */}
+          <img
+            src={site.logo}
+            alt=""
+            width="40"
+            height="40"
+            className="size-10 shrink-0 rounded-full object-cover"
+          />
           <span className="flex flex-col">
             <span className="font-mono text-base font-bold tracking-wide">{site.name}</span>
             <span className="hidden text-xs leading-tight text-fg-mute sm:block">

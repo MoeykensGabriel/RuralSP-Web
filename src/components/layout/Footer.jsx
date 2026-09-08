@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Clock, Mail, MapPin, Phone, Shield } from 'lucide-react';
+import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 
 import { site } from '../../config/site';
 import { PATHS } from '../../routes/paths';
@@ -20,9 +20,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 menu:grid-cols-[1.6fr_1fr_1.2fr] menu:gap-12">
           <div className="flex flex-col gap-3">
             <Link to={PATHS.home} className="inline-flex items-center gap-3">
-              <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-inverse-bg text-inverse-fg">
-                <Shield size={20} strokeWidth={2} aria-hidden="true" />
-              </span>
+              <img
+                src={site.logo}
+                alt=""
+                width="40"
+                height="40"
+                className="size-10 shrink-0 rounded-full object-cover"
+              />
               <span className="font-mono text-base font-bold tracking-wide">{site.name}</span>
             </Link>
             <p className="max-w-[46ch] text-sm text-fg-soft">{site.description}</p>
@@ -73,7 +77,7 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col gap-2 border-t border-line pt-6 text-xs text-fg-mute sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {site.legal.year} {site.name}. Todos los derechos reservados.
+            © {site.legal.year} {site.fullName}. Todos los derechos reservados.
           </p>
           <p className="font-mono tracking-[0.06em]">Boceto de muestra · contenido de ejemplo</p>
         </div>

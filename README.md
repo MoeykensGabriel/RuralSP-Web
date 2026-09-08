@@ -1,6 +1,6 @@
-# GB Seguridad — sitio institucional
+# Rural Seguridad Privada — sitio institucional
 
-Boceto de sitio web corporativo para una empresa de seguridad privada.
+Sitio institucional de Rural Seguridad Privada (RS), empresa de seguridad privada.
 Página de presentación, sin funcionalidad compleja: mostrar la empresa,
 sus servicios y facilitar el contacto.
 
