@@ -46,37 +46,39 @@ export default function Home() {
           Mobile: texto arriba, sello abajo.
           Desktop: dos columnas, texto a la izquierda y sello a la derecha. */}
       <section className="relative isolate overflow-hidden bg-neutral-950 text-white">
-        {/* Difuminado: dos manchas radiales muy desenfocadas que rompen el
-            negro plano y dan profundidad. Decorativas, no se leen. */}
+        {/* ── Fondo, en tres capas. Todo decorativo: nada de esto se lee. ──
+            El orden importa, se apilan de atrás hacia adelante. */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          {/* 1. Manchas radiales desenfocadas: rompen el negro plano. */}
           <div className="absolute -top-40 -right-32 size-[34rem] rounded-full bg-neutral-400/20 blur-[120px]" />
           <div className="absolute -bottom-48 left-0 size-[28rem] rounded-full bg-neutral-500/15 blur-[130px]" />
+
+          {/* 2. El sello como marca de agua, saliéndose por la derecha.
+                 `mix-blend-screen` hace desaparecer el fondo negro del
+                 archivo —en modo screen el negro es transparente— así que
+                 queda solo el plateado, sin el recuadro. */}
+          <img
+            src={site.logo}
+            alt=""
+            className="absolute top-1/2 -right-24 w-[26rem] -translate-y-1/2 opacity-20 mix-blend-screen menu:-right-28 menu:w-[44rem] menu:opacity-30"
+          />
+
+          {/* 3. Velo oscuro de izquierda a derecha: garantiza que el texto
+                 se lea siempre, sin importar qué quede detrás. */}
+          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950 via-neutral-950/85 to-transparent" />
         </div>
 
-        <Container className="grid grid-cols-1 items-center gap-12 py-20 menu:grid-cols-[1.05fr_0.95fr] menu:gap-16 menu:py-28">
-          <div>
-            <p className="font-mono text-xs font-medium tracking-[0.16em] text-neutral-400 uppercase">
-              {site.tagline}
-            </p>
-            <h1 className="mt-4 max-w-[16ch] text-[clamp(2.25rem,6.5vw,4rem)] font-bold tracking-tight">
-              {site.slogan}
-            </h1>
-            <p className="mt-5 max-w-[50ch] text-lg text-neutral-300">{site.description}</p>
-            <Button to={PATHS.contacto} variant="light" className="mt-9">
-              Más información
-            </Button>
-          </div>
-
-          {/* El sello, recortado en círculo y con un halo suave detrás. */}
-          <div className="flex justify-center menu:justify-end">
-            <img
-              src={site.logo}
-              alt={site.fullName}
-              width="420"
-              height="420"
-              className="w-56 rounded-full ring-1 ring-white/10 sm:w-72 menu:w-full menu:max-w-[26rem]"
-            />
-          </div>
+        <Container className="py-24 menu:py-36">
+          <p className="font-mono text-xs font-medium tracking-[0.16em] text-neutral-400 uppercase">
+            {site.tagline}
+          </p>
+          <h1 className="mt-5 max-w-[15ch] text-[clamp(2.25rem,7vw,4.5rem)] font-bold tracking-tight">
+            {site.slogan}
+          </h1>
+          <p className="mt-6 max-w-[46ch] text-lg text-neutral-300">{site.description}</p>
+          <Button to={PATHS.contacto} variant="light" className="mt-10">
+            Más información
+          </Button>
         </Container>
       </section>
 
