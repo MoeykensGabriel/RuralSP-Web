@@ -18,6 +18,12 @@ const VARIANTS = {
   primary: 'border-inverse-bg bg-inverse-bg text-inverse-fg hover:bg-transparent hover:text-fg',
   secondary: 'border-line-strong bg-transparent text-fg hover:bg-inverse-bg hover:text-inverse-fg',
   ghost: 'border-line bg-transparent text-fg-soft hover:border-line-strong hover:text-fg',
+  /**
+   * Botón oscuro, al revés que `primary`. Va sobre superficies claras: hoy,
+   * el panel del formulario de contacto.
+   */
+  inverse:
+    'border-inverse-fg bg-inverse-fg text-inverse-bg hover:bg-transparent hover:text-inverse-fg',
 };
 
 const SIZES = {

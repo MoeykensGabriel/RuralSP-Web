@@ -28,13 +28,18 @@ const VACIO = {
   comerciales: false,
 };
 
-/** Clases compartidas por input, select y textarea. */
+/**
+ * El panel del formulario es la ÚNICA superficie clara del sitio. Por eso
+ * de acá para abajo los colores son fijos (neutral-*) y no los tokens del
+ * tema, que están pensados para fondo oscuro y acá se verían invisibles.
+ */
 const CAMPO =
-  'w-full rounded-lg border border-line bg-bg px-4 py-3 text-sm text-fg ' +
-  'placeholder:text-fg-mute transition-colors hover:border-fg-mute ' +
-  'focus:border-line-strong focus:outline-none';
+  'w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 ' +
+  'transition-colors placeholder:text-neutral-400 hover:border-neutral-400 ' +
+  'focus:border-neutral-900 focus:outline-none';
 
-const ETIQUETA = 'mb-2 block font-mono text-[0.68rem] tracking-[0.12em] text-fg-mute uppercase';
+const ETIQUETA =
+  'mb-2 block font-mono text-[0.68rem] tracking-[0.12em] text-neutral-500 uppercase';
 
 export default function ContactForm() {
   const servicios = getContactReasons();
@@ -74,17 +79,21 @@ export default function ContactForm() {
     <div className="border-b border-line py-16 menu:py-24">
       <Container>
         <div className="grid grid-cols-1 gap-12 menu:grid-cols-[1.15fr_0.85fr] menu:gap-20">
-          {/* ── Formulario ─────────────────────────────────────────── */}
-          <div className="rounded-2xl border border-line bg-bg p-6 menu:p-10">
+          {/* ── Formulario ───────────────────────────────────────────
+              Panel claro sobre el fondo oscuro: es el punto de conversión
+              de la página y el contraste lo vuelve lo primero que se mira.
+              El `[&_:focus-visible]` redefine el anillo de foco, que por
+              defecto es claro y acá sería invisible. */}
+          <div className="rounded-2xl bg-inverse-bg p-6 text-inverse-fg [&_:focus-visible]:outline-neutral-900 menu:p-10">
             <h2 className="text-2xl font-bold menu:text-3xl">Más información</h2>
-            <p className="mt-3 text-sm text-fg-soft">
+            <p className="mt-3 text-sm text-neutral-600">
               Completá el formulario y nos ponemos en contacto a la brevedad.
             </p>
 
             {enviado && (
               <p
                 role="status"
-                className="mt-6 flex items-center gap-2 rounded-lg border border-line-strong bg-bg-soft px-4 py-3 text-sm font-medium"
+                className="mt-6 flex items-center gap-2 rounded-lg border border-neutral-900 bg-neutral-100 px-4 py-3 text-sm font-medium"
               >
                 <Check size={16} aria-hidden="true" />
                 Recibimos tu consulta. Te respondemos a la brevedad.
@@ -225,12 +234,12 @@ export default function ContactForm() {
                 </Casilla>
               </div>
 
-              <Button type="submit" className="mt-2 self-start">
+              <Button type="submit" variant="inverse" className="mt-2 self-start">
                 Enviar consulta
                 <ArrowUpRight size={16} aria-hidden="true" />
               </Button>
 
-              <p className="text-xs text-fg-mute">
+              <p className="text-xs text-neutral-500">
                 Formulario de demostración: todavía no envía datos a ningún servidor.
               </p>
             </form>
@@ -284,19 +293,19 @@ export default function ContactForm() {
 /* ── Piezas internas, solo para este archivo ─────────────────────────── */
 
 function TextoError({ children }) {
-  return <span className="mt-2 block text-xs font-semibold text-fg">{children}</span>;
+  return <span className="mt-2 block text-xs font-semibold text-neutral-900">{children}</span>;
 }
 
 function Casilla({ id, name, checked, onChange, children }) {
   return (
-    <label htmlFor={id} className="flex cursor-pointer items-start gap-3 text-xs text-fg-soft">
+    <label htmlFor={id} className="flex cursor-pointer items-start gap-3 text-xs text-neutral-600">
       <input
         id={id}
         name={name}
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="mt-0.5 size-4 shrink-0 accent-fg"
+        className="mt-0.5 size-4 shrink-0 accent-neutral-900"
       />
       <span>{children}</span>
     </label>
