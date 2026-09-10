@@ -26,16 +26,17 @@ const RELLENO =
  * con el nombre: así se ve el espacio que va a ocupar cada logo.
  */
 /**
- * `escala` es opcional y sirve para emparejar el tamaño ÓPTICO de las
- * marcas. Todas las tarjetas del carrusel miden lo mismo de alto, pero cada
- * archivo trae distinto margen alrededor del logo: uno viene ajustado y
- * otro con mucho aire, y a igual altura de tarjeta se ven de tamaños
- * distintos. Subí el número hasta que la marca pese lo mismo que las demás.
- * Sin `escala`, el logo se muestra tal cual (equivale a 1).
+ * `fondo` es opcional: el color con el que viene el archivo del logo. La
+ * tarjeta lo usa de fondo para que, cuando el logo no llene toda la caja,
+ * el sobrante sea del mismo color y no se vean franjas blancas. Si no se
+ * indica, la tarjeta va en blanco.
+ *
+ * Los archivos ya vienen recortados al borde de la marca con un margen
+ * parejo, así que no hace falta ajustar tamaños desde acá.
  */
 export const getPartners = () => [
   { id: 'pt-1', name: 'Expreso San José', logo: '/logos/expreso-san-jose.png' },
-  { id: 'pt-2', name: 'Zingaras', logo: '/logos/zingaras.png', escala: 0.65 },
+  { id: 'pt-2', name: 'Zingaras', logo: '/logos/zingaras.png', fondo: '#ae0100' },
   { id: 'pt-3', name: 'Empresa 03', logo: null },
   { id: 'pt-4', name: 'Empresa 04', logo: null },
   { id: 'pt-5', name: 'Empresa 05', logo: null },

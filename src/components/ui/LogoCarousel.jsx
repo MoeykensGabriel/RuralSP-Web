@@ -40,43 +40,36 @@ export default function LogoCarousel({ items, speed = 6 }) {
     // y el primero de la siguiente.
     <ul className="flex items-center gap-6 pr-6" aria-hidden={clon || undefined}>
       {grupo.map((item, i) => (
-        /* Alto fijo y ANCHO LIBRE. Los logos vienen con proporciones muy
-           distintas: unos son casi cuadrados y otros son palabras largas y
-           chatas. Con un ancho fijo, a los cuadrados les sobra blanco a los
-           costados y a los alargados les falta. Normalizando por altura,
-           cada plaqueta se ajusta a su logo y todos se ven del mismo
-           tamaño óptico. Los casilleros vacíos sí llevan ancho fijo, para
-           que la fila de reemplazo quede pareja. */
-        <li key={`${item.id}-${i}`} className="h-32 shrink-0">
+        /* Casillero de medida fija, igual para todos: es lo que hace que la
+           fila se lea pareja aunque los logos tengan formas muy distintas. */
+        <li key={`${item.id}-${i}`} className="h-32 w-52 shrink-0">
           {item.logo ? (
-            /* La imagen ES la plaqueta: ocupa la tarjeta de borde a borde y
-               las esquinas redondeadas la recortan. Con esto un mismo
-               componente se banca las tres formas en que llegan los logos:
+            /* TODAS las tarjetas miden lo mismo y el logo entra adentro con
+               `object-contain`. Es lo que empareja marcas de formas muy
+               distintas: una marca compacta toca el borde de arriba y abajo,
+               y una palabra larga toca los costados. Las dos terminan
+               pesando parecido.
 
-                 · con fondo blanco  -> se ve como una tarjeta blanca
-                 · con fondo propio  -> la tarjeta toma ese color
-                 · con transparencia -> el blanco de atrás asoma
+               Dejar el ancho libre, en cambio, daba una tarjeta de 110px
+               para una y de 326px para otra, y la larga se veía casi el
+               doble de grande.
 
-               El blanco de fondo es la red de contención del tercer caso:
-               sin él, un logo transparente y oscuro se perdería contra el
-               fondo del sitio. */
-            <div className="h-full min-w-36 overflow-hidden rounded-lg bg-white">
+               El `fondo` es el color con el que viene el archivo: así el
+               sobrante de la caja no se ve como franjas blancas alrededor
+               de un logo que trae su propio color. */
+            <div
+              className="flex size-full items-center justify-center overflow-hidden rounded-lg"
+              style={{ backgroundColor: item.fondo ?? '#ffffff' }}
+            >
               <img
                 src={item.logo}
                 alt={item.name}
                 loading="lazy"
-                className="mx-auto h-full w-auto origin-center object-contain"
-                /* `escala` empareja el tamaño ÓPTICO. Igualar la altura de
-                   la tarjeta no alcanza: cada archivo trae su propio margen
-                   alrededor de la marca, así que a igual altura de tarjeta
-                   una marca puede verse el doble que otra. Al agrandar, lo
-                   que se sale se recorta contra el borde de la tarjeta, que
-                   en estos archivos es fondo liso. */
-                style={item.escala ? { transform: `scale(${item.escala})` } : undefined}
+                className="max-h-full max-w-full object-contain"
               />
             </div>
           ) : (
-            <span className="grid h-full w-48 place-items-center rounded-lg border border-dashed border-line-strong bg-bg p-2 text-center font-mono text-[0.7rem] tracking-[0.1em] text-fg-mute uppercase">
+            <span className="grid size-full place-items-center rounded-lg border border-dashed border-line-strong bg-bg p-2 text-center font-mono text-[0.7rem] tracking-[0.1em] text-fg-mute uppercase">
               {item.name}
             </span>
           )}
