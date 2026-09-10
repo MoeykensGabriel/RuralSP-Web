@@ -43,9 +43,13 @@ export const getPartners = () => [
   { id: 'pt-4', name: 'Agrícola García', logo: '/logos/agricola-garcia.png' },
   { id: 'pt-5', name: 'CLAAS', logo: '/logos/claas.png' },
   { id: 'pt-6', name: 'Food Five Export', logo: '/logos/food-five-export.png' },
-  { id: 'pt-7', name: 'Nombre a confirmar', logo: '/logos/circulo-azul.png' },
-  { id: 'pt-8', name: 'Nombre a confirmar', logo: '/logos/s-verde.png' },
-  { id: 'pt-9', name: 'Nombre a confirmar', logo: '/logos/v.png' },
+  { id: 'pt-7', name: 'Casas & Asociados', logo: '/logos/casas-asociados.png' },
+
+  // TODO isotipos sin texto: el nombre no se puede deducir del archivo.
+  { id: 'pt-8', name: 'Nombre a confirmar', logo: '/logos/circulo-azul.png' },
+  { id: 'pt-9', name: 'Nombre a confirmar', logo: '/logos/s-verde.png' },
+  { id: 'pt-10', name: 'Nombre a confirmar', logo: '/logos/v.png' },
+  { id: 'pt-11', name: 'Nombre a confirmar', logo: '/logos/arbol-verde.png' },
 ];
 
 /** Rubros en los que trabaja la empresa. Grilla de tarjetas en la home. */

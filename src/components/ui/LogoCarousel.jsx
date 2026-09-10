@@ -10,30 +10,39 @@
  * quieto si el sistema operativo pide menos movimiento.
  *
  * @param {{id: string, name: string, logo: string|null}[]} items
- * @param {number} [speed] ◀ LA PERILLA DE LA VELOCIDAD.
- *   Son los segundos que tarda cada logo en cruzar. Subilo para ir más
- *   lento, bajalo para ir más rápido. La velocidad se mantiene igual sin
- *   importar cuántos logos haya.
- *     4.5 → 48 px/s   (ágil)
- *     6   → 36 px/s   (actual)
- *     8   → 27 px/s   (bien pausado)
  */
 
 /** Mínimo de logos por grupo para que la pista tape cualquier pantalla. */
 const MIN_POR_GRUPO = 8;
 
-export default function LogoCarousel({ items, speed = 6 }) {
+/**
+ * ═══ LA PERILLA DE LA VELOCIDAD ═══
+ *
+ * Segundos que tarda cada logo en cruzar. Más alto es más lento.
+ *
+ * Hay dos valores porque las tarjetas miden distinto en mobile y en desktop,
+ * y con un solo número el carrusel iría al doble de rápido en la pantalla
+ * grande. Cada valor es (ancho de tarjeta + separación) ÷ píxeles por
+ * segundo, y los dos apuntan a los mismos 36 px/s:
+ *
+ *   mobile   (160 + 16) / 36 = 4.9
+ *   desktop  (256 + 24) / 36 = 7.8
+ *
+ * Los dos valores están escritos como clases en el JSX de más abajo:
+ *   [--seg:4.9s]  y  menu:[--seg:7.8s]
+ *
+ * OJO: si cambian las medidas del casillero o el `gap`, estos dos números
+ * hay que recalcularlos, o la velocidad se corre.
+ */
+
+export default function LogoCarousel({ items }) {
   if (!items?.length) return null;
 
   // Con pocos logos, un grupo puede ser más angosto que la pantalla y al
   // completar la vuelta se vería un hueco. Repetimos la lista hasta llegar
-  // al mínimo. Con 6 logos o más no repite nada.
+  // al mínimo. Con 8 logos o más no repite nada.
   const repeticiones = Math.ceil(MIN_POR_GRUPO / items.length);
   const grupo = Array.from({ length: repeticiones }, () => items).flat();
-
-  // Duración proporcional a la cantidad: agregar logos alarga la vuelta en
-  // vez de acelerarla, así el movimiento se ve siempre igual de calmo.
-  const duracion = grupo.length * speed;
 
   const renderGrupo = (clon) => (
     // El padding derecho es la separación entre el último logo de una vuelta
@@ -86,9 +95,18 @@ export default function LogoCarousel({ items, speed = 6 }) {
 
   return (
     <div className="group overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+      {/* La duración sale de una cuenta en CSS: cantidad de logos por los
+          segundos que tarda cada uno. Los segundos viven en una variable que
+          cambia sola en el breakpoint, así que la velocidad se mantiene en
+          mobile y en desktop sin medir nada desde JavaScript. */}
       <div
-        className="flex w-max animate-marquee group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]"
-        style={{ animationDuration: `${duracion}s` }}
+        className={
+          // Los valores van literales y no interpolados: Tailwind lee el
+          // código como texto para generar el CSS, y una plantilla no la ve.
+          'flex w-max animate-marquee [--seg:4.9s] menu:[--seg:7.8s] ' +
+          'group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]'
+        }
+        style={{ animationDuration: `calc(${grupo.length} * var(--seg))` }}
       >
         {renderGrupo(false)}
         {/* Copia solo visual: se oculta a los lectores de pantalla para que
