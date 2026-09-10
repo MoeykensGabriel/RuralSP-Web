@@ -26,7 +26,7 @@ const RELLENO =
  * con el nombre: así se ve el espacio que va a ocupar cada logo.
  */
 export const getPartners = () => [
-  { id: 'pt-1', name: 'Empresa 01', logo: null },
+  { id: 'pt-1', name: 'Expreso San José', logo: '/logos/expreso-san-jose.png' },
   { id: 'pt-2', name: 'Empresa 02', logo: null },
   { id: 'pt-3', name: 'Empresa 03', logo: null },
   { id: 'pt-4', name: 'Empresa 04', logo: null },

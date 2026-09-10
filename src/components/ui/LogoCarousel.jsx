@@ -40,14 +40,27 @@ export default function LogoCarousel({ items, speed = 6 }) {
     // y el primero de la siguiente.
     <ul className="flex items-center gap-6 pr-6" aria-hidden={clon || undefined}>
       {grupo.map((item, i) => (
-        <li key={`${item.id}-${i}`} className="grid h-28 w-48 shrink-0 place-items-center">
+        /* El casillero define la medida y NO centra con place-items: si lo
+           hiciera, el hijo se dimensionaría según su contenido y el
+           `max-h-full` de la imagen no tendría contra qué resolverse. Con
+           el casillero de alto fijo y el hijo en `size-full`, la imagen sí
+           queda limitada por la altura. */
+        <li key={`${item.id}-${i}`} className="h-28 w-48 shrink-0">
           {item.logo ? (
-            <img
-              src={item.logo}
-              alt={item.name}
-              loading="lazy"
-              className="max-h-full max-w-full object-contain"
-            />
+            /* Cada logo va sobre una plaqueta blanca.
+               Los logos de clientes llegan como vengan: con fondo blanco,
+               en colores, en negro. Sobre el fondo oscuro del sitio, los
+               que son oscuros desaparecerían. La plaqueta los acepta a
+               todos tal cual, sin pedirle al cliente versiones especiales,
+               y de paso los deja todos del mismo tamaño y alineados. */
+            <div className="flex size-full items-center justify-center rounded-lg bg-white p-3">
+              <img
+                src={item.logo}
+                alt={item.name}
+                loading="lazy"
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
           ) : (
             <span className="grid size-full place-items-center rounded-lg border border-dashed border-line-strong bg-bg p-2 text-center font-mono text-[0.7rem] tracking-[0.1em] text-fg-mute uppercase">
               {item.name}
