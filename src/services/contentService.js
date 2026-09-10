@@ -37,7 +37,8 @@ const RELLENO =
 export const getPartners = () => [
   { id: 'pt-1', name: 'Expreso San José', logo: '/logos/expreso-san-jose.png' },
   { id: 'pt-2', name: 'Zingaras', logo: '/logos/zingaras.png', fondo: '#ae0100' },
-  { id: 'pt-3', name: 'Empresa 03', logo: null },
+  // Sin `fondo`: el archivo tiene transparencia, así que la tarjeta va en blanco.
+  { id: 'pt-3', name: 'Audi Hnos.', logo: '/logos/audi-hnos.png' },
   { id: 'pt-4', name: 'Empresa 04', logo: null },
   { id: 'pt-5', name: 'Empresa 05', logo: null },
   { id: 'pt-6', name: 'Empresa 06', logo: null },
