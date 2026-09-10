@@ -1,5 +1,5 @@
 @echo off
-title GB Seguridad - servidor de desarrollo
+title Rural Seguridad - servidor de desarrollo
 
 REM ---------------------------------------------------------------------
 REM  Levanta el sitio en modo desarrollo.
@@ -13,9 +13,9 @@ REM Se para en la carpeta de este archivo, sin importar desde donde se ejecute.
 cd /d "%~dp0"
 
 echo.
-echo   ==================================
-echo    GB SEGURIDAD - modo desarrollo
-echo   ==================================
+echo   ==========================================
+echo    RURAL SEGURIDAD PRIVADA - modo desarrollo
+echo   ==========================================
 echo.
 
 REM --- Node instalado? -------------------------------------------------
