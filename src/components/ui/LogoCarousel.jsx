@@ -38,11 +38,17 @@ export default function LogoCarousel({ items, speed = 6 }) {
   const renderGrupo = (clon) => (
     // El padding derecho es la separación entre el último logo de una vuelta
     // y el primero de la siguiente.
-    <ul className="flex items-center gap-6 pr-6" aria-hidden={clon || undefined}>
+    <ul className="flex items-center gap-4 pr-4 menu:gap-6 menu:pr-6" aria-hidden={clon || undefined}>
       {grupo.map((item, i) => (
-        /* Casillero de medida fija, igual para todos: es lo que hace que la
-           fila se lea pareja aunque los logos tengan formas muy distintas. */
-        <li key={`${item.id}-${i}`} className="h-32 w-52 shrink-0">
+        /* Casillero de medida fija, igual para TODOS: es lo que hace que la
+           fila se lea pareja aunque los logos tengan formas muy distintas.
+           Cambia entre mobile y desktop, pero siempre parejo entre tarjetas.
+
+           En desktop es ancho (16:8) a propósito: los logotipos largos, tipo
+           CLAAS, topan contra el ancho antes que contra el alto, así que
+           darles más ancho es lo único que los agranda. A los logos
+           compactos no les cambia nada, porque a ellos los limita el alto. */
+        <li key={`${item.id}-${i}`} className="h-24 w-40 shrink-0 menu:h-32 menu:w-64">
           {item.logo ? (
             /* TODAS las tarjetas miden lo mismo y el logo entra adentro con
                `object-contain`. Es lo que empareja marcas de formas muy

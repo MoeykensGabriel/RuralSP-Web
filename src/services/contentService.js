@@ -26,22 +26,26 @@ const RELLENO =
  * con el nombre: así se ve el espacio que va a ocupar cada logo.
  */
 /**
- * `fondo` es opcional: el color con el que viene el archivo del logo. La
- * tarjeta lo usa de fondo para que, cuando el logo no llene toda la caja,
- * el sobrante sea del mismo color y no se vean franjas blancas. Si no se
- * indica, la tarjeta va en blanco.
+ * Todos los archivos están recortados al borde de la marca, con el mismo
+ * margen proporcional y 256px de alto — el doble de la tarjeta, que es lo
+ * que necesita una pantalla retina. Por eso no hace falta ajustar tamaños
+ * desde acá: el carrusel los mete a todos en una caja del mismo tamaño.
  *
- * Los archivos ya vienen recortados al borde de la marca con un margen
- * parejo, así que no hace falta ajustar tamaños desde acá.
+ * TODO faltan los nombres reales de tres marcas. Los archivos son isotipos
+ * sin texto, así que el nombre no se puede deducir del logo. Estos textos
+ * los lee un lector de pantalla y los indexa Google, así que conviene
+ * corregirlos antes de publicar.
  */
 export const getPartners = () => [
   { id: 'pt-1', name: 'Expreso San José', logo: '/logos/expreso-san-jose.png' },
-  { id: 'pt-2', name: 'Zingaras', logo: '/logos/zingaras.png', fondo: '#ae0100' },
-  // Sin `fondo`: el archivo tiene transparencia, así que la tarjeta va en blanco.
+  { id: 'pt-2', name: 'Zingaras', logo: '/logos/zingaras.png' },
   { id: 'pt-3', name: 'Audi Hnos.', logo: '/logos/audi-hnos.png' },
-  { id: 'pt-4', name: 'Empresa 04', logo: null },
-  { id: 'pt-5', name: 'Empresa 05', logo: null },
-  { id: 'pt-6', name: 'Empresa 06', logo: null },
+  { id: 'pt-4', name: 'Agrícola García', logo: '/logos/agricola-garcia.png' },
+  { id: 'pt-5', name: 'CLAAS', logo: '/logos/claas.png' },
+  { id: 'pt-6', name: 'Food Five Export', logo: '/logos/food-five-export.png' },
+  { id: 'pt-7', name: 'Nombre a confirmar', logo: '/logos/circulo-azul.png' },
+  { id: 'pt-8', name: 'Nombre a confirmar', logo: '/logos/s-verde.png' },
+  { id: 'pt-9', name: 'Nombre a confirmar', logo: '/logos/v.png' },
 ];
 
 /** Rubros en los que trabaja la empresa. Grilla de tarjetas en la home. */
