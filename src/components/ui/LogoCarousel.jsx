@@ -65,7 +65,14 @@ export default function LogoCarousel({ items, speed = 6 }) {
                 src={item.logo}
                 alt={item.name}
                 loading="lazy"
-                className="mx-auto h-full w-auto object-contain"
+                className="mx-auto h-full w-auto origin-center object-contain"
+                /* `escala` empareja el tamaño ÓPTICO. Igualar la altura de
+                   la tarjeta no alcanza: cada archivo trae su propio margen
+                   alrededor de la marca, así que a igual altura de tarjeta
+                   una marca puede verse el doble que otra. Al agrandar, lo
+                   que se sale se recorta contra el borde de la tarjeta, que
+                   en estos archivos es fondo liso. */
+                style={item.escala ? { transform: `scale(${item.escala})` } : undefined}
               />
             </div>
           ) : (
