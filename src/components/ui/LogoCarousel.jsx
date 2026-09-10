@@ -49,17 +49,23 @@ export default function LogoCarousel({ items, speed = 6 }) {
            que la fila de reemplazo quede pareja. */
         <li key={`${item.id}-${i}`} className="h-32 shrink-0">
           {item.logo ? (
-            /* Cada logo va sobre una plaqueta blanca.
-               Los logos de clientes llegan como vengan: con fondo blanco,
-               en colores, en negro. Sobre el fondo oscuro del sitio, los
-               que son oscuros desaparecerían. La plaqueta los acepta a
-               todos tal cual, sin pedirle al cliente versiones especiales. */
-            <div className="flex h-full min-w-36 items-center justify-center rounded-lg bg-white px-6 py-4">
+            /* La imagen ES la plaqueta: ocupa la tarjeta de borde a borde y
+               las esquinas redondeadas la recortan. Con esto un mismo
+               componente se banca las tres formas en que llegan los logos:
+
+                 · con fondo blanco  -> se ve como una tarjeta blanca
+                 · con fondo propio  -> la tarjeta toma ese color
+                 · con transparencia -> el blanco de atrás asoma
+
+               El blanco de fondo es la red de contención del tercer caso:
+               sin él, un logo transparente y oscuro se perdería contra el
+               fondo del sitio. */
+            <div className="h-full min-w-36 overflow-hidden rounded-lg bg-white">
               <img
                 src={item.logo}
                 alt={item.name}
                 loading="lazy"
-                className="max-h-full w-auto object-contain"
+                className="mx-auto h-full w-auto object-contain"
               />
             </div>
           ) : (
