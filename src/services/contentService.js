@@ -44,6 +44,7 @@ export const getPartners = () => [
   { id: 'pt-5', name: 'CLAAS', logo: '/logos/claas.png' },
   { id: 'pt-6', name: 'Food Five Export', logo: '/logos/food-five-export.png' },
   { id: 'pt-7', name: 'Casas & Asociados', logo: '/logos/casas-asociados.png' },
+  { id: 'pt-12', name: 'Agrícola Transervi S.A.', logo: '/logos/agricola-transervi.png' },
 
   // TODO isotipos sin texto: el nombre no se puede deducir del archivo.
   { id: 'pt-8', name: 'Nombre a confirmar', logo: '/logos/circulo-azul.png' },
@@ -61,6 +62,51 @@ export const getSectors = () => [
   { id: 'sc-5', title: 'Sector 05', text: RELLENO },
   { id: 'sc-6', title: 'Sector 06', text: RELLENO },
 ];
+
+/**
+ * Contenido de la página Nosotros. Texto provisto por el cliente.
+ *
+ * OJO con `anios` y con el título de la trayectoria: la cantidad de años
+ * está escrita a mano y hay que actualizarla cada año. Si se consigue el
+ * año de fundación, conviene guardarlo y calcularla sola.
+ */
+export const getNosotros = () => ({
+  empresa: 'Rural Seguridad S.R.L.',
+  lema: 'Seguridad, experiencia y compromiso al servicio de nuestros clientes.',
+
+  intro: [
+    'Rural Seguridad S.R.L. es una empresa familiar tucumana especializada en seguridad privada, fundada sobre los valores de la experiencia, el compromiso y la profesionalización permanente.',
+    'Nuestra empresa se caracteriza por una gestión directa de sus socios y propietarios, lo que nos permite mantener un vínculo cercano con cada cliente, comprender sus necesidades y desarrollar asesoramiento, protocolos y planes de seguridad adaptados a cada servicio.',
+  ],
+
+  equipo: {
+    titulo: 'Nuestro equipo directivo',
+    miembros: [
+      {
+        cargo: 'Socio Fundador',
+        nombre: 'José R. Carrizo',
+        descripcion:
+          'Comisario General (R) de la Policía de la Provincia de Tucumán, con una amplia trayectoria y experiencia en el ámbito de la seguridad pública.',
+      },
+      {
+        cargo: 'Socio Gerente',
+        nombre: 'José L. Carrizo',
+        descripcion:
+          'Técnico Universitario en Seguridad Pública y Diplomado en Ciberseguridad, orientado a la incorporación de nuevos conocimientos y herramientas aplicadas a la seguridad.',
+      },
+    ],
+  },
+
+  trayectoria: {
+    anios: 4,
+    titulo: 'Cuatro años de crecimiento y evolución',
+    parrafos: [
+      'Con 4 años de trayectoria en el sector, Rural Seguridad S.R.L. continúa consolidándose y ampliando sus capacidades, incorporando nuevos conocimientos, tecnologías y metodologías de trabajo.',
+      'Nuestro objetivo es brindar soluciones integrales de seguridad, combinando experiencia, planificación y profesionalización para acompañar a nuestros clientes frente a los desafíos actuales.',
+      'Trabajamos día a día para seguir creciendo, innovando y ofreciendo un servicio basado en la confianza, la responsabilidad y el compromiso.',
+    ],
+  },
+});
 
 /**
  * Opciones del campo "Servicio de interés" del formulario de contacto.

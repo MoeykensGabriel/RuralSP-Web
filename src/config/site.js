@@ -17,7 +17,7 @@ export const site = {
   /** Bajada de la marca, debajo del nombre. */
   tagline: 'Seguridad Privada',
   /** Nombre completo: título de la pestaña, footer y textos legales. */
-  fullName: 'Rural Seguridad Privada',
+  fullName: 'Rural Seguridad S.R.L.',
 
   /**
    * Sello de la empresa. Vive en `public/`, así que la ruta arranca en `/`.

@@ -85,7 +85,9 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col gap-2 border-t border-line pt-6 text-xs text-fg-mute sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {site.legal.year} {site.fullName}. Todos los derechos reservados.
+            {/* Si el nombre ya termina en punto (S.R.L., S.A.), ese punto hace
+                de cierre de la oración: no se agrega otro. */}
+            © {site.legal.year} {site.fullName.replace(/\.$/, '')}. Todos los derechos reservados.
           </p>
           <p className="font-mono tracking-[0.06em]">Boceto de muestra · contenido de ejemplo</p>
         </div>
