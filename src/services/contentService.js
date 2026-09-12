@@ -64,6 +64,48 @@ export const getSectors = () => [
 ];
 
 /**
+ * Bloque "Presentación" de la home. Texto provisto por el cliente.
+ *
+ * El texto llegó como seis párrafos corridos y se acomodó en tres partes:
+ * `intro` (quiénes son), `pilares` (los cuatro diferenciales) y `cierre`
+ * (el objetivo). Los párrafos están tal cual.
+ *
+ * Los `titulo` de cada pilar NO los escribió el cliente: son la frase clave
+ * de cada párrafo, sacada de su propio texto, para que el bloque se pueda
+ * recorrer de un vistazo. Se pueden cambiar o borrar sin tocar la página.
+ */
+export const getPresentacion = () => ({
+  intro:
+    'Rural Seguridad S.R.L. es una empresa tucumana especializada en seguridad y vigilancia privada, dedicada a proteger personas, instalaciones, bienes y establecimientos mediante soluciones de seguridad física confiables y adaptadas a cada necesidad.',
+
+  pilares: [
+    {
+      titulo: 'Personalización del servicio',
+      texto:
+        'Uno de nuestros principales diferenciales es la personalización del servicio. Analizamos las características, riesgos y objetivos de cada cliente para diseñar una cobertura específica, con procedimientos y protocolos adecuados a su actividad, ubicación y nivel de exposición.',
+    },
+    {
+      titulo: 'Experiencia en seguridad física',
+      texto:
+        'Contamos con experiencia en la prestación de servicios de seguridad física y trabajamos bajo criterios de prevención, responsabilidad, profesionalismo y compromiso. Nuestro equipo aplica metodologías orientadas a anticipar situaciones de riesgo, responder de manera eficiente y garantizar el cumplimiento de los procedimientos establecidos.',
+    },
+    {
+      titulo: 'Supervisión permanente',
+      texto:
+        'La supervisión permanente constituye un componente fundamental de nuestro servicio. A través de controles y seguimiento operativo, verificamos el desempeño del personal, el cumplimiento de las consignas y la calidad de la cobertura, promoviendo una mejora continua y una respuesta confiable.',
+    },
+    {
+      titulo: 'Conocimiento del contexto regional',
+      texto:
+        'Nuestro conocimiento del contexto regional nos permite comprender las particularidades de Tucumán y del norte argentino, adaptando nuestras estrategias a las características de cada zona, actividad y establecimiento. Esta experiencia local favorece una planificación más precisa y una gestión de la seguridad acorde con la realidad de nuestros clientes.',
+    },
+  ],
+
+  cierre:
+    'Nuestro objetivo es brindar un servicio serio, responsable y personalizado, basado en la cercanía, la comunicación constante y la construcción de relaciones de confianza. Acompañamos a cada cliente en la protección de sus actividades, instalaciones y patrimonio, con una visión de crecimiento y profesionalización permanente.',
+});
+
+/**
  * Contenido de la página Nosotros. Texto provisto por el cliente.
  *
  * OJO con `anios` y con el título de la trayectoria: la cantidad de años

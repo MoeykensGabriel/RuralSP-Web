@@ -1,6 +1,6 @@
 import { site } from '../config/site';
 import { PATHS } from '../routes/paths';
-import { getPartners, getSectors, getValues } from '../services/contentService';
+import { getPartners, getPresentacion, getSectors, getValues } from '../services/contentService';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Container from '../components/ui/Container';
@@ -22,13 +22,15 @@ import Section from '../components/ui/Section';
  *   7. Cierre / CTA ............ acá
  *   8. Footer .................. en `components/layout/Footer.jsx`
  *
- * Todo el texto es de relleno: sale de `services/contentService.js` y de
- * `config/site.js`. Este archivo define la ESTRUCTURA, no el contenido.
+ * El texto sale de `services/contentService.js` y de `config/site.js`:
+ * este archivo define la ESTRUCTURA, no el contenido. La Presentación y los
+ * logos ya son reales; Sectores y Propuesta de valor siguen de relleno.
  *
  * Comportamiento responsive: mobile arranca en una columna y las grillas
  * se abren en `sm:` (640px) y en `menu:` (900px).
  */
 export default function Home() {
+  const presentacion = getPresentacion();
   const partners = getPartners();
   const sectors = getSectors();
   const values = getValues();
@@ -77,7 +79,11 @@ export default function Home() {
       </section>
 
       {/* ── 3. Presentación de la empresa ───────────────────────────────
-          Imagen y texto lado a lado en desktop, apilados en mobile. */}
+          Tres partes, de arriba abajo:
+            · intro + imagen — lado a lado en desktop; en mobile la imagen
+              va primero para no cortar el hilo de lectura del texto
+            · los cuatro pilares — 1 columna en mobile, 2 desde 900px
+            · el cierre, con el objetivo de la empresa */}
       <Section alt className="border-t border-line">
         <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-2 menu:gap-14">
           <Placeholder label="IMAGEN" ratio="aspect-[3/2]" className="menu:order-last" />
@@ -85,18 +91,22 @@ export default function Home() {
           <div>
             <p className="eyebrow">La empresa</p>
             <h2 className="mt-2 text-2xl font-bold menu:text-4xl">Presentación</h2>
-            <div className="mt-4 space-y-3 text-fg-soft">
-              <p>
-                Primer párrafo de presentación. Acá va quiénes son, desde cuándo trabajan y qué los
-                distingue.
-              </p>
-              <p>
-                Segundo párrafo. Suele explicar cómo combinan personal capacitado con tecnología, y
-                qué tipo de cobertura ofrecen.
-              </p>
-            </div>
+            <p className="mt-5 text-lg leading-relaxed text-fg">{presentacion.intro}</p>
           </div>
         </div>
+
+        <ul className="mt-14 grid grid-cols-1 gap-x-14 gap-y-10 menu:mt-20 menu:grid-cols-2">
+          {presentacion.pilares.map((pilar) => (
+            <li key={pilar.titulo} className="border-t border-line pt-6">
+              <h3 className="text-lg font-bold">{pilar.titulo}</h3>
+              <p className="mt-3 leading-relaxed text-fg-soft">{pilar.texto}</p>
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-14 max-w-[70ch] border-l-2 border-line-strong pl-5 text-lg leading-relaxed text-fg menu:mt-20 menu:pl-6">
+          {presentacion.cierre}
+        </p>
       </Section>
 
       {/* ── 4. Prueba social ────────────────────────────────────────────
