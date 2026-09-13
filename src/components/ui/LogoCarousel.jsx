@@ -76,10 +76,21 @@ export default function LogoCarousel({ items }) {
               className="flex size-full items-center justify-center overflow-hidden rounded-lg"
               style={{ backgroundColor: item.fondo ?? '#ffffff' }}
             >
+              {/* NO usar loading="lazy" acá, aunque parezca la opción obvia.
+                  El navegador decide cuándo cargar una imagen lazy midiendo
+                  si está cerca de la pantalla, pero recorta esa medición por
+                  los contenedores con overflow oculto, como la ventana de
+                  este carrusel. Un logo que todavía no entró en la franja
+                  cuenta como "infinitamente lejos" y recién se carga cuando
+                  ya es visible: se veía la tarjeta en blanco y después el
+                  logo. Con carga normal están listos antes de aparecer.
+
+                  `fetchPriority="low"` evita que compitan con el hero, que
+                  es lo primero que ve el visitante. */}
               <img
                 src={item.logo}
                 alt={item.name}
-                loading="lazy"
+                fetchPriority="low"
                 className="max-h-full max-w-full object-contain"
               />
             </div>
