@@ -6,15 +6,19 @@
 export const PATHS = {
   home: '/',
   servicios: '/servicios',
-  sectores: '/sectores',
   nosotros: '/nosotros',
   contacto: '/contacto',
 };
 
 /**
- * Ruta de un sector puntual: /sectores/eventos, /sectores/fabricas, etc.
- * El `slug` sale de `getSectores()` en `services/contentService.js`.
+ * Rutas de las secciones con subpaginas (Seguridad fisica, Sectores...).
+ * No se escriben a mano: se arman con los slugs de `getSecciones()` en
+ * `services/contentService.js`, que es donde vive la lista.
+ *
+ *   rutaSeccion('sectores')            -> /sectores
+ *   rutaItem('sectores', 'eventos')    -> /sectores/eventos
  */
-export const rutaSector = (slug) => `${PATHS.sectores}/${slug}`;
+export const rutaSeccion = (slugSeccion) => `/${slugSeccion}`;
+export const rutaItem = (slugSeccion, slugItem) => `/${slugSeccion}/${slugItem}`;
 
 export default PATHS;

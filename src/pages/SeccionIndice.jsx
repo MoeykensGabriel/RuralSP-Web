@@ -1,40 +1,41 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
-import { rutaSector } from '../routes/paths';
-import { getSectores } from '../services/contentService';
+import { rutaItem } from '../routes/paths';
+import { getSeccion } from '../services/contentService';
+import NotFound from './NotFound';
 import PageHero from '../components/ui/PageHero';
 import Section from '../components/ui/Section';
 
 /**
- * Índice de sectores: los lista a todos y lleva a la página de cada uno.
- * La lista sale de `getSectores()`, así que sumar un sector la actualiza
- * sin tocar este archivo.
+ * Índice de una sección: lista sus subpáginas y lleva a cada una.
+ *
+ * Es genérico: la misma página sirve para Sectores, Seguridad física y
+ * cualquier sección que se agregue después. El contenido lo trae el `slug`
+ * que le pasa la ruta en `App.jsx`.
  */
-export default function Sectores() {
-  const sectores = getSectores();
+export default function SeccionIndice({ slug }) {
+  const seccion = getSeccion(slug);
+
+  if (!seccion) return <NotFound />;
 
   return (
     <>
-      <PageHero
-        eyebrow="Dónde trabajamos"
-        title="Sectores"
-        subtitle="Cada actividad tiene sus riesgos y su forma de operar. Estos son los rubros en los que trabajamos."
-      />
+      <PageHero eyebrow={seccion.eyebrow} title={seccion.titulo} subtitle={seccion.bajada} />
 
       <Section>
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 menu:grid-cols-3 menu:gap-6">
-          {sectores.map((sector) => (
-            <li key={sector.id}>
+          {seccion.items.map((item) => (
+            <li key={item.id}>
               {/* El enlace envuelve toda la tarjeta: así el área para tocar
                   es la tarjeta entera y no solo el texto, que en un celular
                   es la diferencia entre acertar y no. */}
               <Link
-                to={rutaSector(sector.slug)}
+                to={rutaItem(seccion.slug, item.slug)}
                 className="group flex h-full flex-col rounded-xl border border-line bg-bg p-6 transition-colors hover:border-line-strong"
               >
-                <h2 className="text-lg font-bold">{sector.title}</h2>
-                <p className="mt-3 text-sm text-fg-soft">{sector.text}</p>
+                <h2 className="text-lg font-bold">{item.title}</h2>
+                <p className="mt-3 text-sm text-fg-soft">{item.text}</p>
                 <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-fg">
                   Ver más
                   <ArrowRight

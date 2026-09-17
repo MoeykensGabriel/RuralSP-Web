@@ -53,29 +53,55 @@ export const getPartners = () => [
   { id: 'pt-11', name: 'Nombre a confirmar', logo: '/logos/arbol-verde.png' },
 ];
 
-/** Rubros en los que trabaja la empresa. Grilla de tarjetas en la home. */
 /**
- * Sectores en los que trabaja la empresa. Esta lista manda en TRES lugares
- * a la vez, así que agregar uno acá alcanza para que aparezca en todos:
+ * ============================================================
+ *  SECCIONES CON SUBPÁGINAS
+ * ============================================================
+ * Cada sección es un ítem desplegable del menú con varias subpáginas
+ * adentro. Esta lista manda en CUATRO lugares a la vez:
  *
- *   1. el desplegable "Sectores" del menú (header y panel mobile)
- *   2. la página /sectores, que los lista a todos
- *   3. su propia página, /sectores/<slug>
+ *   1. el desplegable del menú (header y panel mobile)
+ *   2. las rutas: /<slug> y /<slug>/<slug del ítem>
+ *   3. la página índice, que lista los ítems de la sección
+ *   4. la página de cada ítem
  *
- * PARA AGREGAR UN SECTOR: sumá un objeto con `slug` (lo que va en la URL:
- * en minúscula, sin acentos ni espacios), `title` y `text`. No hay que
- * tocar ninguna ruta ni ningún componente.
+ * PARA AGREGAR UNA SUBPÁGINA: sumá un objeto a `items` con `slug` (lo que
+ * va en la URL: minúscula, sin acentos ni espacios), `title` y `text`.
  *
- * TODO falta el texto real de cada sector y confirmar la lista completa.
+ * PARA AGREGAR UNA SECCIÓN ENTERA: sumá un objeto acá con su `slug`,
+ * `titulo`, `bajada` y sus `items`. No hay que tocar rutas, ni el menú,
+ * ni ningún componente: aparece sola en los cuatro lugares.
+ *
+ * TODO falta el texto real de cada subpágina y confirmar ambas listas.
  */
-export const getSectores = () => [
-  { id: 'sc-eventos', slug: 'eventos', title: 'Eventos', text: RELLENO },
-  { id: 'sc-negocios', slug: 'negocios', title: 'Negocios', text: RELLENO },
-  { id: 'sc-fabricas', slug: 'fabricas', title: 'Fábricas', text: RELLENO },
+export const getSecciones = () => [
+  {
+    slug: 'seguridad-fisica',
+    titulo: 'Seguridad física',
+    eyebrow: 'Qué hacemos',
+    bajada: 'Personal en el lugar, con procedimientos escritos y supervisión.',
+    items: [{ id: 'sf-vigilancia', slug: 'vigilancia', title: 'Vigilancia', text: RELLENO }],
+  },
+  {
+    slug: 'sectores',
+    titulo: 'Sectores',
+    eyebrow: 'Dónde trabajamos',
+    bajada:
+      'Cada actividad tiene sus riesgos y su forma de operar. Estos son los rubros en los que trabajamos.',
+    items: [
+      { id: 'sc-eventos', slug: 'eventos', title: 'Eventos', text: RELLENO },
+      { id: 'sc-negocios', slug: 'negocios', title: 'Negocios', text: RELLENO },
+      { id: 'sc-fabricas', slug: 'fabricas', title: 'Fábricas', text: RELLENO },
+    ],
+  },
 ];
 
-/** Busca un sector por su slug. Devuelve undefined si la URL no existe. */
-export const getSector = (slug) => getSectores().find((s) => s.slug === slug);
+/** Busca una sección por su slug. Devuelve undefined si la URL no existe. */
+export const getSeccion = (slug) => getSecciones().find((s) => s.slug === slug);
+
+/** Busca una subpágina dentro de una sección. Undefined si no existe. */
+export const getItemDeSeccion = (slugSeccion, slugItem) =>
+  getSeccion(slugSeccion)?.items.find((i) => i.slug === slugItem);
 
 /**
  * Bloque "Presentación" de la home. Texto provisto por el cliente.
