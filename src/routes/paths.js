@@ -6,8 +6,15 @@
 export const PATHS = {
   home: '/',
   servicios: '/servicios',
+  sectores: '/sectores',
   nosotros: '/nosotros',
   contacto: '/contacto',
 };
+
+/**
+ * Ruta de un sector puntual: /sectores/eventos, /sectores/fabricas, etc.
+ * El `slug` sale de `getSectores()` en `services/contentService.js`.
+ */
+export const rutaSector = (slug) => `${PATHS.sectores}/${slug}`;
 
 export default PATHS;

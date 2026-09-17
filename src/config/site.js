@@ -1,4 +1,5 @@
-import { PATHS } from '../routes/paths';
+import { PATHS, rutaSector } from '../routes/paths';
+import { getSectores } from '../services/contentService';
 
 /**
  * ============================================================
@@ -51,6 +52,17 @@ export const site = {
    */
   nav: [
     { label: 'Servicios', to: PATHS.servicios },
+    // `hijos` convierte el ítem en desplegable. Los sectores no se escriben
+    // acá: salen de `getSectores()`, así el menú, la página /sectores y las
+    // páginas de cada sector nunca quedan desfasados entre sí.
+    {
+      label: 'Sectores',
+      to: PATHS.sectores,
+      hijos: getSectores().map((sector) => ({
+        label: sector.title,
+        to: rutaSector(sector.slug),
+      })),
+    },
     { label: 'Nosotros', to: PATHS.nosotros },
     { label: 'Contacto', to: PATHS.contacto },
   ],

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, Phone, X } from 'lucide-react';
+import { ChevronDown, Menu, Phone, X } from 'lucide-react';
 
 import { site } from '../../config/site';
 import { PATHS } from '../../routes/paths';
@@ -77,20 +77,74 @@ export default function Header() {
             y esto a la derecha. En mobile la nav se oculta y el lugar de la
             derecha lo ocupa el botón hamburguesa. */}
         <nav className="hidden items-center gap-8 menu:flex" aria-label="Navegación principal">
-          {site.nav.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === PATHS.home}
-              className={({ isActive }) =>
-                `${NAV_LINK} ${
-                  isActive ? 'font-semibold text-fg after:scale-x-100' : 'text-fg-soft hover:text-fg'
-                }`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
+          {site.nav.map((item) =>
+            item.hijos ? (
+              /* Ítem con desplegable. Se abre con `group-hover` y también con
+                 `group-focus-within`, que es lo que lo hace usable con el
+                 teclado: al llegar con Tab al link, el panel aparece solo.
+                 Se usa invisible/visible en vez de hidden porque, estando
+                 invisible, los links de adentro quedan fuera del recorrido
+                 del Tab, que es lo correcto. */
+              <div key={item.to} className="group relative">
+                <NavLink
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `${NAV_LINK} inline-flex items-center gap-1 ${
+                      isActive
+                        ? 'font-semibold text-fg after:scale-x-100'
+                        : 'text-fg-soft hover:text-fg'
+                    }`
+                  }
+                >
+                  {item.label}
+                  <ChevronDown
+                    size={14}
+                    aria-hidden="true"
+                    className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
+                  />
+                </NavLink>
+
+                {/* El `pt-3` es un puente invisible entre el link y el panel:
+                    sin él, al bajar el mouse se cruza un hueco, se pierde el
+                    hover y el desplegable se cierra en la cara del usuario. */}
+                <div className="invisible absolute top-full left-0 pt-3 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <ul className="min-w-52 rounded-xl border border-line bg-bg p-2 shadow-xl">
+                    {item.hijos.map((hijo) => (
+                      <li key={hijo.to}>
+                        <NavLink
+                          to={hijo.to}
+                          className={({ isActive }) =>
+                            `block rounded-lg px-3 py-2 text-sm transition-colors ${
+                              isActive
+                                ? 'bg-bg-soft font-semibold text-fg'
+                                : 'text-fg-soft hover:bg-bg-soft hover:text-fg'
+                            }`
+                          }
+                        >
+                          {hijo.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === PATHS.home}
+                className={({ isActive }) =>
+                  `${NAV_LINK} ${
+                    isActive
+                      ? 'font-semibold text-fg after:scale-x-100'
+                      : 'text-fg-soft hover:text-fg'
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ),
+          )}
         </nav>
 
         <button
@@ -111,21 +165,43 @@ export default function Header() {
           id="mobile-nav"
           className="fixed inset-x-0 top-16 z-40 flex animate-slide-down flex-col gap-4 border-b border-line bg-bg px-5 pt-6 pb-8 shadow-xl menu:hidden"
         >
+          {/* En mobile no hay desplegable: los sectores se muestran siempre,
+              indentados debajo de su ítem. Un acordeón agregaría un toque más
+              para llegar al mismo lugar, y acá el espacio no es problema. */}
           <nav className="flex flex-col" aria-label="Navegación mobile">
             {site.nav.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === PATHS.home}
-                onClick={closeMenu}
-                className={({ isActive }) =>
-                  `border-b border-line py-4 text-lg ${
-                    isActive ? 'font-bold text-fg' : 'font-medium text-fg-soft'
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
+              <div key={item.to} className="border-b border-line">
+                <NavLink
+                  to={item.to}
+                  end={item.to === PATHS.home}
+                  onClick={closeMenu}
+                  className={({ isActive }) =>
+                    `block py-4 text-lg ${
+                      isActive ? 'font-bold text-fg' : 'font-medium text-fg-soft'
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+
+                {item.hijos && (
+                  <ul className="mb-3 flex flex-col gap-1 border-l border-line pl-4">
+                    {item.hijos.map((hijo) => (
+                      <li key={hijo.to}>
+                        <NavLink
+                          to={hijo.to}
+                          onClick={closeMenu}
+                          className={({ isActive }) =>
+                            `block py-2 ${isActive ? 'font-semibold text-fg' : 'text-fg-soft'}`
+                          }
+                        >
+                          {hijo.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             ))}
           </nav>
 

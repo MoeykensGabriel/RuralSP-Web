@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import { site } from '../config/site';
-import { PATHS } from '../routes/paths';
-import { getPartners, getPresentacion, getSectors, getValues } from '../services/contentService';
+import { PATHS, rutaSector } from '../routes/paths';
+import { getPartners, getPresentacion, getSectores, getValues } from '../services/contentService';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Container from '../components/ui/Container';
@@ -32,7 +33,7 @@ import Section from '../components/ui/Section';
 export default function Home() {
   const presentacion = getPresentacion();
   const partners = getPartners();
-  const sectors = getSectors();
+  const sectores = getSectores();
   const values = getValues();
 
   return (
@@ -132,9 +133,13 @@ export default function Home() {
         title="Sectores"
         subtitle="Los rubros en los que la empresa tiene experiencia."
       >
+        {/* Cada tarjeta lleva a la página del sector. El enlace envuelve la
+            tarjeta entera para que toda ella sea tocable, no solo el texto. */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 menu:grid-cols-3 menu:gap-6">
-          {sectors.map((sector) => (
-            <Card key={sector.id} title={sector.title} text={sector.text} />
+          {sectores.map((sector) => (
+            <Link key={sector.id} to={rutaSector(sector.slug)} className="block">
+              <Card title={sector.title} text={sector.text} className="h-full" />
+            </Link>
           ))}
         </div>
       </Section>

@@ -54,14 +54,28 @@ export const getPartners = () => [
 ];
 
 /** Rubros en los que trabaja la empresa. Grilla de tarjetas en la home. */
-export const getSectors = () => [
-  { id: 'sc-1', title: 'Sector 01', text: RELLENO },
-  { id: 'sc-2', title: 'Sector 02', text: RELLENO },
-  { id: 'sc-3', title: 'Sector 03', text: RELLENO },
-  { id: 'sc-4', title: 'Sector 04', text: RELLENO },
-  { id: 'sc-5', title: 'Sector 05', text: RELLENO },
-  { id: 'sc-6', title: 'Sector 06', text: RELLENO },
+/**
+ * Sectores en los que trabaja la empresa. Esta lista manda en TRES lugares
+ * a la vez, así que agregar uno acá alcanza para que aparezca en todos:
+ *
+ *   1. el desplegable "Sectores" del menú (header y panel mobile)
+ *   2. la página /sectores, que los lista a todos
+ *   3. su propia página, /sectores/<slug>
+ *
+ * PARA AGREGAR UN SECTOR: sumá un objeto con `slug` (lo que va en la URL:
+ * en minúscula, sin acentos ni espacios), `title` y `text`. No hay que
+ * tocar ninguna ruta ni ningún componente.
+ *
+ * TODO falta el texto real de cada sector y confirmar la lista completa.
+ */
+export const getSectores = () => [
+  { id: 'sc-eventos', slug: 'eventos', title: 'Eventos', text: RELLENO },
+  { id: 'sc-negocios', slug: 'negocios', title: 'Negocios', text: RELLENO },
+  { id: 'sc-fabricas', slug: 'fabricas', title: 'Fábricas', text: RELLENO },
 ];
+
+/** Busca un sector por su slug. Devuelve undefined si la URL no existe. */
+export const getSector = (slug) => getSectores().find((s) => s.slug === slug);
 
 /**
  * Bloque "Presentación" de la home. Texto provisto por el cliente.
