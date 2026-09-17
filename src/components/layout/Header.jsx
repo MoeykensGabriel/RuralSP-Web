@@ -29,10 +29,18 @@ const ICON_BTN =
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  // Qué ítem del menú mobile tiene su submenú abierto. Guarda el `to` del
+  // ítem, no un booleano, para que abrir uno cierre el anterior.
+  const [desplegado, setDesplegado] = useState(null);
 
   useLockBodyScroll(menuOpen);
 
-  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  // Al cerrar el panel también se cierra el acordeón: si no, al reabrirlo
+  // aparecería desplegado de antes, que no es lo que uno espera.
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+    setDesplegado(null);
+  }, []);
 
   // Escape cierra el panel (accesibilidad de teclado).
   useEffect(() => {
@@ -150,7 +158,7 @@ export default function Header() {
         <button
           type="button"
           className={`${ICON_BTN} menu:hidden`}
-          onClick={() => setMenuOpen((open) => !open)}
+          onClick={() => (menuOpen ? closeMenu() : setMenuOpen(true))}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
@@ -165,44 +173,88 @@ export default function Header() {
           id="mobile-nav"
           className="fixed inset-x-0 top-16 z-40 flex animate-slide-down flex-col gap-4 border-b border-line bg-bg px-5 pt-6 pb-8 shadow-xl menu:hidden"
         >
-          {/* En mobile no hay desplegable: los sectores se muestran siempre,
-              indentados debajo de su ítem. Un acordeón agregaría un toque más
-              para llegar al mismo lugar, y acá el espacio no es problema. */}
-          <nav className="flex flex-col" aria-label="Navegación mobile">
-            {site.nav.map((item) => (
-              <div key={item.to} className="border-b border-line">
-                <NavLink
-                  to={item.to}
-                  end={item.to === PATHS.home}
-                  onClick={closeMenu}
-                  className={({ isActive }) =>
-                    `block py-4 text-lg ${
-                      isActive ? 'font-bold text-fg' : 'font-medium text-fg-soft'
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
+          {/* En mobile los ítems con hijos son un acordeón: arrancan cerrados
+              y se abren al tocarlos. Mostrarlos siempre desplegados hacía que
+              el panel creciera con cada rubro nuevo hasta no entrar en
+              pantalla.
 
-                {item.hijos && (
-                  <ul className="mb-3 flex flex-col gap-1 border-l border-line pl-4">
-                    {item.hijos.map((hijo) => (
-                      <li key={hijo.to}>
+              El ítem pasa a ser un <button> y no un enlace, porque su función
+              acá es abrir y cerrar. Para entrar a la página del rubro en
+              general, el primer elemento de la lista es "Ver todos". */}
+          <nav className="flex flex-col" aria-label="Navegación mobile">
+            {site.nav.map((item) => {
+              if (!item.hijos) {
+                return (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    end={item.to === PATHS.home}
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                      `border-b border-line py-4 text-lg ${
+                        isActive ? 'font-bold text-fg' : 'font-medium text-fg-soft'
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                );
+              }
+
+              const abierto = desplegado === item.to;
+              const idSubmenu = `submenu${item.to.replace(/\//g, '-')}`;
+
+              return (
+                <div key={item.to} className="border-b border-line">
+                  <button
+                    type="button"
+                    onClick={() => setDesplegado(abierto ? null : item.to)}
+                    aria-expanded={abierto}
+                    aria-controls={idSubmenu}
+                    className="flex w-full cursor-pointer items-center justify-between py-4 text-lg font-medium text-fg-soft"
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={18}
+                      aria-hidden="true"
+                      className={`transition-transform ${abierto ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+
+                  {abierto && (
+                    <ul
+                      id={idSubmenu}
+                      className="mb-3 flex animate-slide-down flex-col gap-1 border-l border-line pl-4"
+                    >
+                      <li>
                         <NavLink
-                          to={hijo.to}
+                          to={item.to}
                           onClick={closeMenu}
                           className={({ isActive }) =>
                             `block py-2 ${isActive ? 'font-semibold text-fg' : 'text-fg-soft'}`
                           }
                         >
-                          {hijo.label}
+                          Ver todos
                         </NavLink>
                       </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
+                      {item.hijos.map((hijo) => (
+                        <li key={hijo.to}>
+                          <NavLink
+                            to={hijo.to}
+                            onClick={closeMenu}
+                            className={({ isActive }) =>
+                              `block py-2 ${isActive ? 'font-semibold text-fg' : 'text-fg-soft'}`
+                            }
+                          >
+                            {hijo.label}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
           <Button href={site.contact.phoneHref} onClick={closeMenu} block>
