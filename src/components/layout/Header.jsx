@@ -114,8 +114,14 @@ export default function Header() {
 
                 {/* El `pt-3` es un puente invisible entre el link y el panel:
                     sin él, al bajar el mouse se cruza un hueco, se pierde el
-                    hover y el desplegable se cierra en la cara del usuario. */}
-                <div className="invisible absolute top-full left-0 pt-3 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    hover y el desplegable se cierra en la cara del usuario.
+
+                    El `-left-[21px]` alinea el TEXTO de adentro con el del
+                    ítem de arriba. Con la caja pegada al borde (left-0), lo
+                    que se alinea es el recuadro, pero el texto queda corrido
+                    a la derecha por el relleno de la lista: 8px del recuadro
+                    + 12px del ítem + 1px de borde. */}
+                <div className="invisible absolute top-full -left-[21px] pt-3 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                   <ul className="min-w-52 rounded-xl border border-line bg-bg p-2 shadow-xl">
                     {item.hijos.map((hijo) => (
                       <li key={hijo.to}>
