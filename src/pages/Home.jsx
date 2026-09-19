@@ -7,7 +7,7 @@ import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Container from '../components/ui/Container';
 import LogoCarousel from '../components/ui/LogoCarousel';
-import Mapa from '../components/ui/Mapa';
+import MapaTucuman from '../components/ui/MapaTucuman';
 import Placeholder from '../components/ui/Placeholder';
 import Section from '../components/ui/Section';
 
@@ -166,10 +166,11 @@ export default function Home() {
       {/* ── 7. Dónde estamos ────────────────────────────────────────────
           Va justo antes del formulario del footer: primero "dónde estamos",
           después "escribinos".
-          Mobile: texto arriba y mapa abajo. Desktop: lado a lado, con el
-          mapa más ancho porque es lo que se vino a ver. */}
+          Mobile: texto arriba y mapa abajo. Desktop: lado a lado.
+          El mapa de la provincia es vertical, así que se limita el ancho:
+          si ocupara toda la columna mediría más de 800px de alto. */}
       <Section className="border-t border-line">
-        <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-[0.8fr_1.2fr] menu:gap-14">
+        <div className="grid grid-cols-1 items-center gap-12 menu:grid-cols-2 menu:gap-16">
           <div>
             <p className="eyebrow">Dónde estamos</p>
             <h2 className="mt-2 text-2xl font-bold menu:text-4xl">{site.ubicacion.zona}</h2>
@@ -205,12 +206,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <Mapa
-            busqueda={site.ubicacion.busqueda}
-            zoom={site.ubicacion.zoom}
-            titulo={`Mapa: ${site.ubicacion.zona}`}
-            className="aspect-[4/3] w-full"
-          />
+          <MapaTucuman className="mx-auto w-full max-w-72 menu:max-w-sm" />
         </div>
       </Section>
 
