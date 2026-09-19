@@ -44,6 +44,25 @@ export const site = {
   },
 
   /**
+   * Ubicación para el mapa de la home.
+   *
+   * `busqueda` es lo que se le pide a Google Maps. Mientras no tengamos la
+   * dirección exacta, apunta a la PROVINCIA: Google la muestra resaltada
+   * con su contorno, que es justamente "dónde trabajamos", sin inventar un
+   * punto en el mapa.
+   *
+   * TODO cuando llegue la dirección real: poner acá la dirección completa
+   * (calle, número, ciudad, provincia) y subir `zoom` a 15. El mapa pasa a
+   * marcar la oficina y el botón pasa a llevar hasta ahí.
+   */
+  ubicacion: {
+    busqueda: 'Provincia de Tucumán, Argentina',
+    zoom: 8,
+    // Texto del cliente: "Tucumán y el norte argentino".
+    zona: 'Tucumán y el norte argentino',
+  },
+
+  /**
    * Ítems del header y del footer. Agregar o quitar acá actualiza los dos.
    *
    * No hay "Inicio" a propósito: el logo ya lleva a la home, en el header y

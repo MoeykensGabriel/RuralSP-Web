@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ArrowUpRight, MapPin, Navigation } from 'lucide-react';
 import { site } from '../config/site';
 import { PATHS, rutaItem } from '../routes/paths';
 import { getPartners, getPresentacion, getSeccion, getValues } from '../services/contentService';
@@ -6,6 +7,7 @@ import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Container from '../components/ui/Container';
 import LogoCarousel from '../components/ui/LogoCarousel';
+import Mapa from '../components/ui/Mapa';
 import Placeholder from '../components/ui/Placeholder';
 import Section from '../components/ui/Section';
 
@@ -20,8 +22,9 @@ import Section from '../components/ui/Section';
  *   4. Prueba social (logos) ... acá
  *   5. Sectores ................ acá
  *   6. Propuesta de valor ...... acá
- *   7. Cierre / CTA ............ acá
- *   8. Footer .................. en `components/layout/Footer.jsx`
+ *   7. Dónde estamos (mapa) .... acá
+ *   8. Cierre / CTA ............ en el Footer
+ *   9. Footer .................. en `components/layout/Footer.jsx`
  *
  * El texto sale de `services/contentService.js` y de `config/site.js`:
  * este archivo define la ESTRUCTURA, no el contenido. La Presentación y los
@@ -160,7 +163,58 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── 7. Cierre / CTA ─────────────────────────────────────────────
+      {/* ── 7. Dónde estamos ────────────────────────────────────────────
+          Va justo antes del formulario del footer: primero "dónde estamos",
+          después "escribinos".
+          Mobile: texto arriba y mapa abajo. Desktop: lado a lado, con el
+          mapa más ancho porque es lo que se vino a ver. */}
+      <Section className="border-t border-line">
+        <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-[0.8fr_1.2fr] menu:gap-14">
+          <div>
+            <p className="eyebrow">Dónde estamos</p>
+            <h2 className="mt-2 text-2xl font-bold menu:text-4xl">{site.ubicacion.zona}</h2>
+
+            <dl className="mt-8 flex flex-col border-t border-line">
+              <div className="flex items-start gap-4 border-b border-line py-4">
+                <MapPin size={18} aria-hidden="true" className="mt-1 shrink-0 text-fg-mute" />
+                <div>
+                  <dt className="eyebrow">Oficina</dt>
+                  <dd className="mt-1">{site.contact.address}</dd>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 border-b border-line py-4">
+                <Navigation size={18} aria-hidden="true" className="mt-1 shrink-0 text-fg-mute" />
+                <div>
+                  <dt className="eyebrow">Zona de trabajo</dt>
+                  <dd className="mt-1">{site.ubicacion.zona}</dd>
+                </div>
+              </div>
+            </dl>
+
+            {/* Abre la misma búsqueda en Google Maps; en el celular abre la
+                app de Mapas directamente. */}
+            <Button
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                site.ubicacion.busqueda,
+              )}`}
+              variant="secondary"
+              className="mt-8"
+            >
+              Abrir en Google Maps
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </Button>
+          </div>
+
+          <Mapa
+            busqueda={site.ubicacion.busqueda}
+            zoom={site.ubicacion.zoom}
+            titulo={`Mapa: ${site.ubicacion.zona}`}
+            className="aspect-[4/3] w-full"
+          />
+        </div>
+      </Section>
+
+      {/* ── 8. Cierre / CTA ─────────────────────────────────────────────
           Ya no vive acá: el formulario de contacto está en el Footer, así
           que cierra ésta y todas las demás páginas. Ver
           `components/layout/ContactForm.jsx`. */}
