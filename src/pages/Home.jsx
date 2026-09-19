@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { ArrowUpRight, MapPin, Navigation } from 'lucide-react';
 import { site } from '../config/site';
 import { PATHS, rutaItem } from '../routes/paths';
@@ -10,6 +9,7 @@ import LogoCarousel from '../components/ui/LogoCarousel';
 import MapaTucuman from '../components/ui/MapaTucuman';
 import Placeholder from '../components/ui/Placeholder';
 import Section from '../components/ui/Section';
+import TarjetaItem from '../components/ui/TarjetaItem';
 
 /**
  * Home — esqueleto de landing corporativa.
@@ -137,13 +137,17 @@ export default function Home() {
         title="Sectores"
         subtitle="Los rubros en los que la empresa tiene experiencia."
       >
-        {/* Cada tarjeta lleva a la página del sector. El enlace envuelve la
-            tarjeta entera para que toda ella sea tocable, no solo el texto. */}
+        {/* Misma tarjeta que en /sectores: cada una lleva a su página. */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 menu:grid-cols-3 menu:gap-6">
           {sectores.items.map((sector) => (
-            <Link key={sector.id} to={rutaItem(sectores.slug, sector.slug)} className="block">
-              <Card title={sector.title} text={sector.text} className="h-full" />
-            </Link>
+            <TarjetaItem
+              key={sector.id}
+              to={rutaItem(sectores.slug, sector.slug)}
+              title={sector.title}
+              text={sector.text}
+              imagen={sector.imagen}
+              imagenAlt={sector.imagenAlt}
+            />
           ))}
         </div>
       </Section>

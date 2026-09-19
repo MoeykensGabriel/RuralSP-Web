@@ -68,6 +68,11 @@ export const getPartners = () => [
  * PARA AGREGAR UNA SUBPÁGINA: sumá un objeto a `items` con `slug` (lo que
  * va en la URL: minúscula, sin acentos ni espacios), `title` y `text`.
  *
+ * FOTO (opcional): `imagen` con la ruta dentro de `public/` y `imagenAlt`
+ * describiendo lo que se ve. Proporción ideal 2:1, mínimo 1200px de ancho.
+ * Los ítems sin foto muestran un recuadro de reemplazo del mismo tamaño,
+ * así todas las tarjetas quedan parejas.
+ *
  * PARA AGREGAR UNA SECCIÓN ENTERA: sumá un objeto acá con su `slug`,
  * `titulo`, `bajada` y sus `items`. No hay que tocar rutas, ni el menú,
  * ni ningún componente: aparece sola en los cuatro lugares.
@@ -89,7 +94,18 @@ export const getSecciones = () => [
     bajada:
       'Cada actividad tiene sus riesgos y su forma de operar. Estos son los rubros en los que trabajamos.',
     items: [
-      { id: 'sc-eventos', slug: 'eventos', title: 'Eventos', text: RELLENO },
+      {
+        id: 'sc-eventos',
+        slug: 'eventos',
+        title: 'Eventos',
+        text: RELLENO,
+        // TODO confirmar que la foto es del cliente o que hay permiso para
+        // usarla: el nombre original del archivo sugiere que se bajó de un
+        // sitio web, y en la foto se ve la marca Massey Ferguson.
+        // Mide 600x290: sirve para tarjetas, no para mostrarla a lo ancho.
+        imagen: '/sectores/eventos.webp',
+        imagenAlt: 'Vista aérea de un pabellón con maquinaria agrícola en una exposición del sector',
+      },
       { id: 'sc-negocios', slug: 'negocios', title: 'Negocios', text: RELLENO },
       { id: 'sc-fabricas', slug: 'fabricas', title: 'Fábricas', text: RELLENO },
     ],

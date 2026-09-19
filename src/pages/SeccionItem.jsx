@@ -27,6 +27,18 @@ export default function SeccionItem({ slug }) {
       <PageHero eyebrow={seccion.titulo} title={item.title} subtitle={item.text} />
 
       <Section>
+        {/* La foto nunca se muestra más grande que el archivo: estirarla
+            la vuelve borrosa. `max-w-[600px]` es el ancho de la foto que
+            hay hoy; si llega una más grande, se sube acá. */}
+        {item.imagen && (
+          <img
+            src={item.imagen}
+            alt={item.imagenAlt ?? ''}
+            decoding="async"
+            className="mb-10 aspect-[2/1] w-full max-w-[600px] rounded-xl border border-line object-cover"
+          />
+        )}
+
         <p className="font-mono text-sm text-fg-mute">Contenido a definir con el cliente.</p>
 
         <Link
