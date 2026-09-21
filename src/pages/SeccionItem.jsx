@@ -143,21 +143,21 @@ export default function SeccionItem({ slug }) {
               <div className="sticky top-28 rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-900 shadow-2xl sm:p-8">
                 <ul className="space-y-5 border-b border-neutral-200 pb-6">
                   <li className="flex items-center gap-3">
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-red-600 text-white">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-green-600 text-white">
                       <Check size={16} strokeWidth={3} />
                     </span>
                     <span className="text-base font-semibold text-neutral-800">Tranquilidad</span>
                   </li>
 
                   <li className="flex items-center gap-3">
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-red-600 text-white">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-green-600 text-white">
                       <Check size={16} strokeWidth={3} />
                     </span>
                     <span className="text-base font-semibold text-neutral-800">Prevención del delito</span>
                   </li>
 
                   <li className="flex items-center gap-3">
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-red-600 text-white">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-green-600 text-white">
                       <Check size={16} strokeWidth={3} />
                     </span>
                     <span className="text-base font-semibold text-neutral-800">
@@ -169,10 +169,10 @@ export default function SeccionItem({ slug }) {
                 <div className="mt-6 flex flex-col items-center">
                   <Button
                     to={PATHS.contacto}
-                    variant="accent"
+                    variant="inverse"
                     size="md"
                     block
-                    className="py-3.5 text-base font-bold shadow-md"
+                    className="py-3.5 text-base font-bold shadow-md hover:bg-white hover:text-neutral-900 hover:border-neutral-900 transition-colors"
                   >
                     Saber Más
                     <ArrowRight size={18} aria-hidden="true" />
