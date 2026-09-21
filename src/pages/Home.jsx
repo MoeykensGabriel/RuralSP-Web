@@ -1,40 +1,16 @@
 import { ArrowUpRight, MapPin, Navigation } from 'lucide-react';
 import { site } from '../config/site';
 import { PATHS, rutaItem } from '../routes/paths';
-import { getPartners, getPresentacion, getSeccion, getValues } from '../services/contentService';
+import { getPartners, getSeccion, getValues } from '../services/contentService';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Container from '../components/ui/Container';
 import LogoCarousel from '../components/ui/LogoCarousel';
 import MapaTucuman from '../components/ui/MapaTucuman';
-import Placeholder from '../components/ui/Placeholder';
 import Section from '../components/ui/Section';
 import TarjetaItem from '../components/ui/TarjetaItem';
 
-/**
- * Home — esqueleto de landing corporativa.
- *
- * Los bloques van uno debajo del otro, en el orden habitual del rubro:
- *
- *   1. Header .................. en `components/layout/Header.jsx`
- *   2. Hero .................... acá
- *   3. Presentación ............ acá
- *   4. Prueba social (logos) ... acá
- *   5. Sectores ................ acá
- *   6. Propuesta de valor ...... acá
- *   7. Dónde estamos (mapa) .... acá
- *   8. Cierre / CTA ............ en el Footer
- *   9. Footer .................. en `components/layout/Footer.jsx`
- *
- * El texto sale de `services/contentService.js` y de `config/site.js`:
- * este archivo define la ESTRUCTURA, no el contenido. La Presentación y los
- * logos ya son reales; Sectores y Propuesta de valor siguen de relleno.
- *
- * Comportamiento responsive: mobile arranca en una columna y las grillas
- * se abren en `sm:` (640px) y en `menu:` (900px).
- */
 export default function Home() {
-  const presentacion = getPresentacion();
   const partners = getPartners();
   // La home muestra los sectores; el resto de la seccion vive en /sectores.
   const sectores = getSeccion('sectores');
@@ -89,56 +65,7 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ── 3. Presentación de la empresa ─────────────────────────────── */}
-      <Section alt className="border-t border-line">
-        <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-2 menu:gap-14">
-          <Placeholder label="IMAGEN" ratio="aspect-[3/2]" className="menu:order-last" />
-
-          <div>
-            <p className="eyebrow">La empresa</p>
-            <h2 className="mt-2 text-2xl font-bold menu:text-4xl">Presentación</h2>
-            <p className="mt-5 text-lg leading-relaxed text-fg">{presentacion.intro}</p>
-          </div>
-        </div>
-
-        <ul className="mt-14 grid grid-cols-1 gap-6 menu:mt-20 menu:grid-cols-2">
-          {presentacion.pilares.map((pilar, index) => (
-            <li
-              key={pilar.titulo}
-              className="group rounded-2xl border border-neutral-800/80 bg-neutral-900/40 p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:bg-neutral-900/80 hover:shadow-xl"
-            >
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-xs font-bold text-neutral-400">0{index + 1}</span>
-                <div className="h-px flex-1 bg-neutral-800 transition-colors group-hover:bg-neutral-400" />
-              </div>
-              <h3 className="mt-4 text-xl font-bold text-white transition-colors group-hover:text-white">
-                {pilar.titulo}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-fg-soft sm:text-base">{pilar.texto}</p>
-            </li>
-          ))}
-        </ul>
-
-        <p className="mt-14 max-w-[75ch] rounded-r-2xl border-l-4 border-white bg-neutral-900/50 p-6 text-lg leading-relaxed text-fg shadow-lg sm:p-8 menu:mt-20">
-          {presentacion.cierre}
-        </p>
-      </Section>
-
-      {/* ── 4. Prueba social ────────────────────────────────────────────
-          El carrusel se desplaza solo; no cambia entre mobile y desktop. */}
-      {/* Padding de arriba menor que el de abajo: sube el título dentro del
-          bloque sin achicar la sección. Centrado porque el carrusel es de
-          ancho completo y se desvanece parejo en los dos bordes. */}
-      <section className="border-t border-line pt-12 pb-16 menu:pt-16 menu:pb-24">
-        <Container>
-          <p className="mb-12 text-center font-mono text-base font-medium tracking-[0.12em] text-fg uppercase menu:text-lg">
-            Empresas que confían en nosotros
-          </p>
-        </Container>
-        <LogoCarousel items={partners} />
-      </section>
-
-      {/* ── 5. Sectores ─────────────────────────────────────────────────
+      {/* ── 3. Sectores ─────────────────────────────────────────────────
           1 columna en mobile · 2 desde 640px · 3 desde 900px. */}
       <Section
         alt
@@ -147,7 +74,6 @@ export default function Home() {
         title="Sectores"
         subtitle="Los rubros en los que la empresa tiene experiencia."
       >
-        {/* Misma tarjeta que en /sectores: cada una lleva a su página. */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 menu:grid-cols-3 menu:gap-6">
           {sectores.items.map((sector) => (
             <TarjetaItem
@@ -161,6 +87,16 @@ export default function Home() {
           ))}
         </div>
       </Section>
+
+      {/* ── 4. Prueba social (Carrusel de empresas) ────────────────────── */}
+      <section className="border-t border-line pt-12 pb-16 menu:pt-16 menu:pb-24">
+        <Container>
+          <p className="mb-12 text-center font-mono text-base font-medium tracking-[0.12em] text-fg uppercase menu:text-lg">
+            Empresas que confían en nosotros
+          </p>
+        </Container>
+        <LogoCarousel items={partners} />
+      </section>
 
       {/* ── 6. Propuesta de valor ───────────────────────────────────────
           1 columna en mobile · 2 desde 640px · 4 desde 900px. */}
