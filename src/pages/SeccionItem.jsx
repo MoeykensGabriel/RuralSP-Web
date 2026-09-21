@@ -49,8 +49,8 @@ export default function SeccionItem({ slug }) {
             {seccion.titulo}
           </Link>
 
-          {/* Título Principal en Rojo Destacado */}
-          <h1 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white-600 sm:text-4xl md:text-5xl">
+          {/* Título Principal */}
+          <h1 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
             {heroTitle}
           </h1>
 
@@ -72,7 +72,7 @@ export default function SeccionItem({ slug }) {
           ) : (
             <div className="mt-10 flex aspect-[2.2/1] w-full max-w-4xl items-center justify-center rounded-2xl border border-neutral-800 bg-neutral-950/80 shadow-2xl">
               <div className="flex flex-col items-center gap-3 text-neutral-500">
-                <ShieldCheck size={48} className="text-red-600/80" />
+                <ShieldCheck size={48} className="text-neutral-400" />
                 <span className="font-mono text-sm tracking-wider uppercase">{item.title}</span>
               </div>
             </div>
@@ -89,8 +89,8 @@ export default function SeccionItem({ slug }) {
               <h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">
                 {item.title}
               </h2>
-              {/* Línea decorativa roja */}
-              <div className="mt-3 mb-8 h-1 w-16 rounded-full bg-red-600" />
+              {/* Línea decorativa */}
+              <div className="mt-3 mb-8 h-1 w-16 rounded-full bg-white" />
 
               <div className="space-y-6 text-base leading-relaxed text-fg-soft sm:text-lg">
                 <p>{item.text}</p>
@@ -143,21 +143,21 @@ export default function SeccionItem({ slug }) {
               <div className="sticky top-28 rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-900 shadow-2xl sm:p-8">
                 <ul className="space-y-5 border-b border-neutral-200 pb-6">
                   <li className="flex items-center gap-3">
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-green-600 text-white">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
                       <Check size={16} strokeWidth={3} />
                     </span>
                     <span className="text-base font-semibold text-neutral-800">Tranquilidad</span>
                   </li>
 
                   <li className="flex items-center gap-3">
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-green-600 text-white">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
                       <Check size={16} strokeWidth={3} />
                     </span>
                     <span className="text-base font-semibold text-neutral-800">Prevención del delito</span>
                   </li>
 
                   <li className="flex items-center gap-3">
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-green-600 text-white">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
                       <Check size={16} strokeWidth={3} />
                     </span>
                     <span className="text-base font-semibold text-neutral-800">

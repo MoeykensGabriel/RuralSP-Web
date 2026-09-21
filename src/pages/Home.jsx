@@ -44,11 +44,11 @@ export default function Home() {
     <>
       {/* ── 2. Hero ───────────────────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden bg-neutral-950 text-white">
-        {/* ── Fondo en capas con resplandor rojo de seguridad ── */}
+        {/* ── Fondo en capas ── */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-          {/* Mancha radial roja animada */}
-          <div className="absolute -top-32 -right-32 size-[36rem] rounded-full bg-red-600/15 blur-[140px] animate-pulse-glow" />
-          <div className="absolute -bottom-48 left-0 size-[30rem] rounded-full bg-neutral-400/10 blur-[130px]" />
+          {/* Mancha radial plateada/neutra animada */}
+          <div className="absolute -top-32 -right-32 size-[36rem] rounded-full bg-neutral-400/15 blur-[140px] animate-pulse-glow" />
+          <div className="absolute -bottom-48 left-0 size-[30rem] rounded-full bg-neutral-500/10 blur-[130px]" />
 
           {/* Sello como marca de agua */}
           <img
@@ -62,11 +62,11 @@ export default function Home() {
         </div>
 
         <Container className="py-24 animate-fade-in-up menu:py-36">
-          {/* Badge en vivo 24/7 */}
-          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-red-500/30 bg-red-500/10 px-3.5 py-1 text-xs font-mono font-medium text-red-400 backdrop-blur-md">
+          {/* Badge 24/7 en tono neutro/esmeralda */}
+          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-neutral-700 bg-neutral-900/80 px-3.5 py-1 text-xs font-mono font-medium text-neutral-300 backdrop-blur-md">
             <span className="relative flex size-2 items-center justify-center">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-red-400 opacity-75" />
-              <span className="relative inline-flex size-1.5 rounded-full bg-red-500" />
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
             </span>
             SEGURIDAD PRIVADA &amp; VIGILANCIA 24/7
           </div>
@@ -80,7 +80,7 @@ export default function Home() {
           <p className="mt-6 max-w-[46ch] text-lg text-neutral-300 leading-relaxed">{site.description}</p>
           <Button
             to={PATHS.contacto}
-            variant="accent"
+            variant="primary"
             className="mt-10 px-7 py-3.5 text-base font-bold shadow-xl transition-all duration-300 hover:scale-105"
           >
             Más información
@@ -105,13 +105,13 @@ export default function Home() {
           {presentacion.pilares.map((pilar, index) => (
             <li
               key={pilar.titulo}
-              className="group rounded-2xl border border-neutral-800/80 bg-neutral-900/40 p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-red-600/40 hover:bg-neutral-900/80 hover:shadow-xl"
+              className="group rounded-2xl border border-neutral-800/80 bg-neutral-900/40 p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:bg-neutral-900/80 hover:shadow-xl"
             >
               <div className="flex items-center gap-3">
-                <span className="font-mono text-xs font-bold text-red-500">0{index + 1}</span>
-                <div className="h-px flex-1 bg-neutral-800 transition-colors group-hover:bg-red-600/40" />
+                <span className="font-mono text-xs font-bold text-neutral-400">0{index + 1}</span>
+                <div className="h-px flex-1 bg-neutral-800 transition-colors group-hover:bg-neutral-400" />
               </div>
-              <h3 className="mt-4 text-xl font-bold text-white transition-colors group-hover:text-red-500">
+              <h3 className="mt-4 text-xl font-bold text-white transition-colors group-hover:text-white">
                 {pilar.titulo}
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-fg-soft sm:text-base">{pilar.texto}</p>
@@ -119,7 +119,7 @@ export default function Home() {
           ))}
         </ul>
 
-        <p className="mt-14 max-w-[75ch] rounded-r-2xl border-l-4 border-red-600 bg-neutral-900/50 p-6 text-lg leading-relaxed text-fg shadow-lg sm:p-8 menu:mt-20">
+        <p className="mt-14 max-w-[75ch] rounded-r-2xl border-l-4 border-white bg-neutral-900/50 p-6 text-lg leading-relaxed text-fg shadow-lg sm:p-8 menu:mt-20">
           {presentacion.cierre}
         </p>
       </Section>
