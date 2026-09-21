@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import useScrollToTop from '../../hooks/useScrollToTop';
 import Header from './Header';
 import Footer from './Footer';
+import WhatsAppButton from '../ui/WhatsAppButton';
 
 /**
  * Estructura base compartida por todas las páginas.
@@ -30,6 +31,7 @@ export default function Layout() {
       </main>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

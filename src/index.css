@@ -70,6 +70,32 @@
       transform: translateY(0);
     }
   }
+
+  /* Animaciones de entrada suave y resplandor */
+  --animate-fade-in-up: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.15;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.35;
+      transform: scale(1.1);
+    }
+  }
 }
 
 /* --------------------------------------------------------------------------

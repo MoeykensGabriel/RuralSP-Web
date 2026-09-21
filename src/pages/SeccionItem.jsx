@@ -50,7 +50,7 @@ export default function SeccionItem({ slug }) {
           </Link>
 
           {/* Título Principal en Rojo Destacado */}
-          <h1 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-red-600 sm:text-4xl md:text-5xl">
+          <h1 className="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white-600 sm:text-4xl md:text-5xl">
             {heroTitle}
           </h1>
 

@@ -17,9 +17,9 @@ export default function TarjetaItem({ to, title, text, imagen, imagenAlt }) {
   return (
     <Link
       to={to}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-bg transition-colors hover:border-line-strong"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/40 transition-all duration-300 hover:-translate-y-1.5 hover:border-red-600/40 hover:bg-neutral-900/80 hover:shadow-[0_12px_32px_rgba(220,38,38,0.12)]"
     >
-      <div className="aspect-[2/1] w-full overflow-hidden border-b border-line bg-bg-soft">
+      <div className="aspect-[2/1] w-full overflow-hidden border-b border-neutral-800 bg-bg-soft">
         {imagen ? (
           <img
             src={imagen}
@@ -39,14 +39,14 @@ export default function TarjetaItem({ to, title, text, imagen, imagenAlt }) {
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-lg font-bold">{title}</h3>
-        {text && <p className="mt-3 text-sm text-fg-soft">{text}</p>}
-        <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-fg">
+        <h3 className="text-lg font-bold transition-colors group-hover:text-red-500">{title}</h3>
+        {text && <p className="mt-3 text-sm text-fg-soft leading-relaxed line-clamp-3">{text}</p>}
+        <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-red-500 transition-colors group-hover:text-red-400">
           Ver más
           <ArrowRight
             size={16}
             aria-hidden="true"
-            className="transition-transform group-hover:translate-x-1"
+            className="transition-transform duration-300 group-hover:translate-x-1.5"
           />
         </span>
       </div>

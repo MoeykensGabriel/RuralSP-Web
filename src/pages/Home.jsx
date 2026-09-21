@@ -42,53 +42,54 @@ export default function Home() {
 
   return (
     <>
-      {/* ── 2. Hero ─────────────────────────────────────────────────────
-          Usa un negro un punto más profundo que el del resto del sitio
-          (neutral-950 contra --color-bg) para separarse apenas del cuerpo
-          de la página, sin cortarlo con una línea. */}
+      {/* ── 2. Hero ───────────────────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden bg-neutral-950 text-white">
-        {/* ── Fondo, en tres capas. Todo decorativo: nada de esto se lee. ──
-            El orden importa, se apilan de atrás hacia adelante. */}
+        {/* ── Fondo en capas con resplandor rojo de seguridad ── */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-          {/* 1. Manchas radiales desenfocadas: rompen el negro plano. */}
-          <div className="absolute -top-40 -right-32 size-[34rem] rounded-full bg-neutral-400/20 blur-[120px]" />
-          <div className="absolute -bottom-48 left-0 size-[28rem] rounded-full bg-neutral-500/15 blur-[130px]" />
+          {/* Mancha radial roja animada */}
+          <div className="absolute -top-32 -right-32 size-[36rem] rounded-full bg-red-600/15 blur-[140px] animate-pulse-glow" />
+          <div className="absolute -bottom-48 left-0 size-[30rem] rounded-full bg-neutral-400/10 blur-[130px]" />
 
-          {/* 2. El sello como marca de agua, saliéndose por la derecha.
-                 `mix-blend-screen` hace desaparecer el fondo negro del
-                 archivo —en modo screen el negro es transparente— así que
-                 queda solo el plateado, sin el recuadro. */}
+          {/* Sello como marca de agua */}
           <img
             src={site.logo}
             alt=""
             className="absolute top-1/2 -right-24 w-[26rem] -translate-y-1/2 opacity-20 mix-blend-screen menu:-right-28 menu:w-[44rem] menu:opacity-30"
           />
 
-          {/* 3. Velo oscuro de izquierda a derecha: garantiza que el texto
-                 se lea siempre, sin importar qué quede detrás. */}
+          {/* Velo oscuro */}
           <div className="absolute inset-0 bg-gradient-to-r from-neutral-950 via-neutral-950/85 to-transparent" />
         </div>
 
-        <Container className="py-24 menu:py-36">
+        <Container className="py-24 animate-fade-in-up menu:py-36">
+          {/* Badge en vivo 24/7 */}
+          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-red-500/30 bg-red-500/10 px-3.5 py-1 text-xs font-mono font-medium text-red-400 backdrop-blur-md">
+            <span className="relative flex size-2 items-center justify-center">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-red-400 opacity-75" />
+              <span className="relative inline-flex size-1.5 rounded-full bg-red-500" />
+            </span>
+            SEGURIDAD PRIVADA &amp; VIGILANCIA 24/7
+          </div>
+
           <p className="font-mono text-xs font-medium tracking-[0.16em] text-neutral-400 uppercase">
             {site.tagline}
           </p>
-          <h1 className="mt-5 max-w-[15ch] text-[clamp(2.25rem,7vw,4.5rem)] font-bold tracking-tight">
+          <h1 className="mt-4 max-w-[15ch] text-[clamp(2.25rem,7vw,4.5rem)] font-bold tracking-tight leading-[1.1]">
             {site.slogan}
           </h1>
-          <p className="mt-6 max-w-[46ch] text-lg text-neutral-300">{site.description}</p>
-          <Button to={PATHS.contacto} className="mt-10">
+          <p className="mt-6 max-w-[46ch] text-lg text-neutral-300 leading-relaxed">{site.description}</p>
+          <Button
+            to={PATHS.contacto}
+            variant="accent"
+            className="mt-10 px-7 py-3.5 text-base font-bold shadow-xl transition-all duration-300 hover:scale-105"
+          >
             Más información
+            <ArrowUpRight size={18} aria-hidden="true" />
           </Button>
         </Container>
       </section>
 
-      {/* ── 3. Presentación de la empresa ───────────────────────────────
-          Tres partes, de arriba abajo:
-            · intro + imagen — lado a lado en desktop; en mobile la imagen
-              va primero para no cortar el hilo de lectura del texto
-            · los cuatro pilares — 1 columna en mobile, 2 desde 900px
-            · el cierre, con el objetivo de la empresa */}
+      {/* ── 3. Presentación de la empresa ─────────────────────────────── */}
       <Section alt className="border-t border-line">
         <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-2 menu:gap-14">
           <Placeholder label="IMAGEN" ratio="aspect-[3/2]" className="menu:order-last" />
@@ -100,16 +101,25 @@ export default function Home() {
           </div>
         </div>
 
-        <ul className="mt-14 grid grid-cols-1 gap-x-14 gap-y-10 menu:mt-20 menu:grid-cols-2">
-          {presentacion.pilares.map((pilar) => (
-            <li key={pilar.titulo} className="border-t border-line pt-6">
-              <h3 className="text-lg font-bold">{pilar.titulo}</h3>
-              <p className="mt-3 leading-relaxed text-fg-soft">{pilar.texto}</p>
+        <ul className="mt-14 grid grid-cols-1 gap-6 menu:mt-20 menu:grid-cols-2">
+          {presentacion.pilares.map((pilar, index) => (
+            <li
+              key={pilar.titulo}
+              className="group rounded-2xl border border-neutral-800/80 bg-neutral-900/40 p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-red-600/40 hover:bg-neutral-900/80 hover:shadow-xl"
+            >
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-xs font-bold text-red-500">0{index + 1}</span>
+                <div className="h-px flex-1 bg-neutral-800 transition-colors group-hover:bg-red-600/40" />
+              </div>
+              <h3 className="mt-4 text-xl font-bold text-white transition-colors group-hover:text-red-500">
+                {pilar.titulo}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-fg-soft sm:text-base">{pilar.texto}</p>
             </li>
           ))}
         </ul>
 
-        <p className="mt-14 max-w-[70ch] border-l-2 border-line-strong pl-5 text-lg leading-relaxed text-fg menu:mt-20 menu:pl-6">
+        <p className="mt-14 max-w-[75ch] rounded-r-2xl border-l-4 border-red-600 bg-neutral-900/50 p-6 text-lg leading-relaxed text-fg shadow-lg sm:p-8 menu:mt-20">
           {presentacion.cierre}
         </p>
       </Section>
