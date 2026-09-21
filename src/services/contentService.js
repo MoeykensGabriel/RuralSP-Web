@@ -95,19 +95,71 @@ export const getSecciones = () => [
       'Cada actividad tiene sus riesgos y su forma de operar. Estos son los rubros en los que trabajamos.',
     items: [
       {
-        id: 'sc-eventos',
-        slug: 'eventos',
-        title: 'Eventos',
-        text: RELLENO,
-        // TODO confirmar que la foto es del cliente o que hay permiso para
-        // usarla: el nombre original del archivo sugiere que se bajó de un
-        // sitio web, y en la foto se ve la marca Massey Ferguson.
-        // Mide 600x290: sirve para tarjetas, no para mostrarla a lo ancho.
-        imagen: '/sectores/eventos.webp',
-        imagenAlt: 'Vista aérea de un pabellón con maquinaria agrícola en una exposición del sector',
+        id: 'sc-administracion-publica',
+        slug: 'administracion-publica',
+        title: 'Administración pública',
+        text: 'Protección física y control de accesos en edificios públicos, dependencias gubernamentales y organismos oficiales, garantizando la seguridad de funcionarios, visitantes y patrimonio estatal.',
       },
-      { id: 'sc-negocios', slug: 'negocios', title: 'Negocios', text: RELLENO },
-      { id: 'sc-fabricas', slug: 'fabricas', title: 'Fábricas', text: RELLENO },
+      {
+        id: 'sc-bancos',
+        slug: 'bancos',
+        title: 'Bancos',
+        text: 'Custodia especializada y vigilancia preventiva para entidades financieras y bancarias, enfocada en la protección de sucursales, áreas críticas y gestión de flujo de clientes.',
+      },
+      {
+        id: 'sc-barrios-cerrados',
+        slug: 'barrios-cerrados',
+        title: 'Barrios cerrados',
+        text: 'Seguridad perimetral, control de accesos vehiculares y peatonales, patrullaje preventivo 24/7 y respuesta operativa para barrios privados y urbanizaciones cerradas.',
+      },
+      {
+        id: 'sc-centros-comerciales',
+        slug: 'centros-comerciales',
+        title: 'Centros comerciales',
+        text: 'Vigilancia en shoppings y paseos de compras, con personal capacitado en prevención de pérdidas, gestión de grandes flujos de público y atención ante emergencias.',
+      },
+      {
+        id: 'sc-construccion',
+        slug: 'construccion',
+        title: 'Construcción',
+        text: 'Resguardo de obras en ejecución, maquinarias, herramientas y acopio de materiales, evitando intrusiones y robos tanto en horario operativo como nocturno.',
+      },
+      {
+        id: 'sc-empresas-de-servicios',
+        slug: 'empresas-de-servicios',
+        title: 'Empresas de servicios',
+        text: 'Protección de sedes corporativas, depósitos operativos y plantas de servicio, adaptando los protocolos a la dinámica diaria de empleados, proveedores y contratistas.',
+      },
+      {
+        id: 'sc-estacionamientos',
+        slug: 'estacionamientos',
+        title: 'Estacionamientos',
+        text: 'Control de ingresos y egresos, vigilancia preventiva de vehículos resguardados y disuasión de delitos en playas de estacionamiento públicas y privadas.',
+      },
+      {
+        id: 'sc-hospitales',
+        slug: 'hospitales',
+        title: 'Hospitales',
+        text: 'Seguridad en centros de salud, clínicas y sanatorios, orientada a mantener el orden en guardia, ingresos y áreas sensibles con trato empático y profesional.',
+      },
+      {
+        id: 'sc-hoteles',
+        slug: 'hoteles',
+        title: 'Hoteles',
+        text: 'Protección discreta para huéspedes, personal e instalaciones hoteleras, manteniendo estándares de cordialidad, control de accesos y vigilancia constante.',
+      },
+      {
+        id: 'sc-industria',
+        slug: 'industria',
+        title: 'Industria',
+        text: 'Vigilancia física en plantas industriales y parques logísticos, con riguroso control de cargas, visitas y verificación de normas de higiene y seguridad laboral.',
+      },
+      {
+        id: 'sc-negocios-retail',
+        slug: 'negocios-retail',
+        title: 'Negocios retail',
+        text: 'Prevención de pérdidas en locales comerciales, tiendas y supermercados, combinando presencia disuasiva y supervisión activa.',
+      },
     ],
   },
 ];
