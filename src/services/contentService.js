@@ -111,6 +111,8 @@ export const getSecciones = () => [
         slug: 'barrios-cerrados',
         title: 'Barrios cerrados',
         text: 'Seguridad perimetral, control de accesos vehiculares y peatonales, patrullaje preventivo 24/7 y respuesta operativa para barrios privados y urbanizaciones cerradas.',
+        imagen: '/sectores/barrios-cerrados.png',
+        imagenAlt: 'Vista aérea de un barrio privado con trazado vial, instalaciones y viviendas',
       },
       {
         id: 'sc-centros-comerciales',
