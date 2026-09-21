@@ -24,6 +24,7 @@ const VARIANTS = {
    */
   inverse:
     'border-inverse-fg bg-inverse-fg text-inverse-bg hover:bg-transparent hover:text-inverse-fg',
+  accent: 'border-red-600 bg-red-600 text-white hover:bg-red-700 hover:border-red-700',
 };
 
 const SIZES = {
