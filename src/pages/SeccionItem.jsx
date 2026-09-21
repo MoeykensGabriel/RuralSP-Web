@@ -138,9 +138,9 @@ export default function SeccionItem({ slug }) {
               </div>
             </div>
 
-            {/* ── Columna Derecha (Tarjeta Flotante) ─────────────────── */}
+            {/* ── Columna Derecha (Tarjeta Flotante en Desktop / Bloque en Mobile) ── */}
             <aside className="lg:col-span-1">
-              <div className="sticky top-28 rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-900 shadow-2xl sm:p-8">
+              <div className="rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-900 shadow-2xl sm:p-8 lg:sticky lg:top-28">
                 <ul className="space-y-5 border-b border-neutral-200 pb-6">
                   <li className="flex items-center gap-3">
                     <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
