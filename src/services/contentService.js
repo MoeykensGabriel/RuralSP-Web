@@ -171,7 +171,7 @@ export const getSecciones = () => [
         slug: 'industria',
         title: 'Industria',
         text: 'Vigilancia física en plantas industriales y parques logísticos, con riguroso control de cargas, visitas y verificación de normas de higiene y seguridad laboral.',
-        imagen: '/sectores/industria.png',
+        imagen: '/sectores/eventos.webp',
         imagenAlt: 'Vigilancia física y control de accesos en plantas industriales',
       },
       {
