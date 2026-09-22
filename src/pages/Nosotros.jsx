@@ -23,27 +23,36 @@ export default function Nosotros() {
 
       {/* ── 1. Presentación ─────────────────────────────────────────── */}
       <Section className="relative">
-        <div className="relative isolate overflow-hidden rounded-3xl border border-neutral-800 bg-[#101114] p-8 shadow-2xl sm:p-12 menu:p-16">
-          {/* Imagen y degradado de fondo */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-            <img
-              src="/imagen-home.jpeg"
-              alt="Personal de Rural Seguridad Privada"
-              className="absolute right-0 top-0 h-full w-full object-cover object-right opacity-40 menu:w-3/5 menu:opacity-90"
-            />
-            {/* Velo/degradado a la izquierda para garantizar perfecta legibilidad del texto */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#101114] via-[#101114]/90 to-[#101114] menu:bg-gradient-to-r menu:from-[#101114] menu:via-[#101114]/95 menu:to-transparent" />
-          </div>
+        <div className="relative isolate overflow-hidden rounded-3xl border border-neutral-800 bg-[#101114] p-6 shadow-2xl sm:p-10 menu:p-12">
+          <div className="grid grid-cols-1 items-center gap-8 menu:grid-cols-12 menu:gap-12">
+            {/* Texto a la izquierda */}
+            <div className="menu:col-span-6 menu:py-4">
+              <p className="eyebrow text-neutral-400">Quiénes Somos</p>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl menu:text-4xl">
+                Soluciones integrales de seguridad física
+              </h2>
+              <div className="mt-6 space-y-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
+                {intro.map((parrafo) => (
+                  <p key={parrafo}>{parrafo}</p>
+                ))}
+              </div>
+            </div>
 
-          <div className="max-w-xl menu:max-w-2xl">
-            <p className="eyebrow text-neutral-400">Quiénes Somos</p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl menu:text-4xl">
-              Soluciones integrales de seguridad física
-            </h2>
-            <div className="mt-6 space-y-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
-              {intro.map((parrafo) => (
-                <p key={parrafo}>{parrafo}</p>
-              ))}
+            {/* Imagen a la derecha con degradado suave transparente en su borde izquierdo sin recorte abrupto */}
+            <div className="relative menu:col-span-6 menu:h-full menu:min-h-[420px] flex items-center justify-center menu:justify-end">
+              <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-800/80 shadow-2xl menu:border-none menu:shadow-none menu:rounded-none">
+                <img
+                  src="/imagen-home.jpeg"
+                  alt="Personal de Rural Seguridad Privada"
+                  className="w-full h-auto max-h-[440px] object-cover object-center menu:h-full menu:max-h-none menu:w-full"
+                  style={{
+                    WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, black 45%)',
+                    maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 20%, black 45%)',
+                  }}
+                />
+                {/* Degradado adicional de sombra de respaldo para integrarse perfectamente */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#101114] via-transparent to-transparent menu:bg-gradient-to-r menu:from-[#101114] menu:via-transparent menu:to-transparent" />
+              </div>
             </div>
           </div>
         </div>
