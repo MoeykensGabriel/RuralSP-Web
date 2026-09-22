@@ -155,7 +155,7 @@ export const getSecciones = () => [
         slug: 'hospitales',
         title: 'Hospitales',
         text: 'Seguridad en centros de salud, clínicas y sanatorios, orientada a mantener el orden en guardia, ingresos y áreas sensibles con trato empático y profesional.',
-        imagen: '/sectores/hospitales.jpg',
+        imagen: '/sectores/hospitales.webp',
         imagenAlt: 'Seguridad y control de accesos en hospitales y centros sanitarios',
       },
       {
