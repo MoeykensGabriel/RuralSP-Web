@@ -32,7 +32,7 @@
   --color-inverse-fg: #0d0d0d;
 
   /* Tipografías */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Breakpoint propio: a los 900px el menú pasa de hamburguesa a horizontal.

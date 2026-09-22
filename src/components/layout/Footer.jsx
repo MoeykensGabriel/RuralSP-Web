@@ -89,7 +89,6 @@ export default function Footer() {
                 de cierre de la oración: no se agrega otro. */}
             © {site.legal.year} {site.fullName.replace(/\.$/, '')}. Todos los derechos reservados.
           </p>
-          <p className="font-mono tracking-[0.06em]">Boceto de muestra · contenido de ejemplo</p>
         </div>
       </Container>
     </footer>
