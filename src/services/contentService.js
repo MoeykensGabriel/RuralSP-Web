@@ -233,6 +233,8 @@ export const getNosotros = () => ({
 
   equipo: {
     titulo: 'Nuestro equipo directivo',
+    imagen: '/equipo-directivo.jpg',
+    imagenAlt: 'José R. Carrizo (Socio Fundador) y José L. Carrizo (Socio Gerente)',
     miembros: [
       {
         cargo: 'Socio Fundador',

@@ -54,9 +54,9 @@ export const site = {
    * (calle, número, ciudad, provincia), así el botón lleva hasta la oficina.
    */
   ubicacion: {
-    busqueda: 'Provincia de Tucumán, Argentina',
-    // Texto del cliente: "Tucumán y el norte argentino".
-    zona: 'Tucumán y el norte argentino',
+    busqueda: 'Tucumán, Argentina',
+    
+    zona: 'Provincia de Tucumán, Argentina',
   },
 
   /**

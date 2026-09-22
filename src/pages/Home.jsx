@@ -1,4 +1,4 @@
-import { ArrowUpRight, MapPin, Navigation } from 'lucide-react';
+import { ArrowUpRight, Contact2Icon, Navigation } from 'lucide-react';
 import { site } from '../config/site';
 import { PATHS, rutaItem } from '../routes/paths';
 import { getPartners, getSeccion, getValues } from '../services/contentService';
@@ -127,9 +127,9 @@ export default function Home() {
 
             <dl className="mt-8 flex flex-col border-t border-line">
               <div className="flex items-start gap-4 border-b border-line py-4">
-                <MapPin size={18} aria-hidden="true" className="mt-1 shrink-0 text-fg-mute" />
+                <Contact2Icon size={18} aria-hidden="true" className="mt-1 shrink-0 text-fg-mute" />
                 <div>
-                  <dt className="eyebrow">Oficina</dt>
+                  <dt className="eyebrow">Contacto</dt>
                   <dd className="mt-1">{site.contact.address}</dd>
                 </div>
               </div>
@@ -137,7 +137,7 @@ export default function Home() {
                 <Navigation size={18} aria-hidden="true" className="mt-1 shrink-0 text-fg-mute" />
                 <div>
                   <dt className="eyebrow">Zona de trabajo</dt>
-                  <dd className="mt-1">{site.ubicacion.zona}</dd>
+                  <dd className="mt-1">Tucuman</dd>
                 </div>
               </div>
             </dl>

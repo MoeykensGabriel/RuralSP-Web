@@ -32,18 +32,33 @@ export default function Nosotros() {
 
       {/* ── 2. Equipo directivo ─────────────────────────────────────── */}
       <Section alt className="border-t border-line" title={equipo.titulo}>
-        <ul className="grid grid-cols-1 gap-4 menu:grid-cols-2 menu:gap-6">
-          {equipo.miembros.map((miembro) => (
-            <li
-              key={miembro.nombre}
-              className="flex flex-col rounded-xl border border-line bg-bg p-6 menu:p-8"
-            >
-              <p className="eyebrow">{miembro.cargo}</p>
-              <h3 className="mt-3 text-xl font-bold menu:text-2xl">{miembro.nombre}</h3>
-              <p className="mt-4 text-fg-soft">{miembro.descripcion}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-2 menu:gap-14">
+          {equipo.imagen && (
+            <div className="overflow-hidden rounded-2xl border border-neutral-800 shadow-2xl">
+              <img
+                src={equipo.imagen}
+                alt={equipo.imagenAlt ?? equipo.titulo}
+                decoding="async"
+                className="aspect-[3/4] max-h-[520px] w-full object-cover object-top transition-transform duration-500 hover:scale-105 menu:max-h-[580px]"
+              />
+            </div>
+          )}
+
+          <ul className="flex flex-col gap-6">
+            {equipo.miembros.map((miembro) => (
+              <li
+                key={miembro.nombre}
+                className="group rounded-2xl border border-neutral-800/80 bg-neutral-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:bg-neutral-900/80 hover:shadow-xl sm:p-8"
+              >
+                <p className="eyebrow">{miembro.cargo}</p>
+                <h3 className="mt-2 text-xl font-bold text-white transition-colors group-hover:text-white menu:text-2xl">
+                  {miembro.nombre}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-fg-soft sm:text-base">{miembro.descripcion}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Section>
 
       {/* ── 3. Trayectoria ──────────────────────────────────────────── */}
