@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       {/* ── 2. Hero ───────────────────────────────────────────────────── */}
-      <section className="relative isolate overflow-hidden bg-neutral-950 text-white">
+      <section className="relative isolate overflow-hidden bg-[#101114] text-white">
         {/* ── Fondo en capas ── */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
           {/* Mancha radial plateada/neutra animada */}
@@ -32,7 +32,7 @@ export default function Home() {
           />
 
           {/* Velo oscuro */}
-          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950 via-neutral-950/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#101114] via-[#101114]/85 to-transparent" />
         </div>
 
         <Container className="py-24 animate-fade-in-up menu:py-36">

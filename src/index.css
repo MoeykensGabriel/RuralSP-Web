@@ -18,14 +18,14 @@
    del cliente es plateado sobre negro y el sitio se armó alrededor de eso.
    -------------------------------------------------------------------------- */
 @theme {
-  /* Paleta — escala de grises sobre fondo oscuro. */
-  --color-bg: #0d0d0d;
-  --color-bg-soft: #151515;
-  --color-fg: #f4f4f4;
-  --color-fg-soft: #b2b2b2;
-  --color-fg-mute: #7d7d7d;
-  --color-line: #272727;
-  --color-line-strong: #f4f4f4;
+  /* Paleta — escala de grises grafito sofisticados. */
+  --color-bg: #151619;
+  --color-bg-soft: #1e2025;
+  --color-fg: #f8fafc;
+  --color-fg-soft: #cbd5e1;
+  --color-fg-mute: #8e95a5;
+  --color-line: #2b2d34;
+  --color-line-strong: #f8fafc;
 
   /* Invertidos: para botones claros y superficies que contrastan. */
   --color-inverse-bg: #f4f4f4;
