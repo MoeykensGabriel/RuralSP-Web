@@ -22,28 +22,28 @@ export default function Nosotros() {
       <PageHero eyebrow="Sobre nosotros" title={empresa} subtitle={lema} />
 
       {/* ── 1. Presentación ─────────────────────────────────────────── */}
-      <Section>
-        <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-2 menu:gap-14">
-          <div className="space-y-5 text-lg leading-relaxed text-fg-soft">
-            {intro.map((parrafo) => (
-              <p key={parrafo}>{parrafo}</p>
-            ))}
+      <Section className="relative">
+        <div className="relative isolate overflow-hidden rounded-3xl border border-neutral-800 bg-[#101114] p-8 shadow-2xl sm:p-12 menu:p-16">
+          {/* Imagen y degradado de fondo */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <img
+              src="/imagen-home.jpeg"
+              alt="Personal de Rural Seguridad Privada"
+              className="absolute right-0 top-0 h-full w-full object-cover object-right opacity-40 menu:w-3/5 menu:opacity-90"
+            />
+            {/* Velo/degradado a la izquierda para garantizar perfecta legibilidad del texto */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#101114] via-[#101114]/90 to-[#101114] menu:bg-gradient-to-r menu:from-[#101114] menu:via-[#101114]/95 menu:to-transparent" />
           </div>
 
-          <div className="grid grid-cols-2 gap-4 sm:gap-6">
-            <div className="overflow-hidden rounded-2xl border border-neutral-800 shadow-xl transition-transform duration-500 hover:scale-105">
-              <img
-                src="/personal-1.jpg"
-                alt="Personal de guardia en uniforme oficial de Rural Seguridad Privada"
-                className="aspect-[3/4] w-full object-cover"
-              />
-            </div>
-            <div className="mt-6 overflow-hidden rounded-2xl border border-neutral-800 shadow-xl transition-transform duration-500 hover:scale-105">
-              <img
-                src="/personal-2.png"
-                alt="Personal de seguridad con indumentaria y chaleco táctico"
-                className="aspect-[3/4] w-full object-cover"
-              />
+          <div className="max-w-xl menu:max-w-2xl">
+            <p className="eyebrow text-neutral-400">Quiénes Somos</p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl menu:text-4xl">
+              Soluciones integrales de seguridad física
+            </h2>
+            <div className="mt-6 space-y-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
+              {intro.map((parrafo) => (
+                <p key={parrafo}>{parrafo}</p>
+              ))}
             </div>
           </div>
         </div>
