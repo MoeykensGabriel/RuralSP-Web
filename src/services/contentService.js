@@ -103,14 +103,6 @@ export const getSecciones = () => [
         imagenAlt: 'Protección física y vigilancia en dependencias de la administración pública',
       },
       {
-        id: 'sc-bancos',
-        slug: 'bancos',
-        title: 'Bancos',
-        text: 'Custodia especializada y vigilancia preventiva para entidades financieras y bancarias, enfocada en la protección de sucursales, áreas críticas y gestión de flujo de clientes.',
-        imagen: '/sectores/bancos.png',
-        imagenAlt: 'Vigilancia y custodia especializada en entidad financiera y bancaria',
-      },
-      {
         id: 'sc-barrios-cerrados',
         slug: 'barrios-cerrados',
         title: 'Barrios cerrados',
@@ -131,7 +123,7 @@ export const getSecciones = () => [
         slug: 'construccion',
         title: 'Construcción',
         text: 'Resguardo de obras en ejecución, maquinarias, herramientas y acopio de materiales, evitando intrusiones y robos tanto en horario operativo como nocturno.',
-        imagen: '/sectores/construccion.jpg',
+        imagen: '/sectores/construccion.webp',
         imagenAlt: 'Resguardo y seguridad en obras de construcción y maquinaria',
       },
       {
@@ -139,7 +131,7 @@ export const getSecciones = () => [
         slug: 'estacionamientos',
         title: 'Estacionamientos',
         text: 'Control de ingresos y egresos, vigilancia preventiva de vehículos resguardados y disuasión de delitos en playas de estacionamiento públicas y privadas.',
-        imagen: '/sectores/estacionamientos.jpg',
+        imagen: '/sectores/estacionamientos.webp',
         imagenAlt: 'Control de ingresos y vigilancia en playas de estacionamiento',
       },
       {
