@@ -1,9 +1,8 @@
 import { ArrowUpRight, Contact2Icon, Navigation } from 'lucide-react';
 import { site } from '../config/site';
 import { PATHS, rutaItem } from '../routes/paths';
-import { getPartners, getSeccion, getValues } from '../services/contentService';
+import { getPartners, getSeccion } from '../services/contentService';
 import Button from '../components/ui/Button';
-import Card from '../components/ui/Card';
 import Container from '../components/ui/Container';
 import LogoCarousel from '../components/ui/LogoCarousel';
 import MapaTucuman from '../components/ui/MapaTucuman';
@@ -14,7 +13,6 @@ export default function Home() {
   const partners = getPartners();
   // La home muestra los sectores; el resto de la seccion vive en /sectores.
   const sectores = getSeccion('sectores');
-  const values = getValues();
 
   return (
     <>
@@ -124,21 +122,6 @@ export default function Home() {
               predios industriales y urbanizaciones en Tucumán y el norte argentino.
             </p>
           </div>
-        </div>
-      </Section>
-
-      {/* ── 6. Propuesta de valor ───────────────────────────────────────
-          1 columna en mobile · 2 desde 640px · 4 desde 900px. */}
-      <Section
-        className="border-t border-line"
-        eyebrow="Por qué elegirnos"
-        title="Propuesta de valor"
-        subtitle="Los diferenciales que la empresa quiere destacar."
-      >
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 menu:grid-cols-4 menu:gap-6">
-          {values.map((value) => (
-            <Card key={value.id} title={value.title} text={value.text} />
-          ))}
         </div>
       </Section>
 
