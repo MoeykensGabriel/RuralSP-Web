@@ -42,7 +42,7 @@ export default function Nosotros() {
             <div className="relative menu:col-span-6 menu:h-full menu:min-h-[420px] flex items-center justify-center menu:justify-end">
               <div className="relative w-full overflow-hidden rounded-2xl border border-neutral-800/80 shadow-2xl menu:border-none menu:shadow-none menu:rounded-none">
                 <img
-                  src="/imagen-home.jpeg"
+                  src="/sobre-nosotros.png"
                   alt="Personal de Rural Seguridad Privada"
                   className="w-full h-auto max-h-[440px] object-cover object-center menu:h-full menu:max-h-none menu:w-full"
                   style={{
