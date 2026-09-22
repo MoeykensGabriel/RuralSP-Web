@@ -131,6 +131,8 @@ export const getSecciones = () => [
         slug: 'empresas-de-servicios',
         title: 'Empresas de servicios',
         text: 'Protección de sedes corporativas, depósitos operativos y plantas de servicio, adaptando los protocolos a la dinámica diaria de empleados, proveedores y contratistas.',
+        imagen: '/guardia-rural.png',
+        imagenAlt: 'Personal de vigilancia de Rural Seguridad Privada en cobertura operativa',
       },
       {
         id: 'sc-estacionamientos',

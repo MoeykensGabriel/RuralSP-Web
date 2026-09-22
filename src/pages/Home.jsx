@@ -98,6 +98,35 @@ export default function Home() {
         <LogoCarousel items={partners} />
       </section>
 
+      {/* ── 5. Presencia y Operaciones en Acción (Video) ───────────────── */}
+      <Section
+        className="border-t border-line"
+        eyebrow="En acción"
+        title="Presencia y Cobertura Operativa"
+        subtitle="Supervisión permanente, despliegue físico y protección en terreno."
+      >
+        <div className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/60 shadow-2xl">
+          <div className="relative aspect-video w-full overflow-hidden bg-black">
+            <video
+              src="/video-operaciones.mp4"
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="size-full object-cover"
+            />
+          </div>
+          <div className="p-6 sm:p-8">
+            <h3 className="text-xl font-bold text-white">Vigilancia y Protección Operativa</h3>
+            <p className="mt-2 text-sm leading-relaxed text-fg-soft sm:text-base">
+              Despliegue de seguridad física, control de accesos y presencia preventiva en eventos, sectores agrícolas,
+              predios industriales y urbanizaciones en Tucumán y el norte argentino.
+            </p>
+          </div>
+        </div>
+      </Section>
+
       {/* ── 6. Propuesta de valor ───────────────────────────────────────
           1 columna en mobile · 2 desde 640px · 4 desde 900px. */}
       <Section
