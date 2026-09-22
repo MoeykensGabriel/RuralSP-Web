@@ -72,7 +72,7 @@ export default function Home() {
         title="Sectores"
         subtitle="Los rubros en los que la empresa tiene experiencia."
       >
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 menu:grid-cols-3 menu:gap-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {sectores.items.map((sector) => (
             <TarjetaItem
               key={sector.id}

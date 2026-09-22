@@ -22,7 +22,7 @@ export default function SeccionIndice({ slug }) {
       <PageHero eyebrow={seccion.eyebrow} title={seccion.titulo} subtitle={seccion.bajada} />
 
       <Section>
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 menu:grid-cols-3 menu:gap-6">
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {seccion.items.map((item) => (
             <li key={item.id}>
               <TarjetaItem
