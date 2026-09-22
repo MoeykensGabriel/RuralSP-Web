@@ -103,8 +103,8 @@ export default function Home() {
         title="Presencia y Cobertura Operativa"
         subtitle="Supervisión permanente, despliegue físico y protección en terreno."
       >
-        <div className="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/60 shadow-2xl">
-          <div className="relative aspect-video w-full overflow-hidden bg-black">
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/60 shadow-2xl transition-all duration-300">
+          <div className="relative aspect-video w-full overflow-hidden bg-neutral-950">
             <video
               src="/video-operaciones.mp4"
               controls
@@ -112,11 +112,11 @@ export default function Home() {
               muted
               loop
               playsInline
-              className="size-full object-cover"
+              className="size-full object-contain"
             />
           </div>
-          <div className="p-6 sm:p-8">
-            <h3 className="text-xl font-bold text-white">Vigilancia y Protección Operativa</h3>
+          <div className="p-5 sm:p-7">
+            <h3 className="text-lg font-bold text-white sm:text-xl">Vigilancia y Protección Operativa</h3>
             <p className="mt-2 text-sm leading-relaxed text-fg-soft sm:text-base">
               Despliegue de seguridad física, control de accesos y presencia preventiva en eventos, sectores agrícolas,
               predios industriales y urbanizaciones en Tucumán y el norte argentino.
