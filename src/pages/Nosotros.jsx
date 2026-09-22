@@ -23,10 +23,29 @@ export default function Nosotros() {
 
       {/* ── 1. Presentación ─────────────────────────────────────────── */}
       <Section>
-        <div className="max-w-[68ch] space-y-5 text-lg leading-relaxed text-fg-soft">
-          {intro.map((parrafo) => (
-            <p key={parrafo}>{parrafo}</p>
-          ))}
+        <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-2 menu:gap-14">
+          <div className="space-y-5 text-lg leading-relaxed text-fg-soft">
+            {intro.map((parrafo) => (
+              <p key={parrafo}>{parrafo}</p>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="overflow-hidden rounded-2xl border border-neutral-800 shadow-xl transition-transform duration-500 hover:scale-105">
+              <img
+                src="/personal-1.jpg"
+                alt="Personal de guardia en uniforme oficial de Rural Seguridad Privada"
+                className="aspect-[3/4] w-full object-cover"
+              />
+            </div>
+            <div className="mt-6 overflow-hidden rounded-2xl border border-neutral-800 shadow-xl transition-transform duration-500 hover:scale-105">
+              <img
+                src="/personal-2.png"
+                alt="Personal de seguridad con indumentaria y chaleco táctico"
+                className="aspect-[3/4] w-full object-cover"
+              />
+            </div>
+          </div>
         </div>
       </Section>
 

@@ -105,6 +105,8 @@ export const getSecciones = () => [
         slug: 'bancos',
         title: 'Bancos',
         text: 'Custodia especializada y vigilancia preventiva para entidades financieras y bancarias, enfocada en la protección de sucursales, áreas críticas y gestión de flujo de clientes.',
+        imagen: '/guardia-bancos.png',
+        imagenAlt: 'Guardia de vigilancia de Rural Seguridad Privada en entidad bancaria',
       },
       {
         id: 'sc-barrios-cerrados',
