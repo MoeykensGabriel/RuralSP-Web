@@ -63,8 +63,18 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ── 3. Sectores ─────────────────────────────────────────────────
-          1 columna en mobile · 2 desde 640px · 3 desde 900px. */}
+      {/* ── 3. Prueba social (Carrusel de empresas) ────────────────────── */}
+      <section className="border-t border-line pt-12 pb-16 menu:pt-16 menu:pb-24">
+        <Container>
+          <p className="mb-12 text-center font-mono text-base font-medium tracking-[0.12em] text-fg uppercase menu:text-lg">
+            Empresas que confían en nosotros
+          </p>
+        </Container>
+        <LogoCarousel items={partners} />
+      </section>
+
+      {/* ── 4. Sectores ─────────────────────────────────────────────────
+          1 columna en mobile · 2 desde 640px. */}
       <Section
         alt
         className="border-t border-line"
@@ -85,16 +95,6 @@ export default function Home() {
           ))}
         </div>
       </Section>
-
-      {/* ── 4. Prueba social (Carrusel de empresas) ────────────────────── */}
-      <section className="border-t border-line pt-12 pb-16 menu:pt-16 menu:pb-24">
-        <Container>
-          <p className="mb-12 text-center font-mono text-base font-medium tracking-[0.12em] text-fg uppercase menu:text-lg">
-            Empresas que confían en nosotros
-          </p>
-        </Container>
-        <LogoCarousel items={partners} />
-      </section>
 
       {/* ── 5. Presencia y Operaciones en Acción (Video) ───────────────── */}
       <Section
