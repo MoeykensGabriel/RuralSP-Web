@@ -98,6 +98,7 @@ export default function Home() {
 
       {/* ── 5. Presencia y Operaciones en Acción (Video) ───────────────── */}
       <Section
+        center
         className="border-t border-line"
         eyebrow="En acción"
         title="Presencia y Cobertura Operativa"
@@ -115,7 +116,7 @@ export default function Home() {
               className="size-full object-contain"
             />
           </div>
-          <div className="p-5 sm:p-7">
+          <div className="p-5 text-center sm:p-7">
             <h3 className="text-lg font-bold text-white sm:text-xl">Vigilancia y Protección Operativa</h3>
             <p className="mt-2 text-sm leading-relaxed text-fg-soft sm:text-base">
               Despliegue de seguridad física, control de accesos y presencia preventiva en eventos, sectores agrícolas,
