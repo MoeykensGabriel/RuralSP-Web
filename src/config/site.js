@@ -66,12 +66,6 @@ export const site = {
    * repetirla ocupa lugar sin agregar nada.
    */
   nav: [
-    { label: 'Servicios', to: PATHS.servicios },
-
-    // `hijos` convierte un ítem en desplegable. Las secciones no se escriben
-    // acá: salen de `getSecciones()`, así el menú, las rutas y las páginas
-    // nunca quedan desfasados entre sí. Agregar una sección allá la hace
-    // aparecer acá sola.
     ...getSecciones().map((seccion) => ({
       label: seccion.titulo,
       to: rutaSeccion(seccion.slug),

@@ -81,13 +81,6 @@ export const getPartners = () => [
  */
 export const getSecciones = () => [
   {
-    slug: 'seguridad-fisica',
-    titulo: 'Seguridad física',
-    eyebrow: 'Qué hacemos',
-    bajada: 'Personal en el lugar, con procedimientos escritos y supervisión.',
-    items: [{ id: 'sf-vigilancia', slug: 'vigilancia', title: 'Vigilancia', text: RELLENO }],
-  },
-  {
     slug: 'sectores',
     titulo: 'Sectores',
     eyebrow: 'Dónde trabajamos',
