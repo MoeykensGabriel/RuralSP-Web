@@ -23,27 +23,37 @@ export default function Nosotros() {
 
       {/* ── 1. Presentación ─────────────────────────────────────────── */}
       <Section className="relative">
-        <div className="relative isolate overflow-hidden rounded-3xl border border-neutral-800 bg-[#101114] p-8 shadow-2xl sm:p-12 menu:p-16">
-          {/* Imagen ocupando el 100% de la tarjeta */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="relative isolate overflow-hidden rounded-3xl border border-neutral-800 bg-[#101114] p-5 shadow-2xl sm:p-8 menu:p-14">
+          {/* Imagen de fondo (activa en Desktop) */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 hidden overflow-hidden menu:block">
             <img
               src="/sobre-nosotros.png"
               alt="Personal de Rural Seguridad Privada"
-              className="h-full w-full object-cover object-right sm:object-center"
+              className="h-full w-full object-cover object-center"
             />
-            {/* Degradado continuo: oscuro sólido a la izquierda para texto y transparente a la derecha */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#101114] via-[#101114]/90 to-[#101114] menu:bg-gradient-to-r menu:from-[#101114] menu:via-[#101114]/85 menu:to-transparent" />
+            {/* Degradado continuo en Desktop */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#101114] via-[#101114]/85 to-transparent" />
           </div>
 
-          <div className="max-w-xl menu:max-w-2xl">
+          <div className="max-w-full menu:max-w-2xl">
             <p className="eyebrow text-neutral-400">Quiénes Somos</p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl menu:text-4xl">
+            <h2 className="mt-1.5 text-xl font-bold tracking-tight text-white sm:text-3xl menu:text-4xl">
               Soluciones integrales de seguridad física
             </h2>
-            <div className="mt-6 space-y-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
+
+            <div className="mt-4 space-y-3 text-sm leading-relaxed text-neutral-300 sm:mt-6 sm:space-y-4 sm:text-base menu:text-lg">
               {intro.map((parrafo) => (
                 <p key={parrafo}>{parrafo}</p>
               ))}
+            </div>
+
+            {/* En Mobile (< menu): Imagen destacada clara debajo del texto sin taparla ni estirar la pantalla */}
+            <div className="mt-6 overflow-hidden rounded-2xl border border-neutral-800/90 shadow-xl menu:hidden">
+              <img
+                src="/sobre-nosotros.png"
+                alt="Personal de Rural Seguridad Privada"
+                className="aspect-video w-full object-cover object-center"
+              />
             </div>
           </div>
         </div>
