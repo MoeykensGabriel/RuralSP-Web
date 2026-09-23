@@ -1,4 +1,4 @@
-import { ArrowUpRight, Contact2Icon, Navigation } from 'lucide-react';
+import { ArrowUpRight, Mail, Navigation } from 'lucide-react';
 import { site } from '../config/site';
 import { PATHS, rutaItem } from '../routes/paths';
 import { getPartners, getSeccion } from '../services/contentService';
@@ -128,17 +128,21 @@ export default function Home() {
 
             <dl className="mt-8 flex flex-col border-t border-line">
               <div className="flex items-start gap-4 border-b border-line py-4">
-                <Contact2Icon size={18} aria-hidden="true" className="mt-1 shrink-0 text-fg-mute" />
+                <Mail size={18} aria-hidden="true" className="mt-1 shrink-0 text-fg-mute" />
                 <div>
-                  <dt className="eyebrow">Contacto</dt>
-                  <dd className="mt-1">{site.contact.address}</dd>
+                  <dt className="eyebrow">Email de contacto</dt>
+                  <dd className="mt-1">
+                    <a href={`mailto:${site.contact.email}`} className="hover:underline hover:underline-offset-4">
+                      {site.contact.email}
+                    </a>
+                  </dd>
                 </div>
               </div>
               <div className="flex items-start gap-4 border-b border-line py-4">
                 <Navigation size={18} aria-hidden="true" className="mt-1 shrink-0 text-fg-mute" />
                 <div>
                   <dt className="eyebrow">Zona de trabajo</dt>
-                  <dd className="mt-1">Tucuman</dd>
+                  <dd className="mt-1">Tucumán, Argentina</dd>
                 </div>
               </div>
             </dl>
