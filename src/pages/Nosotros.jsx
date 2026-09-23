@@ -79,12 +79,12 @@ export default function Nosotros() {
       <Section alt className="border-t border-line" title={equipo.titulo}>
         <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-2 menu:gap-14">
           {equipo.imagen && (
-            <div className="order-2 overflow-hidden rounded-2xl border border-neutral-800 shadow-2xl menu:order-1">
+            <div className="order-2 mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-neutral-800 shadow-2xl menu:order-1 menu:max-w-none">
               <img
                 src={equipo.imagen}
                 alt={equipo.imagenAlt ?? equipo.titulo}
                 decoding="async"
-                className="aspect-[3/4] max-h-[520px] w-full object-cover object-top transition-transform duration-500 hover:scale-105 menu:max-h-[580px]"
+                className="aspect-[3/4] max-h-[340px] w-full object-cover object-top transition-transform duration-500 hover:scale-105 sm:max-h-[440px] menu:max-h-[580px]"
               />
             </div>
           )}
