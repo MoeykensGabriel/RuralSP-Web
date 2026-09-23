@@ -36,18 +36,6 @@ export default function Home() {
         </div>
 
         <Container className="py-24 animate-fade-in-up menu:py-36">
-          {/* Badge 24/7 en tono neutro/esmeralda */}
-          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-neutral-700 bg-neutral-900/80 px-3.5 py-1 text-xs font-mono font-medium text-neutral-300 backdrop-blur-md">
-            <span className="relative flex size-2 items-center justify-center">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
-            </span>
-            SEGURIDAD PRIVADA &amp; VIGILANCIA 24/7
-          </div>
-
-          <p className="font-mono text-xs font-medium tracking-[0.16em] text-neutral-400 uppercase">
-            {site.tagline}
-          </p>
           <h1 className="mt-4 max-w-[15ch] text-[clamp(2.25rem,7vw,4.5rem)] font-bold tracking-tight leading-[1.1]">
             {site.slogan}
           </h1>
