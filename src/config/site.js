@@ -32,8 +32,7 @@ export const site = {
 
   slogan: 'Protegemos personas, bienes y operaciones.',
   description:
-    'Empresa de seguridad privada. Vigilancia física, monitoreo y control de accesos.',
-
+    'Empresa de seguridad privada e investigacion',
   // TODO datos de contacto: siguen siendo de ejemplo, faltan los reales.
   contact: {
     phone: '+54 11 4000-0000',
