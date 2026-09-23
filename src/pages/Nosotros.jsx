@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { getNosotros } from '../services/contentService';
 import PageHero from '../components/ui/PageHero';
 import Section from '../components/ui/Section';
@@ -5,17 +6,22 @@ import Section from '../components/ui/Section';
 /**
  * Página Nosotros. Todo el texto sale de `getNosotros()` en
  * `services/contentService.js`: acá solo se define cómo se acomoda.
- *
- *   1. Presentación — quiénes son
- *   2. Equipo directivo — una tarjeta por socio
- *   3. Trayectoria — los años de la empresa y hacia dónde van
- *
- * Mobile: todo en una columna.
- * Desktop: las tarjetas del equipo lado a lado, y la trayectoria con el
- * número grande a la izquierda y el texto a la derecha.
  */
+const imagenesPresentacion = [
+  { src: '/sobre-nosotros.png', alt: 'Personal de Rural Seguridad Privada' },
+  { src: '/modelo2chaleco.png', alt: 'Personal de seguridad con indumentaria oficial' },
+];
+
 export default function Nosotros() {
   const { empresa, lema, intro, equipo, trayectoria } = getNosotros();
+  const [indiceImagen, setIndiceImagen] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndiceImagen((prev) => (prev + 1) % imagenesPresentacion.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
@@ -24,13 +30,18 @@ export default function Nosotros() {
       {/* ── 1. Presentación ─────────────────────────────────────────── */}
       <Section className="relative">
         <div className="relative isolate overflow-hidden rounded-3xl border border-neutral-800 bg-[#101114] p-5 shadow-2xl sm:p-8 menu:p-14">
-          {/* Imagen de fondo (activa en Desktop) */}
+          {/* Imagen de fondo con transición suave entre imágenes (Desktop) */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 hidden overflow-hidden menu:block">
-            <img
-              src="/sobre-nosotros.png"
-              alt="Personal de Rural Seguridad Privada"
-              className="h-full w-full object-cover object-center"
-            />
+            {imagenesPresentacion.map((img, index) => (
+              <img
+                key={img.src}
+                src={img.src}
+                alt={img.alt}
+                className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+                  index === indiceImagen ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            ))}
             {/* Degradado continuo en Desktop */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#101114] via-[#101114]/85 to-transparent" />
           </div>
@@ -47,13 +58,18 @@ export default function Nosotros() {
               ))}
             </div>
 
-            {/* En Mobile (< menu): Imagen destacada clara debajo del texto sin taparla ni estirar la pantalla */}
-            <div className="mt-6 overflow-hidden rounded-2xl border border-neutral-800/90 shadow-xl menu:hidden">
-              <img
-                src="/sobre-nosotros.png"
-                alt="Personal de Rural Seguridad Privada"
-                className="aspect-video w-full object-cover object-center"
-              />
+            {/* En Mobile (< menu): Transición alternada de imágenes debajo del texto */}
+            <div className="relative mt-6 aspect-video w-full overflow-hidden rounded-2xl border border-neutral-800/90 shadow-xl menu:hidden">
+              {imagenesPresentacion.map((img, index) => (
+                <img
+                  key={img.src}
+                  src={img.src}
+                  alt={img.alt}
+                  className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+                    index === indiceImagen ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>

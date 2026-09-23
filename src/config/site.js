@@ -16,7 +16,7 @@ export const site = {
   /** Marca corta, la que se ve en el header. */
   name: 'RURAL',
   /** Bajada de la marca, debajo del nombre. */
-  tagline: 'Seguridad Privada',
+  tagline: 'Empresa de Seguridad e Investigación',
   /** Nombre completo: título de la pestaña, footer y textos legales. */
   fullName: 'Rural Seguridad S.R.L.',
 
@@ -30,14 +30,14 @@ export const site = {
    */
   logo: '/logo-rural.jpg',
 
-  slogan: 'Protegemos personas, bienes y operaciones.',
+  slogan: 'Empresa de Seguridad e Investigación',
   description:
-    'Empresa de seguridad privada e investigacion',
+    'Empresa de Seguridad e Investigación especializada en soluciones confiables y adaptadas a cada necesidad.',
   // TODO datos de contacto: siguen siendo de ejemplo, faltan los reales.
   contact: {
     phone: '+54 11 4000-0000',
     phoneHref: 'tel:+541140000000',
-    email: 'contacto@ejemplo.com.ar',
+    email: 'Ruralseguridad.ok@gmail.com',
     address: 'Dirección a confirmar',
     hours: 'Lunes a viernes de 9 a 18 h',
   },
