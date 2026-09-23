@@ -63,7 +63,7 @@ export default function Nosotros() {
       <Section alt className="border-t border-line" title={equipo.titulo}>
         <div className="grid grid-cols-1 items-center gap-10 menu:grid-cols-2 menu:gap-14">
           {equipo.imagen && (
-            <div className="overflow-hidden rounded-2xl border border-neutral-800 shadow-2xl">
+            <div className="order-2 overflow-hidden rounded-2xl border border-neutral-800 shadow-2xl menu:order-1">
               <img
                 src={equipo.imagen}
                 alt={equipo.imagenAlt ?? equipo.titulo}
@@ -73,7 +73,7 @@ export default function Nosotros() {
             </div>
           )}
 
-          <ul className="flex flex-col gap-6">
+          <ul className="order-1 flex flex-col gap-6 menu:order-2">
             {equipo.miembros.map((miembro) => (
               <li
                 key={miembro.nombre}
