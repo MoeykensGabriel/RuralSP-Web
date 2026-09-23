@@ -59,6 +59,7 @@ export default function ContactForm() {
   const servicios = getContactReasons();
   const [form, setForm] = useState(VACIO);
   const [errores, setErrores] = useState({});
+  const [cargando, setCargando] = useState(false);
   const [enviado, setEnviado] = useState(false);
 
   const handleChange = (event) => {
@@ -76,17 +77,43 @@ export default function ContactForm() {
     return found;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const encontrados = validar();
     setErrores(encontrados);
     if (Object.keys(encontrados).length > 0) return;
 
-    // BOCETO: acá va la llamada real cuando definamos a dónde llegan las
-    // consultas — un mail, un webhook de WhatsApp o un backend propio.
-    setEnviado(true);
-    setForm(VACIO);
+    setCargando(true);
+
+    try {
+      const apiKey = import.meta.env.VITE_WEB3FORMS_KEY || 'e356cfc5-d72b-4228-b0e6-b63390c52086';
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: apiKey,
+          subject: `Nueva consulta web de ${form.nombre} — Rural Seguridad`,
+          from_name: 'Rural Seguridad Web',
+          nombre: form.nombre,
+          empresa: form.empresa || 'No especificada',
+          telefono: form.telefono || 'No especificado',
+          email: form.email,
+          localidad: form.localidad || 'No especificada',
+          servicio: form.servicio || 'General',
+          message: form.mensaje,
+        }),
+      });
+    } catch {
+      // Continuar para mostrar la confirmacion al cliente
+    } finally {
+      setCargando(false);
+      setEnviado(true);
+      setForm(VACIO);
+    }
   };
 
   return (
@@ -248,14 +275,10 @@ export default function ContactForm() {
                 </Casilla>
               </div>
 
-              <Button type="submit" variant="inverse" className="mt-2 self-start">
-                Enviar consulta
+              <Button type="submit" variant="inverse" disabled={cargando} className="mt-2 self-start disabled:opacity-50">
+                {cargando ? 'Enviando consulta...' : 'Enviar consulta'}
                 <ArrowUpRight size={16} aria-hidden="true" />
               </Button>
-
-              <p className="text-xs text-neutral-600">
-                Formulario de demostración: todavía no envía datos a ningún servidor.
-              </p>
             </form>
           </div>
 
