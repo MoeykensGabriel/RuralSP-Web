@@ -26,7 +26,7 @@ export default function TarjetaItem({ to, title, text, imagen, imagenAlt }) {
             alt={imagenAlt ?? ''}
             loading="lazy"
             decoding="async"
-            className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            className="size-full object-cover transition-transform duration-500"
           />
         ) : (
           <div
@@ -46,7 +46,7 @@ export default function TarjetaItem({ to, title, text, imagen, imagenAlt }) {
           <ArrowRight
             size={16}
             aria-hidden="true"
-            className="transition-transform duration-300 group-hover:translate-x-0.5"
+            className="transition-transform duration-300"
           />
         </span>
       </div>

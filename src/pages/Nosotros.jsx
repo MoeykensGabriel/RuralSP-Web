@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getNosotros } from '../services/contentService';
 import PageHero from '../components/ui/PageHero';
 import Section from '../components/ui/Section';
@@ -16,12 +16,6 @@ export default function Nosotros() {
   const { empresa, lema, intro, equipo, trayectoria } = getNosotros();
   const [indiceImagen, setIndiceImagen] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndiceImagen((prev) => (prev + 1) % imagenesPresentacion.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <>
@@ -37,7 +31,7 @@ export default function Nosotros() {
                 key={img.src}
                 src={img.src}
                 alt={img.alt}
-                className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+                className={`absolute inset-0 h-full w-full object-cover object-center ${
                   index === indiceImagen ? 'opacity-100' : 'opacity-0'
                 }`}
               />
@@ -65,10 +59,17 @@ export default function Nosotros() {
                   key={img.src}
                   src={img.src}
                   alt={img.alt}
-                  className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+                  className={`absolute inset-0 h-full w-full object-cover object-center ${
                     index === indiceImagen ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
+              ))}
+            </div>
+            <div className="mt-4 flex gap-2" role="group" aria-label="Fotografías de presentación">
+              {imagenesPresentacion.map((img, index) => (
+                <button key={img.src} type="button" onClick={() => setIndiceImagen(index)} aria-pressed={indiceImagen === index} className="rounded-lg border border-line px-3 py-2 text-xs font-medium text-fg-soft hover:border-neutral-500 hover:text-fg">
+                  Foto {index + 1}
+                </button>
               ))}
             </div>
           </div>
@@ -84,7 +85,7 @@ export default function Nosotros() {
                 src={equipo.imagen}
                 alt={equipo.imagenAlt ?? equipo.titulo}
                 decoding="async"
-                className="aspect-[3/4] max-h-[340px] w-full object-cover object-top transition-transform duration-500 hover:scale-[1.02] sm:max-h-[440px] menu:max-h-[580px]"
+                className="aspect-[3/4] max-h-[340px] w-full object-cover object-top transition-transform duration-500 sm:max-h-[440px] menu:max-h-[580px]"
               />
             </div>
           )}

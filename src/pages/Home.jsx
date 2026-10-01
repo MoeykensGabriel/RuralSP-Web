@@ -21,7 +21,7 @@ export default function Home() {
         {/* ── Fondo en capas ── */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
           {/* Mancha radial plateada/neutra animada */}
-          <div className="absolute -top-32 -right-32 size-[36rem] rounded-full bg-neutral-400/15 blur-[140px] animate-pulse-glow" />
+          <div className="absolute -top-32 -right-32 size-[36rem] rounded-full bg-neutral-400/15 blur-[140px]" />
           <div className="absolute -bottom-48 left-0 size-[30rem] rounded-full bg-neutral-500/10 blur-[130px]" />
 
           {/* Sello como marca de agua */}
@@ -35,7 +35,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#101114] via-[#101114]/85 to-transparent" />
         </div>
 
-        <Container className="py-24 animate-fade-in-up menu:py-36">
+        <Container className="py-24 menu:py-36">
           <h1 className="mt-4 max-w-[15ch] text-[clamp(2.25rem,7vw,4.5rem)] font-bold tracking-tight leading-[1.1]">
             {site.slogan}
           </h1>
@@ -43,7 +43,7 @@ export default function Home() {
           <Button
             to={PATHS.contacto}
             variant="primary"
-            className="mt-10 px-7 py-3.5 text-base font-bold shadow-xl transition-all duration-300 hover:scale-105"
+            className="mt-10 px-7 py-3.5 text-base font-bold shadow-xl transition-all duration-300"
           >
             Más información
             <ArrowUpRight size={18} aria-hidden="true" />

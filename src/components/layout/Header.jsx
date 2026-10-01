@@ -21,7 +21,7 @@ import Container from '../ui/Container';
 const NAV_LINK =
   'relative py-2 text-sm font-medium transition-colors ' +
   'after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left ' +
-  'after:scale-x-0 after:bg-fg after:transition-transform hover:after:scale-x-100';
+  'after:scale-x-0 after:bg-fg  hover:after:scale-x-100';
 
 const ICON_BTN =
   'inline-flex size-10 cursor-pointer items-center justify-center rounded-lg border ' +
@@ -108,7 +108,7 @@ export default function Header() {
                   <ChevronDown
                     size={14}
                     aria-hidden="true"
-                    className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
+                    className=""
                   />
                 </NavLink>
 
@@ -177,7 +177,7 @@ export default function Header() {
       {menuOpen && (
         <div
           id="mobile-nav"
-          className="fixed inset-x-0 top-16 z-40 flex animate-slide-down flex-col gap-4 border-b border-line bg-bg px-5 pt-6 pb-8 shadow-xl menu:hidden"
+          className="fixed inset-x-0 top-16 z-40 flex flex-col gap-4 border-b border-line bg-bg px-5 pt-6 pb-8 shadow-xl menu:hidden"
         >
           {/* En mobile los ítems con hijos son un acordeón: arrancan cerrados
               y se abren al tocarlos. Mostrarlos siempre desplegados hacía que
@@ -223,14 +223,14 @@ export default function Header() {
                     <ChevronDown
                       size={18}
                       aria-hidden="true"
-                      className={`transition-transform ${abierto ? 'rotate-180' : ''}`}
+                      className={`${abierto ? 'rotate-180' : ''}`}
                     />
                   </button>
 
                   {abierto && (
                     <ul
                       id={idSubmenu}
-                      className="mb-3 flex animate-slide-down flex-col gap-1 border-l border-line pl-4"
+                      className="mb-3 flex flex-col gap-1 border-l border-line pl-4"
                     >
                       <li>
                         <NavLink

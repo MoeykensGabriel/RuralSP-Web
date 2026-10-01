@@ -66,7 +66,7 @@ export default function SeccionItem({ slug }) {
                 src={item.imagen}
                 alt={item.imagenAlt ?? item.title}
                 decoding="async"
-                className="aspect-[2/1] w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                className="aspect-[2/1] w-full object-cover transition-transform duration-500"
               />
             </div>
           ) : (

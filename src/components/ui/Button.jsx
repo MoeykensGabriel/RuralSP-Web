@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
  */
 const BASE =
   'inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border ' +
-  'font-semibold leading-tight whitespace-nowrap transition-colors active:translate-y-px';
+  'font-semibold leading-tight whitespace-nowrap transition-colors';
 
 const VARIANTS = {
   primary: 'border-inverse-bg bg-inverse-bg text-inverse-fg hover:bg-transparent hover:text-fg',
