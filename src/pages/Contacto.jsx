@@ -10,7 +10,7 @@ import Section from '../components/ui/Section';
  * las consultas (mail, WhatsApp o un backend).
  */
 const ITEM = 'flex items-start gap-4 border-t border-line py-4 last:border-b';
-const LABEL = 'font-mono text-[0.7rem] tracking-[0.12em] text-fg-mute uppercase';
+const LABEL = 'font-sans text-xs tracking-[0.12em] text-fg-mute uppercase';
 const LINK = 'hover:underline hover:underline-offset-4';
 
 export default function Contacto() {
@@ -23,7 +23,7 @@ export default function Contacto() {
             <Phone size={18} aria-hidden="true" className="mt-1 shrink-0" />
             <div className="flex flex-col gap-0.5">
               <span className={LABEL}>Teléfono</span>
-              <a href={site.contact.phoneHref} className={LINK}>
+              <a href={site.contact.phoneHref} className={`${LINK} text-xl font-semibold tabular-nums`}>
                 {site.contact.phone}
               </a>
             </div>

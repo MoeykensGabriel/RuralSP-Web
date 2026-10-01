@@ -35,10 +35,10 @@ export default function Footer() {
                 height="40"
                 className="size-10 shrink-0 rounded-full object-cover"
               />
-              <span className="font-mono text-base font-bold tracking-wide">{site.name}</span>
+              <span className="font-sans text-base font-bold tracking-wide">{site.name}</span>
             </Link>
             <p className="max-w-[46ch] text-sm text-fg-soft">{site.description}</p>
-            <p className="font-mono text-[0.72rem] tracking-[0.08em] text-fg-mute">
+            <p className="font-sans text-[0.72rem] tracking-[0.08em] text-fg-mute">
               {site.legal.licence}
             </p>
           </div>

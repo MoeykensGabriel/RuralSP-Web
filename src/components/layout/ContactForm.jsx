@@ -53,7 +53,7 @@ const CAMPO =
  * espaciado entre letras baja, que a este tamaño estorbaba más que ayudar.
  */
 const ETIQUETA =
-  'mb-2 block font-mono text-[0.8rem] font-medium tracking-[0.06em] text-neutral-700 uppercase';
+  'mb-2 block font-sans text-sm font-medium text-neutral-700';
 
 export default function ContactForm() {
   const servicios = getContactReasons();
@@ -301,7 +301,7 @@ export default function ContactForm() {
 
             <ul className="mt-8 flex flex-col border-t border-line">
               <Dato icono={Phone} etiqueta="Teléfono">
-                <a href={site.contact.phoneHref} className="hover:underline hover:underline-offset-4">
+                <a href={site.contact.phoneHref} className="text-lg font-semibold tabular-nums hover:underline hover:underline-offset-4">
                   {site.contact.phone}
                 </a>
               </Dato>
@@ -354,7 +354,7 @@ function Dato({ icono: Icono, etiqueta, children }) {
     <li className="flex items-start gap-4 border-b border-line py-4">
       <Icono size={16} aria-hidden="true" className="mt-1 shrink-0 text-fg-mute" />
       <div className="flex flex-col gap-0.5">
-        <span className="font-mono text-[0.65rem] tracking-[0.12em] text-fg-mute uppercase">
+        <span className="font-sans text-xs tracking-[0.12em] text-fg-mute uppercase">
           {etiqueta}
         </span>
         <span className="text-sm">{children}</span>

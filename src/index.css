@@ -32,7 +32,7 @@
   --color-inverse-fg: #0d0d0d;
 
   /* Tipografías */
-  --font-sans: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Breakpoint propio: a los 900px el menú pasa de hamburguesa a horizontal.
@@ -103,10 +103,10 @@
    Se repetía en tres lugares, así que vive acá como una sola clase.
    -------------------------------------------------------------------------- */
 @utility eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-fg-mute);
 }
@@ -156,32 +156,15 @@
   }
 }
 
-/* --------------------------------------------------------------------------
-   Respeta a quien pidió menos movimiento en su sistema operativo.
-
-   EXCEPCIÓN DELIBERADA: `.animate-marquee` (el carrusel de logos) queda
-   afuera y se sigue moviendo siempre. Es una decisión tomada a conciencia,
-   no un olvido — no la "arregles" sacando el :not().
-
-   El motivo: en Windows, el toggle de animaciones mezcla dos cosas muy
-   distintas —"el movimiento me marea" y "quiero que la PC vaya liviana"—
-   y el navegador no las distingue. Frenar el carrusel dejaba quieto el
-   bloque también para quien apagó las animaciones solo por rendimiento.
-
-   Lo que se pierde: alguien a quien el movimiento le hace mal no tiene
-   forma de frenarlo salvo pasando el mouse por encima o llegando con el
-   teclado, que sí lo pausan.
-   -------------------------------------------------------------------------- */
+/* Movimiento reducido: los logos siguen disponibles mediante scroll horizontal. */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *:not(.animate-marquee),
-  *:not(.animate-marquee)::before,
-  *:not(.animate-marquee)::after {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .logo-carousel { overflow-x: auto; }
+  .logo-carousel .animate-marquee { animation: none; }
+  .logo-carousel [aria-hidden='true'] { display: none; }
 }

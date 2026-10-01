@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 /**
  * Carrusel de logos en movimiento continuo (marquee).
  *
@@ -36,6 +38,7 @@ const MIN_POR_GRUPO = 8;
  */
 
 export default function LogoCarousel({ items }) {
+  const [paused, setPaused] = useState(false);
   if (!items?.length) return null;
 
   // Con pocos logos, un grupo puede ser más angosto que la pantalla y al
@@ -105,7 +108,8 @@ export default function LogoCarousel({ items }) {
   );
 
   return (
-    <div className="group overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+    <div>
+      <div className="logo-carousel group overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
       {/* La duración sale de una cuenta en CSS: cantidad de logos por los
           segundos que tarda cada uno. Los segundos viven en una variable que
           cambia sola en el breakpoint, así que la velocidad se mantiene en
@@ -117,12 +121,18 @@ export default function LogoCarousel({ items }) {
           'flex w-max animate-marquee [--seg:4.9s] menu:[--seg:7.8s] ' +
           'group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]'
         }
-        style={{ animationDuration: `calc(${grupo.length} * var(--seg))` }}
+        style={{ animationDuration: `calc(${grupo.length} * var(--seg))`, animationPlayState: paused ? 'paused' : undefined }}
       >
         {renderGrupo(false)}
         {/* Copia solo visual: se oculta a los lectores de pantalla para que
             no lean la lista de empresas dos veces. */}
         {renderGrupo(true)}
+      </div>
+      </div>
+      <div className="mt-5 flex justify-center motion-reduce:hidden">
+        <button type="button" onClick={() => setPaused((value) => !value)} aria-pressed={paused} className="rounded-lg border border-line px-4 py-2 text-xs font-medium text-fg-soft transition-colors hover:border-neutral-500 hover:text-fg">
+          {paused ? 'Reanudar carrusel' : 'Pausar carrusel'}
+        </button>
       </div>
     </div>
   );

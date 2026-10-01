@@ -17,7 +17,7 @@ export default function TarjetaItem({ to, title, text, imagen, imagenAlt }) {
   return (
     <Link
       to={to}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/40 transition-all duration-300 hover:-translate-y-1.5 hover:border-neutral-500 hover:bg-neutral-900/80 hover:shadow-2xl"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/40 transition-colors duration-200 hover:border-neutral-500 hover:bg-neutral-900/80"
     >
       <div className="aspect-[2/1] w-full overflow-hidden border-b border-neutral-800 bg-bg-soft">
         {imagen ? (
@@ -26,7 +26,7 @@ export default function TarjetaItem({ to, title, text, imagen, imagenAlt }) {
             alt={imagenAlt ?? ''}
             loading="lazy"
             decoding="async"
-            className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
         ) : (
           <div
@@ -46,7 +46,7 @@ export default function TarjetaItem({ to, title, text, imagen, imagenAlt }) {
           <ArrowRight
             size={16}
             aria-hidden="true"
-            className="transition-transform duration-300 group-hover:translate-x-1.5"
+            className="transition-transform duration-300 group-hover:translate-x-0.5"
           />
         </span>
       </div>

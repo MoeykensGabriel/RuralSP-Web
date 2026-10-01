@@ -33,10 +33,10 @@ export const site = {
   slogan: 'Empresa de Seguridad e Investigación',
   description:
     'Empresa de Seguridad e Investigación especializada en soluciones confiables y adaptadas a cada necesidad.',
-  // TODO datos de contacto: siguen siendo de ejemplo, faltan los reales.
+  // Celular confirmado por la empresa. Pendiente confirmar dirección y horarios.
   contact: {
-    phone: '+54 11 4000-0000',
-    phoneHref: 'tel:+541140000000',
+    phone: '+54 9 381 441 5795',
+    phoneHref: 'tel:+5493814415795',
     email: 'Ruralseguridad.ok@gmail.com',
     address: 'Dirección a confirmar',
     hours: 'Lunes a viernes de 9 a 18 h',

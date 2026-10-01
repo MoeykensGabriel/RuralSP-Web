@@ -84,7 +84,7 @@ export default function Nosotros() {
                 src={equipo.imagen}
                 alt={equipo.imagenAlt ?? equipo.titulo}
                 decoding="async"
-                className="aspect-[3/4] max-h-[340px] w-full object-cover object-top transition-transform duration-500 hover:scale-105 sm:max-h-[440px] menu:max-h-[580px]"
+                className="aspect-[3/4] max-h-[340px] w-full object-cover object-top transition-transform duration-500 hover:scale-[1.02] sm:max-h-[440px] menu:max-h-[580px]"
               />
             </div>
           )}
@@ -93,7 +93,7 @@ export default function Nosotros() {
             {equipo.miembros.map((miembro) => (
               <li
                 key={miembro.nombre}
-                className="group rounded-2xl border border-neutral-800/80 bg-neutral-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-600 hover:bg-neutral-900/80 hover:shadow-xl sm:p-8"
+                className="group rounded-2xl border border-neutral-800/80 bg-neutral-900/40 p-6 transition-all duration-300 hover:border-neutral-600 hover:bg-neutral-900/80  sm:p-8"
               >
                 <p className="eyebrow">{miembro.cargo}</p>
                 <h3 className="mt-2 text-xl font-bold text-white transition-colors group-hover:text-white menu:text-2xl">
@@ -113,7 +113,7 @@ export default function Nosotros() {
             {/* Decorativo: el mismo dato ya está dicho en el título de al
                 lado, así que se oculta a los lectores de pantalla para que
                 no lo lean dos veces. */}
-            <p className="font-mono text-7xl leading-none font-bold menu:text-8xl">
+            <p className="font-sans text-7xl leading-none font-bold menu:text-8xl">
               {trayectoria.anios}
             </p>
             <p className="eyebrow mt-3">años de trayectoria</p>

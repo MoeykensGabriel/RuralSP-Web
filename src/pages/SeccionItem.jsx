@@ -43,7 +43,7 @@ export default function SeccionItem({ slug }) {
           {/* Botón Volver / Miga de pan */}
           <Link
             to={rutaSeccion(seccion.slug)}
-            className="mb-6 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-neutral-400 uppercase transition-colors hover:text-white"
+            className="mb-6 inline-flex items-center gap-2 font-sans text-xs tracking-wider text-neutral-400 uppercase transition-colors hover:text-white"
           >
             <ArrowLeft size={14} aria-hidden="true" />
             {seccion.titulo}
@@ -66,14 +66,14 @@ export default function SeccionItem({ slug }) {
                 src={item.imagen}
                 alt={item.imagenAlt ?? item.title}
                 decoding="async"
-                className="aspect-[2/1] w-full object-cover transition-transform duration-500 hover:scale-105"
+                className="aspect-[2/1] w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
               />
             </div>
           ) : (
             <div className="mt-10 flex aspect-[2.2/1] w-full max-w-4xl items-center justify-center rounded-2xl border border-neutral-800 bg-neutral-950/80 shadow-2xl">
               <div className="flex flex-col items-center gap-3 text-neutral-500">
                 <ShieldCheck size={48} className="text-neutral-400" />
-                <span className="font-mono text-sm tracking-wider uppercase">{item.title}</span>
+                <span className="font-sans text-sm tracking-wider uppercase">{item.title}</span>
               </div>
             </div>
           )}

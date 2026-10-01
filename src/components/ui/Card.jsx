@@ -7,7 +7,7 @@
 export default function Card({ title, text, className = '' }) {
   return (
     <article
-      className={`group flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-500 hover:bg-neutral-900/80 hover:shadow-xl ${className}`.trim()}
+      className={`group flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6 transition-all duration-300 hover:border-neutral-500 hover:bg-neutral-900/80  ${className}`.trim()}
     >
       <span
         aria-hidden="true"
