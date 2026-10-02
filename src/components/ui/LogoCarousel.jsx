@@ -1,139 +1,87 @@
-import { useState } from 'react';
-
-/**
- * Carrusel de logos en movimiento continuo (marquee).
- *
- * Cómo funciona: la lista se renderiza DOS veces dentro de la misma pista.
- * La animación desplaza la pista exactamente un ancho de grupo (-50%) y
- * vuelve a empezar, así el loop no tiene salto visible. Todo el movimiento
- * es CSS: no hay JavaScript ni timers corriendo.
- *
- * Se frena al pasar el mouse por encima o al llegar con el teclado, y queda
- * quieto si el sistema operativo pide menos movimiento.
- *
- * @param {{id: string, name: string, logo: string|null}[]} items
- */
-
-/** Mínimo de logos por grupo para que la pista tape cualquier pantalla. */
-const MIN_POR_GRUPO = 8;
-
-/**
- * ═══ LA PERILLA DE LA VELOCIDAD ═══
- *
- * Segundos que tarda cada logo en cruzar. Más alto es más lento.
- *
- * Hay dos valores porque las tarjetas miden distinto en mobile y en desktop,
- * y con un solo número el carrusel iría al doble de rápido en la pantalla
- * grande. Cada valor es (ancho de tarjeta + separación) ÷ píxeles por
- * segundo, y los dos apuntan a los mismos 36 px/s:
- *
- *   mobile   (160 + 16) / 36 = 4.9
- *   desktop  (256 + 24) / 36 = 7.8
- *
- * Los dos valores están escritos como clases en el JSX de más abajo:
- *   [--seg:4.9s]  y  menu:[--seg:7.8s]
- *
- * OJO: si cambian las medidas del casillero o el `gap`, estos dos números
- * hay que recalcularlos, o la velocidad se corre.
- */
+import { useEffect, useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function LogoCarousel({ items }) {
+  const track = useRef(null);
+  const group = useRef(null);
+  const state = useRef({ x: 0, width: 0, paused: false, hover: false, focus: false, drag: null, resumeAt: 0 });
   const [paused, setPaused] = useState(false);
-  if (!items?.length) return null;
-
-  // Con pocos logos, un grupo puede ser más angosto que la pantalla y al
-  // completar la vuelta se vería un hueco. Repetimos la lista hasta llegar
-  // al mínimo. Con 8 logos o más no repite nada.
-  const repeticiones = Math.ceil(MIN_POR_GRUPO / items.length);
-  const grupo = Array.from({ length: repeticiones }, () => items).flat();
-
-  const renderGrupo = (clon) => (
-    // El padding derecho es la separación entre el último logo de una vuelta
-    // y el primero de la siguiente.
-    <ul className="flex items-center gap-4 pr-4 menu:gap-6 menu:pr-6" aria-hidden={clon || undefined}>
-      {grupo.map((item, i) => (
-        /* Casillero de medida fija, igual para TODOS: es lo que hace que la
-           fila se lea pareja aunque los logos tengan formas muy distintas.
-           Cambia entre mobile y desktop, pero siempre parejo entre tarjetas.
-
-           En desktop es ancho (16:8) a propósito: los logotipos largos, tipo
-           CLAAS, topan contra el ancho antes que contra el alto, así que
-           darles más ancho es lo único que los agranda. A los logos
-           compactos no les cambia nada, porque a ellos los limita el alto. */
-        <li key={`${item.id}-${i}`} className="h-24 w-40 shrink-0 menu:h-32 menu:w-64">
-          {item.logo ? (
-            /* TODAS las tarjetas miden lo mismo y el logo entra adentro con
-               `object-contain`. Es lo que empareja marcas de formas muy
-               distintas: una marca compacta toca el borde de arriba y abajo,
-               y una palabra larga toca los costados. Las dos terminan
-               pesando parecido.
-
-               Dejar el ancho libre, en cambio, daba una tarjeta de 110px
-               para una y de 326px para otra, y la larga se veía casi el
-               doble de grande.
-
-               El `fondo` es el color con el que viene el archivo: así el
-               sobrante de la caja no se ve como franjas blancas alrededor
-               de un logo que trae su propio color. */
-            <div
-              className="flex size-full items-center justify-center overflow-hidden rounded-lg"
-              style={{ backgroundColor: item.fondo ?? '#ffffff' }}
-            >
-              {/* NO usar loading="lazy" acá, aunque parezca la opción obvia.
-                  El navegador decide cuándo cargar una imagen lazy midiendo
-                  si está cerca de la pantalla, pero recorta esa medición por
-                  los contenedores con overflow oculto, como la ventana de
-                  este carrusel. Un logo que todavía no entró en la franja
-                  cuenta como "infinitamente lejos" y recién se carga cuando
-                  ya es visible: se veía la tarjeta en blanco y después el
-                  logo. Con carga normal están listos antes de aparecer.
-
-                  `fetchPriority="low"` evita que compitan con el hero, que
-                  es lo primero que ve el visitante. */}
-              <img
-                src={item.logo}
-                alt={item.name}
-                fetchPriority="low"
-                className="max-h-full max-w-full object-contain"
-              />
-            </div>
-          ) : (
-            <span className="grid size-full place-items-center rounded-lg border border-dashed border-line-strong bg-bg p-2 text-center font-mono text-[0.7rem] tracking-[0.1em] text-fg-mute uppercase">
-              {item.name}
-            </span>
-          )}
+  const count = items?.length ?? 0;
+  const logos = count ? Array.from({ length: Math.ceil(8 / count) }, () => items).flat() : [];
+  const paint = () => {
+    const s = state.current;
+    if (!s.width || !track.current) return;
+    s.x = ((s.x % s.width) + s.width) % s.width;
+    track.current.style.transform = `translateX(${-s.width - s.x}px)`;
+  };
+  useEffect(() => {
+    if (!count) return undefined;
+    const s = state.current;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const measure = () => {
+      const old = s.width;
+      s.width = group.current.getBoundingClientRect().width;
+      if (old) s.x = s.x / old * s.width;
+      paint();
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(group.current);
+    measure();
+    let frame, previous;
+    const tick = (time) => {
+      const delta = previous === undefined ? 0 : Math.min(time - previous, 50);
+      previous = time;
+      if (!reduced.matches && !document.hidden && !s.paused && !s.hover && !s.focus && !s.drag && time >= s.resumeAt) {
+        s.x += delta * 0.036;
+        paint();
+      }
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); s.drag = null; };
+  }, [count]);
+  const advance = (direction) => {
+    const card = group.current?.firstElementChild;
+    if (!card) return;
+    state.current.x += direction * (card.getBoundingClientRect().width + parseFloat(getComputedStyle(group.current).columnGap));
+    state.current.resumeAt = performance.now() + 1800;
+    paint();
+  };
+  const release = (event) => {
+    if (state.current.drag?.id !== event.pointerId) return;
+    state.current.drag = null;
+    state.current.resumeAt = performance.now() + 1800;
+    event.currentTarget.style.cursor = 'grab';
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+  };
+  if (!count) return null;
+  const control = 'rounded-lg border border-line px-3 py-2 text-sm font-medium text-fg-soft transition-colors hover:border-neutral-500 hover:text-fg';
+  const renderGroup = (copy) => (
+    <ul ref={copy === 1 ? group : undefined} aria-hidden={copy !== 1 || undefined} className="flex shrink-0 items-center gap-4 pr-4 menu:gap-6 menu:pr-6">
+      {logos.map((item, index) => (
+        <li key={`${item.id}-${index}`} className="h-24 w-40 shrink-0 menu:h-32 menu:w-64">
+          {item.logo ? <div className="flex size-full items-center justify-center overflow-hidden rounded-lg" style={{ backgroundColor: item.fondo ?? '#ffffff' }}>
+            <img src={item.logo} alt={item.name} draggable={false} fetchPriority="low" className="pointer-events-none max-h-full max-w-full object-contain" />
+          </div> : <span className="grid size-full place-items-center rounded-lg border border-dashed border-line-strong bg-bg p-2 text-center text-xs text-fg-mute">{item.name}</span>}
         </li>
       ))}
     </ul>
   );
-
-  return (
-    <div>
-      <div className="logo-carousel group overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
-      {/* La duración sale de una cuenta en CSS: cantidad de logos por los
-          segundos que tarda cada uno. Los segundos viven en una variable que
-          cambia sola en el breakpoint, así que la velocidad se mantiene en
-          mobile y en desktop sin medir nada desde JavaScript. */}
-      <div
-        className={
-          // Los valores van literales y no interpolados: Tailwind lee el
-          // código como texto para generar el CSS, y una plantilla no la ve.
-          'flex w-max animate-marquee [--seg:4.9s] menu:[--seg:7.8s] ' +
-          'group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]'
-        }
-        style={{ animationDuration: `calc(${grupo.length} * var(--seg))`, animationPlayState: paused ? 'paused' : undefined }}
-      >
-        {renderGrupo(false)}
-        {/* Copia solo visual: se oculta a los lectores de pantalla para que
-            no lean la lista de empresas dos veces. */}
-        {renderGrupo(true)}
-      </div>
-      </div>
-      <div className="mt-5 flex justify-center motion-reduce:hidden">
-        <button type="button" onClick={() => setPaused((value) => !value)} aria-pressed={paused} className="rounded-lg border border-line px-4 py-2 text-xs font-medium text-fg-soft transition-colors hover:border-neutral-500 hover:text-fg">
-          {paused ? 'Reanudar carrusel' : 'Pausar carrusel'}
-        </button>
-      </div>
+  return <div>
+    <div role="region" aria-label="Empresas que confían en nosotros. Arrastrá o usá las flechas para recorrer los logos." tabIndex={0}
+      className="cursor-grab touch-pan-y select-none overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]"
+      onMouseEnter={() => { state.current.hover = true; }} onMouseLeave={() => { state.current.hover = false; }}
+      onFocus={(event) => { state.current.focus = event.currentTarget.matches(':focus-visible'); }} onBlur={() => { state.current.focus = false; }}
+      onKeyDown={(event) => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); advance(event.key === 'ArrowRight' ? 1 : -1); } }}
+      onPointerDown={(event) => { if (!event.isPrimary || event.button !== 0) return; state.current.drag = { id: event.pointerId, x: event.clientX }; event.currentTarget.setPointerCapture(event.pointerId); event.currentTarget.style.cursor = 'grabbing'; }}
+      onPointerMove={(event) => { const drag = state.current.drag; if (!drag || drag.id !== event.pointerId) return; state.current.x -= event.clientX - drag.x; drag.x = event.clientX; paint(); }}
+      onPointerUp={release} onPointerCancel={release} onLostPointerCapture={release}>
+      <div ref={track} className="flex w-max will-change-transform">{renderGroup(0)}{renderGroup(1)}{renderGroup(2)}</div>
     </div>
-  );
+    <div className="mt-5 flex items-center justify-center gap-3">
+      <button type="button" aria-label="Empresas anteriores" className={control} onClick={() => advance(-1)}><ChevronLeft size={18} aria-hidden="true" /></button>
+      <button type="button" aria-pressed={paused} className={`${control} motion-reduce:hidden`} onClick={() => { state.current.paused = !paused; setPaused(!paused); }}>{paused ? 'Reanudar carrusel' : 'Pausar carrusel'}</button>
+      <button type="button" aria-label="Empresas siguientes" className={control} onClick={() => advance(1)}><ChevronRight size={18} aria-hidden="true" /></button>
+    </div>
+  </div>;
 }
