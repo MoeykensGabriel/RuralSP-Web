@@ -43,7 +43,6 @@ export const getPartners = () => [
   { id: 'pt-4', name: 'Agrícola García', logo: '/logos/agricola-garcia.png' },
   { id: 'pt-5', name: 'CLAAS', logo: '/logos/claas.png' },
   { id: 'pt-6', name: 'Food Five Export', logo: '/logos/food-five-export.png' },
-  { id: 'pt-7', name: 'Casas & Asociados', logo: '/logos/casas-asociados.png' },
   { id: 'pt-12', name: 'Agrícola Transervi S.A.', logo: '/logos/agricola-transervi.png' },
 
   // TODO isotipos sin texto: el nombre no se puede deducir del archivo.
